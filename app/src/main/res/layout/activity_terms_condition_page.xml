@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".ui.Activities.infoPages.TermsConditionPage">
+
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp">
+
+
+            <!-- Content -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:lineSpacingExtra="4dp"
+                android:text="Welcome to Digivahan Digital India Pvt. Ltd. These Terms &amp; Conditions (“Terms”) govern your access and use of the Digivahan mobile application (“App”) and associated services.\n\nBy accessing or using our App, you agree to comply with these Terms. If you do not agree, please do not use our services."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 1. Services Offered -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n1. Services Offered"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="The Digivahan App allows users to:\n• Verify vehicle details such as RC, Insurance, PUC, and Challans\n• Upload vehicle-related documents for digital validation\n• Generate and scan a unique QR code for vehicle identity\n• Report or alert about lost, damaged, or found vehicles through QR\n• Opt for physical delivery of QR stickers (paid service)"
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 2. User Eligibility -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n2. User Eligibility"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Our platform is available for use by all individuals regardless of age. However, users below the age of 18 must access the services under parental or guardian supervision."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 3. Account Creation -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n3. Account Creation &amp; Authentication"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="To access the App, users must verify their mobile number through OTP. You are responsible for maintaining the confidentiality of your login credentials and for all activities under your account."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 4. Payments -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n4. Payments"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Some services, such as physical QR sticker delivery, are paid.\n• All payments are processed securely via Razorpay.\n• Once processed, payments are non-refundable, unless otherwise stated.\n• In case of payment failure or technical error, users may contact our support."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 5. Third-party Services -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n5. Use of Third-party Services"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="We rely on third-party services to deliver core functionalities:\n• Firebase: For authentication, analytics, and data storage\n• Razorpay: For payment processing\n• External APIs: For fetching vehicle data (RC, challan, etc.)\n\nThese services may collect and use your data in accordance with their respective privacy policies."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 6. User Responsibilities -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n6. User Responsibilities"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="• Users must provide accurate, up-to-date information.\n• Misuse of QR code or submission of fake documents is strictly prohibited and may lead to legal action.\n• Users are expected to respect public safety and report genuine incidents via QR scanning."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 7. Data Storage -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n7. Data Storage and Retention"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="• User data is stored both locally on the user’s device and remotely on secure AWS and Firebase servers.\n• Data is retained until the user manually deletes their account or requests data deletion.\n• Users can request to access, edit, or delete their personal data through the app interface or by emailing us."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 8. QR Sticker Delivery -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n8. QR Sticker Delivery"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="• Users opting for physical QR stickers agree to provide correct shipping details.\n• Delivery timelines may vary depending on location.\n• Digivahan is not responsible for delays due to courier issues or incorrect addresses."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 9. Intellectual Property -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n9. Intellectual Property"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="All content, features, logos, trademarks, and services within the App are the exclusive property of Digivahan Digital India Pvt. Ltd. Unauthorized use, duplication, or modification is strictly prohibited."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 10. Limitation of Liability -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n10. Limitation of Liability"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Digivahan is not liable for:\n• Inaccurate data submitted by users\n• Misuse of QR stickers by third parties\n• Delays or failures caused by third-party services or network issues\n• Any damages, losses, or claims arising from the use of our services"
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 11. Termination -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n11. Termination of Services"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="We reserve the right to suspend or terminate user accounts for:\n• Violation of these Terms\n• Submission of fraudulent or misleading data\n• Abuse or misuse of platform functionalities"
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 12. Changes to Terms -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n12. Changes to Terms"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="We may update or modify these Terms at any time. Users will be notified of significant changes via app notifications or email. Continued use of the App after such updates constitutes your acceptance of the revised Terms."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 13. Governing Law -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n13. Governing Law"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="These Terms shall be governed by and construed under the laws of India. All disputes shall be subject to the exclusive jurisdiction of the courts in delhi karkardooma court."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 14. Contact Us -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n14. Contact Us"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="For questions, support, or legal queries related to these Terms, please contact:\n📧 Email: info@digivahan.in"
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+

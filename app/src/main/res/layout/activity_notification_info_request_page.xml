@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <!-- Header -->
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <!-- Profile -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/profile_bg1" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="4dp"
+                        android:padding="5dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/temp_profile_icon" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:padding="5dp"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"
+                    app:justifyContent="flex_start">
+
+                    <TextView
+                        android:id="@+id/userName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:drawableStart="@drawable/profile_icon1"
+                        android:drawablePadding="5dp"
+                        android:visibility="gone"
+                        android:fontFamily="@font/hind_medium"
+                        android:text="@string/empty_string"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp"
+                        app:layout_flexShrink="1" />
+
+                    <TextView
+                        android:id="@+id/userNameTemp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:drawableStart="@drawable/profile_icon1"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/hind_medium"
+                        android:text="@string/empty_string"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp"
+                        app:layout_flexShrink="1" />
+
+                    <TextView
+                        android:id="@+id/age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:drawableStart="@drawable/calendar_icon1"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/hind_medium"
+                        android:text="@string/empty_string"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp"
+                        app:layout_flexShrink="1" />
+
+                    <TextView
+                        android:id="@+id/gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:drawableStart="@drawable/gender_icon"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/hind_medium"
+                        android:text="@string/empty_string"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp"
+                        app:layout_flexShrink="1" />
+
+                    <TextView
+                        android:id="@+id/address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:drawableStart="@drawable/live_location_icon1"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/hind_medium"
+                        android:text="@string/empty_string"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp"
+                        app:layout_flexShrink="1" />
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <!-- Description -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/hind_semibold"
+                    android:text="Please fill all necessary details before having a chat with person."
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/hind_semibold"
+                    android:text="Describe the situation"
+                    android:textColor="@color/text_heading"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/message"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="@drawable/edit_text_bg2"
+                    android:fontFamily="@font/hind_medium"
+                    android:gravity="top|start"
+                    android:hint="Describe the situation"
+                    android:padding="8dp" />
+
+                <!-- Photo Upload -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/hind_semibold"
+                    android:text="Share a photo"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <!-- Photo Previews -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvSelectedImages"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/pickImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="60dp"
+                    android:background="@drawable/bg_card3"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/add_image_icon" />
+                </LinearLayout>
+
+
+                <!-- Map -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/hind_semibold"
+                    android:text="Current location"
+                    android:textColor="@color/text_heading"
+                    android:textSize="18sp" />
+
+                <com.google.android.gms.maps.MapView
+                    android:id="@+id/mapView"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:visibility="gone"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="@drawable/bg_card3"
+                    android:layout_marginBottom="60dp"
+                    android:clipToOutline="true" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <!-- Button -->
+        <Button
+            android:id="@+id/requestBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/button_bg1"
+            android:backgroundTint="@color/colorPrimary"
+            android:fontFamily="@font/hind_bold"
+            android:text="Send Notification"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="8dp"
+    android:paddingHorizontal="15dp">
+
+    <FrameLayout
+        android:id="@+id/imageLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgProfile"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/profile_icon1" />
+
+        <ImageView
+            android:id="@+id/carImage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:visibility="gone"
+            android:src="@drawable/profile_icon1" />
+
+    </FrameLayout>
+
+
+    <!-- Name -->
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_string"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:fontFamily="@font/hind_medium"
+        android:layout_marginStart="23dp"
+        app:layout_constraintEnd_toStartOf="@id/linearLayout5"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/imageLayout"
+        app:layout_constraintTop_toTopOf="@id/imageLayout" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvName">
+
+        <!-- Time -->
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/hind"
+            android:text="@string/empty_string"
+            android:textColor="#999999"
+            android:textSize="12sp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/unseenDot"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="5dp"
+            android:src="@color/color_red"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </LinearLayout>
+
+
+    <!-- Chat Now Button -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvName"
+        app:layout_constraintTop_toBottomOf="@+id/tvName">
+
+        <TextView
+            android:id="@+id/tvSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/hind"
+            android:maxLines="1"
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
+            android:text="@string/empty_string"
+            android:textColor="#999999"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/btnChatNow"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tvName"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+        <TextView
+            android:id="@+id/btnChatNow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_bg2"
+            android:fontFamily="@font/hind"
+            android:paddingVertical="2dp"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:text="View"
+            android:textColor="@android:color/white"
+            android:textSize="13sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/tvSubtitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvSubtitle" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

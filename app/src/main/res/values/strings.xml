@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Digivahan</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+
+    <string name="google_api_key">AIzaSyAoLQrc4Wc4bnY2LrZM2ru72bhegDt6Cdc</string>
+
+    <!--    Nav_view items-->
+    <string name="nav_live_tracking">Live Tracking</string>
+    <string name="nav_notification">Notifications</string>
+    <string name="nav_my_garage">My Garage</string>
+    <string name="nav_my_order">My Orders</string>
+    <string name="nav_virtual_qrs">My Virtual QRs</string>
+    <string name="nav_update_profile">Update Profile</string>
+    <string name="nav_about_us">About Us</string>
+    <string name="nav_term_condition">Terms &amp; Conditions</string>
+    <string name="nav_privacy_policy">Privacy &amp; Policy </string>
+    <string name="nav_share_app">Share App</string>
+    <string name="nav_log_out">Logout</string>
+
+    <string name="currency_sign">₹</string>
+
+    <string name="empty_string">N/A</string>
+    <string name="empty_field_string">Field can\'t be empty</string>
+
+
+    <string name="one_signal_id">6841c599-0740-4059-aa80-b4a2396ff67e</string>
+    <string name="zigoAppSign">28dcab5634e85dbfdf233282a00032c38827e00b91d48f97278a66b9f8cf3df7</string>
+
+
+    <!--    Login Page Strings -->
+    <string name="password_hint">Password</string>
+
+    <string name="low_storage_error">Face detector dependencies cannot be downloaded due to low device storage</string>
+    <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
+
+
+    <string name="temp_text">Introduces a premium differentiated design combined with cutting-edge technology \n
+        Curvv.ev launched at ₹ 17.49 lakh for the 45kWh battery and at ₹ 19.25 lakh for the 55kWh battery \n
+        2nd product based on the advanced Pure EV architecture – acti.ev
+    </string>
+
+    <!--    Error texts-->
+    <string name="name_length_error">Please enter correct name, At least 3 character</string>
+
+    <string-array name="sizes">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+    </string-array>
+
+</resources>

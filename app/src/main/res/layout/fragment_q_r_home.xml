@@ -1,0 +1,730 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="-100dp"
+            android:layout_marginEnd="-60dp"
+            android:src="@drawable/circle_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/Icon_Background_3" />
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="-60dp"
+            android:layout_marginTop="220dp"
+            android:src="@drawable/circle_bg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/Icon_Background_4" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.Fragments.QRHomeFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="16dp"
+                android:paddingBottom="32dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/newServices"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="4dp"
+                    android:clipToPadding="false"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    android:visibility="visible" />
+
+                <LinearLayout
+                    android:id="@+id/dotContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:orientation="horizontal" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/vehicleServices"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:clipToPadding="false"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    android:visibility="visible" />
+
+                <!-- Grid of action icons (2 rows x 4 columns) -->
+
+                <!-- How to use QR (horizontal gallery placeholder) -->
+                <!--<GridLayout
+                    android:id="@+id/gridActions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:columnCount="4"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:rowCount="2">
+
+                    &lt;!&ndash; Eight action items (icon + label) &ndash;&gt;
+                    &lt;!&ndash; Repeat this block for each icon, change ids and drawables accordingly &ndash;&gt;
+                    <LinearLayout
+                        android:id="@+id/scanQRCodeBtn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="8dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="@dimen/btn_width"
+                            android:layout_height="@dimen/btn_height"
+                            android:backgroundTint="@color/home_Icon_Background"
+                            app:cardCornerRadius="50dp"
+                            app:cardElevation="2dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="Scan QR"
+                                android:padding="10dp"
+                                android:src="@drawable/scan_qr_code_icon"
+                                app:tint="@color/colorPrimary" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/hind_bold"
+                            android:gravity="center"
+                            android:lineSpacingExtra="-5dp"
+                            android:text="Scan QR"
+                            android:textColor="@color/text_heading"
+                            android:textSize="@dimen/btn_text_size" />
+
+                    </LinearLayout>
+
+
+                    &lt;!&ndash; fourth &ndash;&gt;
+                    <LinearLayout
+                        android:id="@+id/checkVehicleInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="8dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="@dimen/btn_width"
+                            android:layout_height="@dimen/btn_height"
+                            android:backgroundTint="@color/home_Icon_Background"
+                            app:cardCornerRadius="50dp"
+                            app:cardElevation="2dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="Check QR"
+                                android:padding="10dp"
+                                android:src="@drawable/check_vehicle_icon" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/hind_bold"
+                            android:lineSpacingExtra="-5dp"
+                            android:text="Check Vehicle"
+                            android:textAlignment="center"
+                            android:textColor="@color/text_heading"
+                            android:textSize="@dimen/btn_text_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/checkChallanBtn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="8dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="@dimen/btn_width"
+                            android:layout_height="@dimen/btn_height"
+                            android:backgroundTint="@color/home_Icon_Background"
+                            app:cardCornerRadius="50dp"
+                            app:cardElevation="2dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="Check QR"
+                                android:padding="5dp"
+                                android:src="@drawable/check_challan_icon" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/hind_bold"
+                            android:lineSpacingExtra="-5dp"
+                            android:text="Check Challan"
+                            android:textAlignment="center"
+                            android:textColor="@color/text_heading"
+                            android:textSize="@dimen/btn_text_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/fastTagBtn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="8dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="@dimen/btn_width"
+                            android:layout_height="@dimen/btn_height"
+                            android:backgroundTint="@color/home_Icon_Background"
+                            app:cardCornerRadius="50dp"
+                            app:cardElevation="2dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="Fast Tag"
+                                android:padding="5dp"
+                                android:src="@drawable/fastag_icon" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/hind_bold"
+                            android:text="FASTag"
+                            android:textColor="@color/text_heading"
+                            android:textSize="@dimen/btn_text_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/activateQRCodeBtn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="8dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="@dimen/btn_width"
+                            android:layout_height="@dimen/btn_height"
+                            android:backgroundTint="@color/home_Icon_Background"
+                            app:cardCornerRadius="50dp"
+                            app:cardElevation="2dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="Scan QR"
+                                android:padding="10dp"
+                                android:src="@drawable/activate_qr_code_icon" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/hind_bold"
+                            android:gravity="center"
+                            android:lineSpacingExtra="-5dp"
+                            android:text="Activate QR"
+                            android:textColor="@color/text_heading"
+                            android:textSize="@dimen/btn_text_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/addVehicleIntoGarage"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="8dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="@dimen/btn_width"
+                            android:layout_height="@dimen/btn_height"
+                            android:backgroundTint="@color/home_Icon_Background"
+                            app:cardCornerRadius="50dp"
+                            app:cardElevation="2dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="Order Physical"
+                                android:padding="10dp"
+                                android:src="@drawable/my_garage_icon"
+                                app:tint="@color/colorPrimary" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/hind_bold"
+                            android:gravity="center"
+                            android:lineSpacingExtra="-5dp"
+                            android:text="My Garage"
+                            android:textColor="@color/text_heading"
+                            android:textSize="@dimen/btn_text_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/downloadVQRBtn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="8dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="@dimen/btn_width"
+                            android:layout_height="@dimen/btn_height"
+                            android:backgroundTint="@color/home_Icon_Background"
+                            app:cardCornerRadius="50dp"
+                            app:cardElevation="2dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="Download virtual"
+                                android:padding="10dp"
+                                android:src="@drawable/download_qr_icon"
+                                app:tint="@color/colorPrimary" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/hind_bold"
+                            android:gravity="center"
+                            android:lineSpacingExtra="-5dp"
+                            android:text="Download QR Code"
+                            android:textColor="@color/text_heading"
+                            android:textSize="@dimen/btn_text_size" />
+
+                    </LinearLayout>
+
+                    &lt;!&ndash; second row icons (4 more) &ndash;&gt;
+                    &lt;!&ndash; fifth &ndash;&gt;
+                    <LinearLayout
+                        android:id="@+id/physicalQRBtn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="8dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="@dimen/btn_width"
+                            android:layout_height="@dimen/btn_height"
+                            android:backgroundTint="@color/home_Icon_Background"
+                            app:cardCornerRadius="50dp"
+                            app:cardElevation="2dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="Key QR"
+                                android:padding="10dp"
+                                android:src="@drawable/order_physical_qr_code_icon"
+                                app:tint="@color/colorPrimary" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/hind_bold"
+                            android:gravity="center"
+                            android:lineSpacingExtra="-5dp"
+                            android:text="Order QR Code"
+                            android:textColor="@color/text_heading"
+                            android:textSize="@dimen/btn_text_size" />
+
+                    </LinearLayout>
+
+
+                    &lt;!&ndash; eighth &ndash;&gt;
+                    <LinearLayout
+                        android:id="@+id/luggageQRBtn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="8dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="@dimen/btn_width"
+                            android:layout_height="@dimen/btn_height"
+                            android:backgroundTint="@color/home_Icon_Background"
+                            app:cardCornerRadius="50dp"
+                            app:cardElevation="2dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="Luggage QR"
+                                android:padding="10dp"
+                                android:src="@drawable/luggage_qr_icon"
+                                app:tint="@color/colorPrimary" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/hind_bold"
+                            android:text="Luggage QR"
+                            android:textColor="@color/text_heading"
+                            android:textSize="@dimen/btn_text_size" />
+
+                    </LinearLayout>
+
+                </GridLayout>-->
+
+                <!--<LinearLayout
+                    android:id="@+id/nearByServicesLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/hind_bold"
+                            android:layout_weight="1"
+                            android:text="How to use QR"
+                            android:textColor="@color/text_sub_heading_2"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/hind"
+                            android:text="View More"
+                            android:textColor="@color/text_sub_heading_2"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/nearByServices"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="4dp"
+                        android:clipToPadding="false"
+                        android:overScrollMode="never"
+                        android:scrollbars="none"
+                        android:visibility="visible" />
+
+                </LinearLayout>-->
+
+                <LinearLayout
+                    android:id="@+id/nearByServiceLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:fontFamily="@font/hind_bold"
+                        android:text="Near By Services"
+                        android:textColor="@color/text_heading"
+                        android:textSize="14sp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/nearByServices"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="4dp"
+                        android:scrollbars="none"
+                        android:visibility="visible" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/hind_bold"
+                    android:gravity="center"
+                    android:text="How to send notification"
+                    android:textColor="@color/text_heading"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:scaleType="fitXY"
+                        android:layout_marginVertical="5dp"
+                        android:src="@drawable/how_to_use_image_temp1"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:scaleType="fitXY"
+                        android:layout_marginVertical="15dp"
+                        android:src="@drawable/how_to_use_image_temp2"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:scaleType="fitXY"
+                        android:layout_marginVertical="15dp"
+                        android:src="@drawable/how_to_use_image_temp3"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:scaleType="fitXY"
+                        android:layout_marginVertical="15dp"
+                        android:src="@drawable/how_to_use_image_temp4"/>
+
+                </LinearLayout>
+
+                <!--<TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/hind_bold"
+                    android:text="How to use QR"
+                    android:textColor="@color/text_sub_heading_2"
+                    android:textSize="14sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvHowToUse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />-->
+
+
+                <LinearLayout
+                    android:id="@+id/terminalLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <!-- Terminal / Reviews horizontal list -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="18dp"
+                        android:text="Terminal"
+                        android:textColor="#444444"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvReviews"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:layout_marginTop="12dp"
+                        android:clipToPadding="false"
+                        android:orientation="horizontal"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/benefitsQRLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+                    <!-- Benefits image / video card -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/hind_bold"
+                        android:text="Benefits of QR Code"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="14sp" />
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvBenefitsOfQRCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                </LinearLayout>
+
+
+                <!--<androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="3dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/benefits_placeholder"
+                            android:contentDescription="Benefits" />
+
+                        <ImageView
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_play_circle"
+                            android:contentDescription="Play" />
+
+                    </FrameLayout>
+
+                </androidx.cardview.widget.CardView>-->
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:id="@+id/qrContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/qr_container_bg"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/qrHomeBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="5dp"
+                android:src="@drawable/scan_qr_code_icon"
+                app:tint="@color/white" />
+
+            <!--<de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/qrHomeBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/qr_home_icon"/>-->
+
+            <TextView
+                android:id="@+id/qrText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/hind_semibold"
+                android:text="Scan QR"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

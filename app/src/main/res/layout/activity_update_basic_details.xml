@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="20dp">
+
+    <!-- Toolbar -->
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!-- Profile Section -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingHorizontal="16dp"
+                android:paddingBottom="16dp">
+
+                <!-- Circular Progress -->
+                <ProgressBar
+                    android:id="@+id/progress_circle"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_centerInParent="true"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progress="70"
+                    android:progressDrawable="@drawable/circle_progress"
+                    android:rotation="100"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Profile Image -->
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="105dp"
+                    android:layout_height="105dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/circle_mask"
+                    android:clipToOutline="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/temp_profile_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/pickImage"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_below="@+id/profileImage"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="-20dp"
+                    android:background="@drawable/circle_mask"
+                    android:clipToOutline="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/camera_icon"
+                    app:layout_constraintBottom_toBottomOf="@+id/profileImage"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Menu Container -->
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:clipToOutline="true"
+                    android:src="@drawable/menu_card_bg" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingVertical="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Basic Details"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_marginHorizontal="3dp"
+                        android:background="@drawable/shadow_bottom" />
+
+                    <LinearLayout
+                        android:id="@+id/registerLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="20dp"
+                        android:visibility="visible">
+
+                        <LinearLayout
+                            android:id="@+id/firstNameLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hind_medium"
+                                android:text="First Name"
+                                android:textColor="@color/text_heading"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <include
+                                android:id="@+id/firstNameField"
+                                layout="@layout/custom_input_field" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lastNameLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hind_medium"
+                                android:text="Last Name"
+                                android:textColor="@color/text_heading"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <include
+                                android:id="@+id/lastNameField"
+                                layout="@layout/custom_input_field" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/emailLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hind_medium"
+                                android:text="Email Address"
+                                android:textColor="@color/text_heading"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <include
+                                android:id="@+id/emailField"
+                                layout="@layout/custom_input_field" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/phoneLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hind_medium"
+                                android:text="Phone Number"
+                                android:textColor="@color/text_heading"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <include
+                                android:id="@+id/phoneField"
+                                layout="@layout/custom_input_field" />
+                        </LinearLayout>
+
+
+                        <!-- Password Field -->
+                        <LinearLayout
+                            android:id="@+id/passwordLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hind_medium"
+                                android:text="Occupation"
+                                android:textColor="@color/text_heading"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="5dp"
+                                android:background="@drawable/edit_text_bg1"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/tvTitle"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <Spinner
+                                    android:id="@+id/spinnerOccupation"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="60dp"
+                                    android:paddingHorizontal="8dp"
+                                    android:spinnerMode="dropdown" />
+                            </FrameLayout>
+
+                        </LinearLayout>
+
+
+                        <Button
+                            android:id="@+id/btnUpdate"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/button_bg1"
+                            android:fontFamily="@font/hind_bold"
+                            android:text="Update Details"
+                            android:textColor="@android:color/white"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

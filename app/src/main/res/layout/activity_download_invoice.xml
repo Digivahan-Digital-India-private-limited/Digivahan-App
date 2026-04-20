@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <!-- Toolbar -->
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true">
+        <!-- Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp">
+
+            <!-- Logo -->
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:contentDescription="Logo"
+                android:src="@drawable/login_app_logo" />
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/invoiceTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/hind_semibold"
+                android:text="@string/empty_string"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/hind_light"
+                android:text="Print this page for your records."
+                android:textColor="@color/secondary_button"
+                android:textSize="12sp" />
+
+            <!-- Order info -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/hind_medium"
+                        android:text="Order number:"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/orderId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/hind"
+                        android:text="@string/empty_string"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/hind_medium"
+                        android:text="Order placed:"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/orderPlaced"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/hind"
+                        android:text="@string/empty_string"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/hind_medium"
+                        android:text="Order Total: "
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/totalPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/hind"
+                        android:text="@string/empty_string"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/border_4" />
+
+            <!-- Dispatched -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/hind_semibold"
+                android:gravity="center_horizontal"
+                android:text="Dispatched on 14 April 2025"
+                android:textColor="@color/text_heading"
+                android:textSize="18dp" />
+
+            <!-- Items Ordered -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/unitCount"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/hind_bold"
+                        android:text="@string/empty_string"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/orderPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/hind_bold"
+                        android:gravity="end"
+                        android:text="@string/empty_string"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/orderFor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/hind"
+                        android:text="@string/empty_string"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/hind_light"
+                        android:text="Sold By: DIGIVAHAN DIGITAL INDIA PVT. LTD."
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Delivery Address -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/hind_bold"
+                android:text="Delivery Address:"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/deliveryAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/hind_medium"
+                android:text="@string/empty_string"
+                android:textColor="@color/text_sub_heading_2"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="#BDBDBD" />
+
+            <!-- Payment Information -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/hind_semibold"
+                android:gravity="center_horizontal"
+                android:text="Payment information"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/hind_medium"
+                        android:text="Price:"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/orderItePrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/hind"
+                        android:gravity="end"
+                        android:text="@string/empty_string"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/hind_medium"
+                        android:text="Unit:"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/orderUnit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/hind"
+                        android:gravity="end"
+                        android:text="@string/empty_string"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/hind_medium"
+                        android:text="Total:"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/hind"
+                        android:gravity="end"
+                        android:text="@string/empty_string"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/hind_bold"
+                        android:text="Grand Total:"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/grandTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/hind_bold"
+                        android:gravity="end"
+                        android:text="@string/empty_string"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Billing Address -->
+            <!--<TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Billing Address:"
+                android:textSize="16sp"
+                android:fontFamily="@font/hind_bold"
+                android:layout_marginTop="12dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Shabaj Sing\n3rd floor, Mahima Apartment A - 42, Jafrabad\nDelhi , 110096\nIndia"
+                android:textColor="@color/text_sub_heading_2"
+                android:textSize="16sp"
+                android:fontFamily="@font/hind_medium"
+                android:layout_marginTop="4dp"/>-->
+
+            <!-- Note -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/hind"
+                android:text="Please Note: this is not a GST invoice.\nyou can download GST invoice."
+                android:textColor="@color/text_sub_heading_2"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
+

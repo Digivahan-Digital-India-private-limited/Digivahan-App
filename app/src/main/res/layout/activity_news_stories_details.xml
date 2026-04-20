@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    android:background="@color/white">
+
+    <!-- Card Container -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:backgroundTint="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Header Image -->
+                <ImageView
+                    android:id="@+id/banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:scaleType="fitXY"
+                    android:layout_marginStart="-5dp"
+                    android:layout_marginEnd="-5dp"
+                    android:src="@drawable/temp_img1" />
+
+                <ImageView
+                    android:id="@+id/backBtn"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:scaleType="fitXY"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/back_icon" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:scaleType="fitXY"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/share_icon" />
+            </FrameLayout>
+
+
+
+            <!-- RecyclerView for list -->
+            <TextView
+                android:id="@+id/newsHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tata Motors disrupts the mid – SUV segment with India’s first SUV Coupe"
+                android:layout_marginHorizontal="16dp"
+                android:textSize="18sp"
+                android:fontFamily="@font/hind_bold"
+                android:textColor="@color/text_heading"
+                android:layout_marginTop="6dp"/>
+
+
+            <TextView
+                android:id="@+id/newsTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2025 - 02 - 04"
+                android:layout_marginHorizontal="16dp"
+                android:textSize="14sp"
+                android:fontFamily="@font/hind"
+                android:textColor="@color/text_sub_heading_2"
+                android:layout_marginTop="6dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Key Highlights:"
+                android:layout_marginHorizontal="16dp"
+                android:textSize="14sp"
+                android:fontFamily="@font/hind_bold"
+                android:textColor="@color/text_heading"
+                android:layout_marginTop="6dp"/>
+
+            <TextView
+                android:id="@+id/newsDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/temp_text"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="16dp"
+                android:textSize="14sp"
+                android:fontFamily="@font/hind"
+                android:textColor="@color/text_heading"
+                android:layout_marginTop="6dp"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</ScrollView>

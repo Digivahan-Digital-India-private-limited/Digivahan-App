@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@android:color/white">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/white"
+        android:padding="16dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:fontFamily="@font/hind_bold"
+                android:text="Add your vehicle"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <!-- Sub Title -->
+            <TextView
+                android:id="@+id/tvSubTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/hind"
+                android:text="Enter Vehicle Number"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+            <!-- EditText for RC Number -->
+            <EditText
+                android:id="@+id/etRcNumber"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/button_bg1"
+                android:backgroundTint="@color/divider_grey"
+                android:fontFamily="@font/hind"
+                android:hint="Enter Vehicle Number Here"
+                android:inputType="textCapCharacters"
+                android:paddingHorizontal="16dp"
+                android:textColor="@android:color/black"
+                android:textColorHint="#808080"
+                android:textSize="14sp" />
+
+            <!-- Add Button -->
+            <Button
+                android:id="@+id/btnAddToGarage"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/button_bg1"
+                android:fontFamily="@font/hind_bold"
+                android:text="Add to Garage"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</ScrollView>

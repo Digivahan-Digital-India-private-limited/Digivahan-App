@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <!-- Toolbar -->
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Security Logo -->
+            <LinearLayout
+                android:id="@+id/otpLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingTop="12dp">
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/document_vault_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Security Code"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <!-- OTP Boxes -->
+
+                <com.ashu.otpview.OtpViewLayout
+                    android:id="@+id/otp_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="visible"
+                    app:boxBackground="@drawable/otp_box_bg1"
+                    app:boxElevation="1dp"
+                    app:boxHeight="35dp"
+                    app:boxWidth="35dp"
+                    app:textSize="14sp"
+                    app:boxSpacing="5dp"
+                    app:otpLength="4"
+                    app:textColor="@android:color/black"/>
+
+
+                <TextView
+                    android:id="@+id/otpMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:paddingBottom="16dp"
+                    android:fontFamily="@font/hind_medium"
+                    android:text="Please share your security code only with trusted requesters.Your safety and security are our top priority."
+                    android:textAlignment="center"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/noteText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/hind_semibold"
+                    android:text="Note: Please add documents first before accessing the vault."
+                    android:textAlignment="center"
+                    android:textColor="@color/color_red"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:background="@drawable/shadow_bottom" />
+
+            </LinearLayout>
+
+            <!-- Card Items -->
+            <LinearLayout
+                android:id="@+id/documentLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/otherDocumentList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

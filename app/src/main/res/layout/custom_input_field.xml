@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:id="@+id/rootLayout"
+    android:layout_height="56dp"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="2dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:background="@drawable/edit_text_bg1">
+
+        <!-- Left Icon -->
+        <ImageView
+            android:id="@+id/ivIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:tint="@color/colorPrimary" />
+
+        <!-- Input Field -->
+        <EditText
+            android:id="@+id/etInput"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:textColor="@color/text_heading"
+            android:textColorHint="@color/text_color_hint1"
+            android:textSize="14sp"
+            android:fontFamily="@font/hind_medium"
+            android:inputType="text" />
+
+        <!-- Eye Icon (Visible only for password fields) -->
+        <ImageView
+            android:id="@+id/ivEye"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:visibility="gone"
+            android:padding="4dp"
+            android:src="@drawable/ic_eye_closed"
+            app:tint="@color/primary_button" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@+id/nav_dashboard">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.digivahan.ui.Fragments.QRHomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_q_r_home" />
+
+    <fragment
+        android:id="@+id/nav_dashboard"
+        android:name="com.digivahan.ui.Fragments.dashboard.DashBoardFragment"
+        android:label="DashBoard"
+        tools:layout="@layout/fragment_dash_board" />
+
+    <fragment
+        android:id="@+id/nav_notification"
+        android:name="com.digivahan.ui.Fragments.notification.NotificationPageFragment"
+        android:label="Notification"
+        tools:layout="@layout/fragment_notification_page"/>
+
+    <fragment
+        android:id="@+id/nav_order"
+        android:name="com.digivahan.ui.Fragments.my_order.MyOrderFragment"
+        android:label="My Order"
+        tools:layout="@layout/fragment_my_order"/>
+
+    <fragment
+        android:id="@+id/nav_virtualQR"
+        android:name="com.digivahan.ui.Fragments.virtualQR.VirtualQRListPage"
+        android:label="My Virtual QRs"
+        tools:layout="@layout/fragment_virtual_q_r_list_page"/>
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.digivahan.ui.Fragments.profileDetails.UpdateProfileFragment"
+        android:label="Update Profile"
+        tools:layout="@layout/fragment_update_profile"/>
+
+    <fragment
+        android:id="@+id/nav_profile_menu"
+        android:name="com.digivahan.ui.Fragments.profileMenu.ProfileMenuFragment"
+        android:label="Profile Menu"
+        tools:layout="@layout/fragment_profile_menu"/>
+
+    <!--<fragment
+        android:id="@+id/nav_about"
+        android:name="AboutUsFragment"
+        android:label="About Us" />-->
+
+    <!--<fragment
+        android:id="@+id/nav_terms"
+        android:name="TermsConditionFragment"
+        android:label="Terms & Conditions" />
+
+    <fragment
+        android:id="@+id/nav_privacy"
+        android:name="PrivacyPolicyFragment"
+        android:label="Privacy Policy" />-->
+</navigation>

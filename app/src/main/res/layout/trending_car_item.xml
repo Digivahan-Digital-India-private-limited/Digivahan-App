@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/trendingCarItemLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="80dp"
+    android:layout_margin="5dp"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/trending_car_bg"
+        android:paddingStart="60dp"
+        android:paddingEnd="20dp"
+        android:layout_marginStart="25dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="RtlSymmetry">
+
+        <!-- Car Name -->
+        <TextView
+            android:id="@+id/tvCarName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/hind_bold"
+            android:gravity="center"
+            android:maxWidth="50dp"
+            android:text="@string/empty_string"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
+            android:textSize="10sp" />
+
+        <!-- Brand -->
+        <TextView
+            android:id="@+id/tvBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/hind_medium"
+            android:gravity="center"
+            android:text="@string/empty_string"
+            android:textColor="@android:color/black"
+            android:maxLines="1"
+            android:maxWidth="50dp"
+            android:textSize="8sp" />
+
+        <!-- Price -->
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/hind_bold"
+            android:gravity="center"
+            android:maxLines="1"
+            android:maxWidth="50dp"
+            android:text="@string/empty_string"
+            android:textColor="@color/text_sub_heading_4"
+            android:textSize="8sp" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/ivProfileLayout"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/profile_bg1"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgCar"
+            android:layout_width="77dp"
+            android:layout_height="77dp"
+            android:layout_gravity="center"
+            android:layout_margin="3dp"
+            android:paddingVertical="18dp"
+            android:paddingHorizontal="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_vehicle_default"
+            app:civ_border_width="0dp" />
+    </FrameLayout>
+</FrameLayout>

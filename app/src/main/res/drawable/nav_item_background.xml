@@ -1,0 +1,16 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Selected state -->
+    <item android:state_checked="true">
+        <color android:color="@color/widgetColor" /> <!-- Change this to your desired color -->
+    </item>
+
+    <!-- Pressed state -->
+    <item android:state_pressed="true">
+        <color android:color="@color/Primary_fade_shade_2" /> <!-- Change this to your desired color -->
+    </item>
+
+    <!-- Default state -->
+    <item>
+        <color android:color="@color/white" /> <!-- Change this to your desired color -->
+    </item>
+</selector>

@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:id="@+id/mainLayout"
+    android:gravity="center_vertical"
+    android:paddingHorizontal="15dp"
+    android:paddingVertical="12dp">
+
+    <ImageView
+        android:id="@+id/ivIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/profile_icon1" />
+
+    <TextView
+        android:id="@+id/tvLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="12dp"
+        android:text="Basic Details"
+        android:textSize="14sp"
+        android:fontFamily="@font/hind_semibold"
+        android:textColor="@color/text_heading"/>
+
+    <TextView
+        android:id="@+id/tvCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3/5"
+        android:fontFamily="@font/hind"
+        android:textSize="16sp"
+        android:visibility="gone"
+        android:textColor="@color/text_sub_heading_2"/>
+
+    <ImageView
+        android:id="@+id/ivCompetedIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:visibility="gone"
+        android:src="@drawable/verified_icon" />
+</LinearLayout>

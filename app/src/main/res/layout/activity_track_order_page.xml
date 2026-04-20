@@ -1,0 +1,941 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <!-- Header -->
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar" />
+
+    <ScrollView
+        android:id="@+id/orderDetailsPage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Booking Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hind_semibold"
+                            android:text="Order Id"
+                            android:textColor="@color/text_heading"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/orderId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hind_semibold"
+                            android:text="N/A"
+                            android:textColor="@color/black"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Status"
+                            android:fontFamily="@font/hind_semibold"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/orderStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="2dp"
+                            android:background="@drawable/button_bg2"
+                            android:text="Out for Delivery"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/hind"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/stageContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="8dp">
+
+                    <!-- Stage 1 -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <!-- Frame for Line + Circle -->
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <!-- Line (behind the circle) -->
+                            <View
+                                android:layout_width="35dp"
+                                android:layout_height="10dp"
+                                android:layout_marginStart="2dp"
+                                android:layout_gravity="center_vertical|start"
+                                android:background="@drawable/line_green" />
+
+                            <!-- Circle (on top of the line) -->
+                            <View
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="start"
+                                android:background="@drawable/circle_green" />
+                        </FrameLayout>
+
+                        <!-- Text below dot -->
+                        <TextView
+                            android:id="@+id/tvStage1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pending"
+                            android:textSize="8sp"
+                            android:layout_marginTop="6dp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/hind" />
+                    </LinearLayout>
+
+                    <!-- Stage 2 -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <View
+                                android:layout_width="50dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical|start"
+                                android:background="@drawable/line_pending" />
+
+                            <View
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:background="@drawable/circle_pending" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/tvStage2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Processing"
+                            android:textSize="8sp"
+                            android:layout_marginTop="6dp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/hind" />
+                    </LinearLayout>
+
+                    <!-- Stage 3 -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <View
+                                android:layout_width="50dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical|start"
+                                android:background="@drawable/line_pending" />
+
+                            <View
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:background="@drawable/circle_pending" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/tvStage3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Shipped"
+                            android:textSize="8sp"
+                            android:layout_marginTop="6dp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/hind" />
+                    </LinearLayout>
+
+                    <!-- Stage 4 (Pending) -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <View
+                                android:layout_width="40dp"
+                                android:layout_height="10dp"
+                                android:layout_marginEnd="2dp"
+                                android:layout_gravity="center_vertical|start"
+                                android:background="@drawable/line_pending" />
+
+                            <View
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="end"
+                                android:background="@drawable/circle_pending" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/tvStage4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Delivered"
+                            android:textSize="8sp"
+                            android:layout_marginTop="6dp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/hind" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical"
+                        tools:ignore="NestedWeights">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Delivery Address"
+                                    android:textColor="@color/black"
+                                    android:fontFamily="@font/hind_medium"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:id="@+id/deliveryAddress"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:text="N/A"
+                                    android:textColor="@color/black"
+                                    android:fontFamily="@font/hind"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+
+                            <!--<LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="To"
+                                    android:textColor="@color/black"
+                                    android:fontFamily="@font/hind_medium"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:text="Delhi, 110091"
+                                    android:fontFamily="@font/hind"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+                            </LinearLayout>-->
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Created"
+                                    android:textColor="@color/black"
+                                    android:fontFamily="@font/hind_medium"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:id="@+id/orderDate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:text="N/A"
+                                    android:textColor="@color/black"
+                                    android:fontFamily="@font/hind"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/estimatedDataLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Estimated"
+                                    android:textColor="@color/black"
+                                    android:fontFamily="@font/hind_medium"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:id="@+id/estimatedData"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:text=""
+                                    android:fontFamily="@font/hind"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="5dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Sender"
+                                    android:textColor="@color/black"
+                                    android:fontFamily="@font/hind_medium"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="DIGIVAHAN"
+                                    android:textColor="@color/black"
+                                    android:fontFamily="@font/hind"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:visibility="gone"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hind_medium"
+                                    android:text="Receiver"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:id="@+id/receiverName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="N/A"
+                                    android:fontFamily="@font/hind"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="8dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/order_box_icon" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!-- Timeline -->
+            <LinearLayout
+                android:id="@+id/orderTrackChartLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:id="@+id/layoutOrderPrinted"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Timeline line + circle -->
+                    <FrameLayout
+                        android:layout_width="48dp"
+                        android:layout_height="match_parent">
+
+                        <!-- Vertical dashed line -->
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary" />
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:padding="10dp"
+                            android:background="@drawable/circle_green"
+                            android:backgroundTint="@color/Icon_Background_2"
+                            android:src="@drawable/bag_icon"
+                            app:tint="@color/primary_button"
+                            tools:ignore="UseAppTint" />
+                    </FrameLayout>
+
+                    <!-- Step details -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingVertical="5dp"
+                        android:layout_marginStart="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Order Printing"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/hind_semibold"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/orderPrintingStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Printing is under process"
+                            android:textColor="@color/text_heading"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/hind"
+                            android:layout_marginTop="2dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="At Digivahan Digital India"
+                            android:textColor="@color/text_heading"
+                            android:textSize="13sp"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutOrderPlaced"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                    <!-- Timeline line + circle -->
+                    <FrameLayout
+                        android:layout_width="48dp"
+                        android:layout_height="match_parent">
+
+                        <!-- Vertical dashed line -->
+                        <View
+                            android:id="@+id/timeline_line"
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary" />
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:padding="10dp"
+                            android:background="@drawable/circle_green"
+                            android:backgroundTint="@color/Icon_Background_2"
+                            android:src="@drawable/bag_icon"
+                            app:tint="@color/primary_button"
+                            tools:ignore="UseAppTint" />
+                    </FrameLayout>
+
+                    <!-- Step details -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingVertical="5dp"
+                        android:layout_marginStart="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Order Placed"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/hind_semibold"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvStepDateTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/text_heading"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/hind"
+                            android:layout_marginTop="2dp" />
+
+                        <TextView
+                            android:id="@+id/tvStepLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="At Digivahan Digital India"
+                            android:textColor="@color/text_heading"
+                            android:textSize="13sp"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutOrderProcessed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                    <!-- Timeline line + circle -->
+                    <FrameLayout
+                        android:layout_width="48dp"
+                        android:layout_height="match_parent">
+
+                        <!-- Vertical dashed line -->
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary" />
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:padding="8dp"
+                            android:background="@drawable/circle_green"
+                            android:backgroundTint="@color/Icon_Background_2"
+                            android:src="@drawable/printer_icon"
+                            tools:ignore="UseAppTint" />
+                    </FrameLayout>
+
+                    <!-- Step details -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingVertical="5dp"
+                        android:layout_marginStart="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvStepTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Order Processed"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/hind_semibold" />
+
+                        <TextView
+                            android:id="@+id/orderProcessedData"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/text_heading"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/hind"
+                            android:layout_marginTop="2dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="At Digivahan Digital India"
+                            android:textColor="@color/text_heading"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/hind" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutOrderShipped"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                    <!-- Timeline line + circle -->
+                    <FrameLayout
+                        android:layout_width="48dp"
+                        android:layout_height="match_parent">
+
+                        <!-- Vertical dashed line -->
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary" />
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:padding="8dp"
+                            android:background="@drawable/circle_green"
+                            android:backgroundTint="@color/Icon_Background_2"
+                            android:src="@drawable/shipped_icon"
+                            app:tint="@color/primary_button"
+                            tools:ignore="UseAppTint" />
+                    </FrameLayout>
+
+                    <!-- Step details -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingVertical="5dp"
+                        android:layout_marginStart="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Order Shipped"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/hind_semibold" />
+
+                        <TextView
+                            android:id="@+id/orderShippedData"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/text_heading"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/hind"
+                            android:layout_marginTop="2dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="From Digivahan Digital India"
+                            android:textColor="@color/text_heading"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/hind" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutOrderReadyPickup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                    <!-- Timeline line + circle -->
+                    <FrameLayout
+                        android:layout_width="48dp"
+                        android:layout_height="match_parent">
+
+                        <!-- Vertical dashed line -->
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary" />
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:padding="8dp"
+                            android:background="@drawable/circle_green"
+                            android:backgroundTint="@color/Icon_Background_2"
+                            android:src="@drawable/pickup_icon"
+                            app:tint="@color/primary_button"
+                            tools:ignore="UseAppTint" />
+                    </FrameLayout>
+
+                    <!-- Step details -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingVertical="5dp"
+                        android:layout_marginStart="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ready to pickup"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/hind_semibold" />
+
+                        <TextView
+                            android:id="@+id/orderReadyPickUpData"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/text_heading"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/hind"
+                            android:layout_marginTop="2dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="From Digivahan Digital India"
+                            android:textColor="@color/text_heading"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/hind" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutOrderOFD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                    <!-- Timeline line + circle -->
+                    <FrameLayout
+                        android:layout_width="48dp"
+                        android:layout_height="match_parent">
+
+                        <!-- Vertical dashed line -->
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary" />
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:padding="8dp"
+                            android:background="@drawable/circle_green"
+                            android:backgroundTint="@color/Icon_Background_2"
+                            android:src="@drawable/out_delivery_icon"
+                            app:tint="@color/primary_button"
+                            tools:ignore="UseAppTint" />
+                    </FrameLayout>
+
+                    <!-- Step details -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingVertical="5dp"
+                        android:layout_marginStart="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Out for Delivery"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/hind_semibold" />
+
+                        <TextView
+                            android:id="@+id/orderOutForDeliveryData"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/text_heading"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/hind"
+                            android:layout_marginTop="2dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="From Digivahan Digital India"
+                            android:textColor="@color/text_heading"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/hind" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutOrderDelivered"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center_horizontal"
+                        android:padding="10dp"
+                        android:background="@drawable/circle_green"
+                        android:backgroundTint="@color/Icon_Background_2"
+                        android:src="@drawable/order_delivered_icon"
+                        app:tint="@color/primary_button" />
+
+                    <!-- Step details -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingVertical="5dp"
+                        android:layout_marginStart="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Order Delivered"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/hind_semibold" />
+
+                        <TextView
+                            android:id="@+id/orderDeliveredData"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text=""
+                            android:gravity="end"
+                            android:textColor="@color/text_heading"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/hind" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- WebView -->
+    <WebView
+        android:id="@+id/webView"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="5dp"/>
+</LinearLayout>

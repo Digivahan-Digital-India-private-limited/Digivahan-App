@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    android:gravity="center"
+    android:padding="8dp"
+    android:background="@drawable/bg_card">
+
+    <ImageView
+        android:id="@+id/ivIcon"
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:src="@drawable/profile_icon1"
+        android:contentDescription="Icon" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Parking sign emergency"
+        android:textSize="14sp"
+        android:fontFamily="@font/hind"
+        android:textColor="@color/text_sub_heading_2"
+        android:gravity="center"
+        android:layout_marginTop="4dp" />
+
+</LinearLayout>

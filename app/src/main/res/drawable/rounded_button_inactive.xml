@@ -1,0 +1,4 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/indicator_inactive_color1"/> <!-- Light Beige color -->
+    <corners android:radius="10dp"/>
+</shape>

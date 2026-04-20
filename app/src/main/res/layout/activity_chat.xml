@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".ui.Activities.chat.ChatActivity">
+
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            tools:context=".ui.Activities.chat.ChatActivity">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvChatList"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_weight="1"
+                app:stackFromEnd="true" />
+
+            <FrameLayout
+                android:id="@+id/btnScrollToBottomLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/rvChatList"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:id="@+id/btnScrollToBottom"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="10dp"
+                    android:padding="5dp"
+                    android:visibility="visible"
+                    android:src="@drawable/down_arrow"
+                    android:background="@drawable/circle_bg"
+                    android:backgroundTint="@color/divider_grey"
+                    app:tint="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/tvNewMessageCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/circle_bg"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:visibility="gone"
+                    android:textSize="12sp"
+                    android:paddingHorizontal="5dp"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center_horizontal"/>
+
+            </FrameLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:id="@+id/filesBtn"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:padding="5dp"
+                    android:layout_marginStart="5dp"
+                    android:visibility="gone"
+                    android:src="@drawable/share_pin_icon" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg1"
+                    android:backgroundTint="#f3f6f6">
+
+                    <EditText
+                        android:id="@+id/messageFiled"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/button_bg1"
+                        android:paddingVertical="2dp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="30dp" />
+
+                    <ImageView
+                        android:id="@+id/copyBtn"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:padding="5dp"
+                        android:visibility="gone"
+                        android:layout_gravity="end|center"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/copy_icon" />
+
+                </FrameLayout>
+
+                <ImageView
+                    android:id="@+id/sendBtn"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="end|center"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/send_icon" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/viewImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="100dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/image_loading"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/viewImageCrossIcon"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="25dp"
+            android:src="@drawable/close_icon"
+            android:visibility="gone" />
+    </FrameLayout>
+
+</LinearLayout>

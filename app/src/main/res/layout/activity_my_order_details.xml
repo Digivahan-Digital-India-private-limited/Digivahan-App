@@ -1,0 +1,346 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <!-- Toolbar -->
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:orientation="vertical">
+
+            <!--&lt;!&ndash; Order Info Card &ndash;&gt;
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="3dp">
+
+
+            </androidx.cardview.widget.CardView>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="16dp"
+                android:paddingHorizontal="32dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="90dp"
+                    android:layout_height="100dp">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/qr_bg1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <ImageView
+                        android:id="@+id/qrCodeImage"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="QR Code"
+                        android:padding="2dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/temp_qr"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="16dp"
+                        android:layout_marginBottom="1dp"
+                        android:src="@drawable/app_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/hind_bold"
+                        android:text="Physical QR Code"
+                        android:textColor="@color/text_heading"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/orderFor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/hind"
+                        android:text=""
+                        android:textColor="@color/text_heading"
+                        android:textSize="12sp" />
+
+
+                    <TextView
+                        android:id="@+id/orderId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:fontFamily="@font/hind"
+                        android:textColor="@color/text_heading"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:id="@+id/shareApp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="4dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginEnd="4dp"
+                            android:src="@drawable/share_icon"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Share with your friends"
+                            android:fontFamily="@font/hind"
+                            android:textColor="@color/text_heading"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/cancelOrder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/button_bg1"
+                        android:backgroundTint="@color/color_red"
+                        android:fontFamily="@font/hind_bold"
+                        android:visibility="gone"
+                        android:gravity="center"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="2dp"
+                        android:text="Cancel"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Status and Address -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp">
+
+                <TextView
+                    android:id="@+id/orderStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/hind_bold"
+                    android:text="N/A"
+                    android:textColor="@color/text_heading"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/deliveryAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="N/A"
+                    android:fontFamily="@font/hind"
+                    android:textColor="@color/text_heading"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/border_4"
+                android:layout_marginTop="5dp"
+                android:layout_marginHorizontal="10dp"/>
+
+            <!-- Order Options -->
+            <LinearLayout
+                android:layout_marginHorizontal="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Row Item -->
+                <TextView
+                    android:id="@+id/trackOrder"
+                    style="@style/OrderRow"
+                    android:layout_marginHorizontal="10dp"
+                    android:text="Track Order" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/border_4"/>
+
+                <TextView
+                    android:id="@+id/buyNewQR"
+                    android:layout_marginHorizontal="10dp"
+                    style="@style/OrderRow"
+                    android:text="Buy New QR Code"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:visibility="gone"
+                    android:background="@color/border_4"/>
+
+                <TextView
+                    android:layout_marginHorizontal="10dp"
+                    android:id="@+id/byForOther"
+                    style="@style/OrderRow"
+                    android:visibility="gone"
+                    android:text="Buy another QR Code"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@color/border_4" />
+
+            <!-- Review Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/hind_bold"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="16dp"
+                android:text="How’s your item?"
+                android:textColor="@color/text_heading"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@color/border_4" />
+
+            <TextView
+                android:id="@+id/reviewBtn"
+                style="@style/OrderRow"
+                android:layout_marginHorizontal="20dp"
+                android:text="Share product review" />
+
+            <!--<TextView
+                style="@style/OrderRow"
+                android:text="Share a video review" />-->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@color/border_4" />
+
+            <!-- Order Info Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/hind_bold"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="12dp"
+                android:text="Order Info"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@color/border_4" />
+
+            <TextView
+                android:id="@+id/orderDetails"
+                style="@style/OrderRow"
+                android:paddingHorizontal="20dp"
+                android:text="View order details" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@color/border_4" />
+
+            <TextView
+                android:id="@+id/downloadInvoice"
+                style="@style/OrderRow"
+                android:paddingHorizontal="20dp"
+                android:text="Download Invoice" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@color/border_4" />
+
+            <TextView
+                android:id="@+id/orderedOn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="12dp"
+                android:fontFamily="@font/hind"
+                android:text="Ordered on ----"
+                android:textColor="@color/text_heading"
+                android:textSize="8sp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/hind_bold"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="16dp"
+                android:visibility="gone"
+                android:text="Experience our other services"
+                android:textColor="@color/text_heading"
+                android:textSize="14sp" />
+
+            <!-- Bottom Services -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvServices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:layout_marginBottom="10dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

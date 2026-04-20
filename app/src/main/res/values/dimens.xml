@@ -1,0 +1,20 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="indicator_active_width">16dp</dimen>
+    <dimen name="indicator_inactive_width">8dp</dimen>
+    <dimen name="indicator_height">6dp</dimen>
+    <dimen name="indicator_margin">4dp</dimen>
+
+
+<!--    QR code page card button dimens-->
+    <dimen name="btn_width">48dp</dimen>
+    <dimen name="btn_height">48dp</dimen>
+    <dimen name="btn_text_size">10sp</dimen>
+
+</resources>

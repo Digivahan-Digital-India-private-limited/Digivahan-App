@@ -1,0 +1,104 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/itemLayout"
+    android:padding="12dp"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Julfikar Tiwari"
+            android:textSize="16sp"
+            android:fontFamily="@font/hind_medium"
+            android:textColor="@color/text_color_hint4"/>
+
+        <RadioButton
+            android:id="@+id/rbSelect"
+            android:clickable="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="P - A 3rd floor Cyber Tech, Opposit Kaliyan Jewellers, Dehradun, Uttarakhand, 247667"
+        android:textSize="16sp"
+        android:fontFamily="@font/hind"
+        android:textColor="@color/text_color_hint4"
+        android:layout_marginTop="2dp"/>
+
+    <TextView
+        android:id="@+id/tvPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+91 9897000001"
+        android:fontFamily="@font/hind"
+        android:textSize="16sp"
+        android:textColor="@color/text_color_hint4"
+        android:layout_marginTop="2dp"/>
+
+    <LinearLayout
+        android:id="@+id/buttonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/editBtnLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/editBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/hind_bold"
+                android:text="Edit"
+                android:textColor="@color/primary_button"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/deleteBtn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/bin_icon"
+                android:layout_marginVertical="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <!-- Edit + Deliver Button -->
+        <Button
+            android:id="@+id/btnDeliver"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Deliver to this Address"
+            android:background="@drawable/button_bg1"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:fontFamily="@font/hind_bold"
+            android:backgroundTint="@color/primary_button"
+            android:layout_marginTop="2dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

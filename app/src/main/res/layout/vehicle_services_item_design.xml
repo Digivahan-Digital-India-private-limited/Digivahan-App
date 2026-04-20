@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_columnWeight="1"
+    android:padding="4dp"
+    android:gravity="center">
+
+    <LinearLayout
+        android:id="@+id/scanQRCodeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/btn_width"
+            android:layout_height="@dimen/btn_height"
+            android:backgroundTint="@color/home_Icon_Background"
+            app:cardCornerRadius="50dp"
+            android:layout_margin="2dp"
+            app:cardElevation="2dp">
+
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="Scan QR"
+                android:padding="10dp"
+                android:src="@drawable/scan_qr_code_icon" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/hind_bold"
+            android:gravity="center"
+            android:lineSpacingExtra="-5dp"
+            android:text=""
+            android:textColor="@color/text_heading"
+            android:textSize="@dimen/btn_text_size" />
+
+    </LinearLayout>
+</FrameLayout>

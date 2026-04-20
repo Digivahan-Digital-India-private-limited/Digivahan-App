@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="5dp"
+    android:layout_marginHorizontal="10dp"
+    android:background="@drawable/bg_card_boarder">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- First Vehicle -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:contentDescription="Bike"
+                android:src="@drawable/printer_icon" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rahul"
+                    android:textColor="@color/text_heading"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/hind_medium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No. DL08CA4321"
+                    android:fontFamily="@font/hind"
+                    android:textColor="@color/text_sub_heading_2"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Model: Suzuki Super"
+                    android:fontFamily="@font/hind"
+                    android:textColor="@color/text_sub_heading_2"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/checkStatusButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Check Status"
+                    android:gravity="center"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="5dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/hind_medium"
+                    android:background="@drawable/edit_text_bg1"
+                    android:backgroundTint="@color/widgetColor"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

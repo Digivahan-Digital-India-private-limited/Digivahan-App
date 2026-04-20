@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <!-- Header -->
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Card Container -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Title -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/hind_bold"
+                    android:text="Add Documents"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <!-- Subtitle -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/hind"
+                    android:text="Keep your all digital document on your finger tip"
+                    android:textColor="@color/text_sub_heading_2"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/hind"
+                    android:text="Please mention the name of the document you want to upload here"
+                    android:textColor="@color/text_sub_heading_2"
+                    android:textSize="12sp" />
+
+
+                <!-- Document Document Type -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/hind_semibold"
+                    android:text="Document Type"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/edit_text_bg2"
+                    android:backgroundTint="@color/Background_Color"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="3dp">
+
+                    <Spinner
+                        android:id="@+id/spinnerDocumentType"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </FrameLayout>
+
+
+                <!-- Document Name -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/hind_semibold"
+                    android:text="Document Name"
+                    android:visibility="visible"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/etDocumentName"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:visibility="visible"
+                    android:background="@drawable/edit_text_bg2"
+                    android:backgroundTint="@color/Background_Color"
+                    android:fontFamily="@font/hind"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:hint="Enter the Document Name"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/text_heading" />
+
+                <LinearLayout
+                    android:id="@+id/documentNumberLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Document Number -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/hind_semibold"
+                        android:text="Document Number"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/etDocumentNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/edit_text_bg2"
+                        android:backgroundTint="@color/Background_Color"
+                        android:fontFamily="@font/hind"
+                        android:hint="Enter the Document Number"
+                        android:padding="10dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/text_heading" />
+
+                </LinearLayout>
+
+
+                <!-- Upload Document -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/hind_semibold"
+                    android:text="Upload Document here"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:id="@+id/pickDocument"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg2"
+                    android:backgroundTint="@color/Background_Color"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:src="@drawable/upload_icon" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/selectedDocument"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/hind"
+                    android:gravity="center"
+                    android:text="Selected Document: Empty"
+                    android:textColor="@color/text_heading"
+                    android:textSize="14sp" />
+
+                <!-- Note -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/hind"
+                    android:gravity="center"
+                    android:text="Note: file should be in PNG, JPG , PDF format"
+                    android:textColor="@color/text_sub_heading_2"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- Upload Button -->
+            <Button
+                android:id="@+id/btnUpload"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:background="@drawable/button_bg1"
+                android:backgroundTint="@color/colorPrimary"
+                android:fontFamily="@font/hind_bold"
+                android:text="Upload Document"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+
+

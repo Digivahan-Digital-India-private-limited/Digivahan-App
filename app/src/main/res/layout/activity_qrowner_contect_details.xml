@@ -1,0 +1,214 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <!-- Header -->
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintVertical_weight="1"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toTopOf="@+id/btnSendNotification"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!-- Profile -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/profile_bg1" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="4dp"
+                        android:padding="5dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/profile_icon1" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:padding="5dp"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"
+                    app:justifyContent="flex_start">
+
+                    <TextView
+                        android:id="@+id/userName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:visibility="gone"
+                        android:drawableStart="@drawable/profile_icon1"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/hind_medium"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp"
+                        app:layout_flexShrink="1" />
+
+                    <TextView
+                        android:id="@+id/age1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:drawableStart="@drawable/profile_icon1"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/hind_medium"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp"
+                        app:layout_flexShrink="1" />
+
+                    <TextView
+                        android:id="@+id/age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:drawableStart="@drawable/calendar_icon1"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/hind_medium"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp"
+                        app:layout_flexShrink="1" />
+
+                    <TextView
+                        android:id="@+id/gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:drawableStart="@drawable/gender_icon"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/hind_medium"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp"
+                        app:layout_flexShrink="1" />
+
+                    <TextView
+                        android:id="@+id/address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:drawableStart="@drawable/live_location_icon1"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/hind_medium"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp"
+                        app:layout_flexShrink="1" />
+                </com.google.android.flexbox.FlexboxLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/chatBtnLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:padding="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="-18dp"
+                        android:textSize="16sp"
+                        android:paddingEnd="20dp"
+                        android:fontFamily="@font/hind_bold"
+                        android:gravity="center_vertical"
+                        android:paddingStart="10dp"
+                        android:background="@drawable/button_bg1"
+                        android:backgroundTint="@color/indicator_inactive_color1"
+                        android:text="Problem Not Resolved" />
+
+                    <TextView
+                        android:id="@+id/chatBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_bg3"
+                        android:paddingHorizontal="10dp"
+                        android:gravity="center_vertical"
+                        android:textSize="12dp"
+                        android:fontFamily="@font/hind_bold"
+                        android:text="Chat with Owner" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/shadow_bottom" />
+
+
+                <!-- Reason Title -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/hind_semibold"
+                    android:text="Please Select the reason why you want to contact the owner"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvNotificationRequestList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="true"
+                    android:padding="8dp" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- Send Button -->
+        <Button
+            android:id="@+id/btnSendNotification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:background="@drawable/button_bg1"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/hind_bold"
+            android:text="Send Notification"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

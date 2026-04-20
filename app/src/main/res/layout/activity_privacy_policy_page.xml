@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".ui.Activities.infoPages.PrivacyPolicyPage">
+
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp">
+
+
+            <!-- 1. Introduction -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1. Introduction"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Digivahan Digital India Pvt. Ltd. (“us”, “our”, or “we”) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your personal data when you use our mobile application and related services."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 2. Data We Collect -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n2. Data We Collect"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="We collect the following user data to deliver and enhance our services:\n• Full name\n• Mobile number\n• Email address\n• Vehicle details\n• RC, insurance, PUC, and other vehicle documents\n• Location / GPS access\n• Camera / Gallery access\n• Driver or Vehicle Driving License information\n• Payment information (via Razorpay)\n• App usage and engagement data (via Firebase)"
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 3. How We Use Data -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n3. How We Use Your Data"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Your account and data are used for:\n• Account creation and user authentication\n• RC document validation\n• Providing relevant services and app features\n• Sending important updates, alerts, and notifications\n• Analytics for service improvement\n• Enabling support and services"
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 4. Data Sharing -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n4. Data Sharing With Third Parties"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="We may share data with trusted third-party service providers, including:\n• Firebase (authentication, analytics, push notifications)\n• Razorpay (payment gateway)\n• Google APIs (for location services)\n\nThese providers comply with strict data protection and security protocols."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 5. Data Storage -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n5. Data Storage &amp; Security"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="All user data is securely stored on AWS and Firebase servers protected by advanced encryption. We implement strict security measures to prevent unauthorized access or misuse of stored data."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 6. Data Retention -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n6. Data Retention"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="We retain user data as long as the account is active or as required by law. Users can request account deletion, after which their data will be permanently removed within 15 working days."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 7. Children's Privacy -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n7. Children’s Privacy"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Our services are intended for individuals above 18 years of age. We do not knowingly collect data from children below 18. If such information is found, it is immediately deleted upon verification."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 8. User Rights -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n8. User Rights"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Users have the right to access, update, or delete their personal data via the app or through an email request to info@digivahan.in."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 9. Consent -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n9. Consent"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="By using our App, you consent to our data collection and usage practices as outlined in this Privacy Policy."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 10. Grievance & Contact -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n10. Grievance &amp; Contact"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="For any issues, concerns, or queries related to data privacy, please contact us at:\n📧 Email: info@digivahan.in"
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- 11. Policy Updates -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n11. Policy Updates"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="We may update this Privacy Policy from time to time. Users will be notified of significant changes via app notifications or email."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="16dp"
+                android:background="#DDD" />
+
+            <!-- Data Protection Policy Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="Data Protection Policy"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="At Digivahan Digital India Pvt. Ltd., we are deeply committed to ensuring that user data is processed and stored with the highest levels of security and transparency. This Data Protection Policy outlines how we manage and protect your data."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <!-- A few example points -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n1. Data Security &amp; Storage"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="We implement strong security measures to protect your data:\n• All data is encrypted in transit on secure AWS and Firebase servers.\n• Access is restricted to authorized personnel only.\n• Additional measures include Two-Factor Authentication (2FA)."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n2. Data Retention &amp; Deletion"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Your data is stored only as long as necessary to deliver our services or as required by law. Upon user request, data is permanently deleted within 15 days."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n3. In Case of Data Breach"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="In the unlikely event of a data breach:\n• We will immediately investigate the matter.\n• Affected users will be notified within 72 hours.\n• We will take corrective and legal measures to avoid recurrence."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+

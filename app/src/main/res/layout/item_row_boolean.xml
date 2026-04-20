@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <TextView
+        android:id="@+id/tvLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cruise Control"
+        android:textSize="12sp"
+        android:fontFamily="@font/hind"
+        android:textColor="@color/text_heading"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="6dp">
+
+        <ImageView
+            android:id="@+id/ivLeftBool"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:background="@drawable/bg_pill_gray"
+            android:src="@drawable/ic_cross_red"/>
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:id="@+id/ivRightBool"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:background="@drawable/bg_pill_green"
+            android:src="@drawable/ic_check_green"/>
+    </LinearLayout>
+</LinearLayout>

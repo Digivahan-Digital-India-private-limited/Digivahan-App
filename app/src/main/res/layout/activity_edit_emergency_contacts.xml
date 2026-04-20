@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <!-- Toolbar -->
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Profile Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <!-- Profile Image -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="16dp">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="12dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/profile_bg1" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="4dp"
+                        android:padding="18dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/temp_profile_icon" />
+
+                    <ImageView
+                        android:id="@+id/btnChangeImage"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:padding="2dp"
+                        android:src="@drawable/camera_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/registerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/firstNameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/hind_medium"
+                        android:text="First Name"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <include
+                        android:id="@+id/firstNameField"
+                        layout="@layout/custom_input_field" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lastNameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/hind_medium"
+                        android:text="Last Name"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <include
+                        android:id="@+id/lastNameField"
+                        layout="@layout/custom_input_field" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/relationLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/hind_medium"
+                        android:text="Relation"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <!--<include
+                        android:id="@+id/relationField"
+                        layout="@layout/custom_input_field" />-->
+
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:background="@drawable/edit_text_bg1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tvTitle"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <Spinner
+                            android:id="@+id/spinnerRelation"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:paddingHorizontal="8dp"
+                            android:spinnerMode="dropdown" />
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/phoneLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/hind_medium"
+                        android:text="Phone Number"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <include
+                        android:id="@+id/phoneField"
+                        layout="@layout/custom_input_field" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <!-- Update Button -->
+            <Button
+                android:id="@+id/btnUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_bg1"
+                android:fontFamily="@font/hind_bold"
+                android:text="Update"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
+
+

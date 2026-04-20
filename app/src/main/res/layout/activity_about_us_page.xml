@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".ui.Activities.infoPages.AboutUsPage">
+
+        <include
+            android:id="@+id/toolbarLayout"
+            layout="@layout/toolbar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <!-- Header -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_card5"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="146dp"
+                        android:layout_margin="20dp"
+                        android:contentDescription="Logo"
+                        android:src="@drawable/login_app_logo" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="20dp"
+                    android:paddingBottom="60dp">
+
+                    <!-- About Us -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/hind_bold"
+                        android:text="About Us – Digivahan Digital India Pvt. Ltd."
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/hind_medium"
+                        android:lineSpacingExtra="4dp"
+                        android:text="Empowering India with Smart Vehicle Solutions\n\nDigivahan is India’s trusted digital platform for all your vehicle-related services. From RC, insurance, and PUC status to challan checks and safety QR stickers — we bring everything to your fingertips. With a mission to make transportation smarter, safer, and more accessible, we are revolutionizing the way India moves.\n\nDigivahan Digital India Pvt. Ltd., established in 2023, is a technology-driven company focused on transforming vehicle management and public safety through digital innovation.\n\nOur mission is to create a smart, mobile-first ecosystem where vehicle-related services are seamless, secure, and easily accessible for every Indian citizen.\n\nWe specialize in offering QR-based vehicle identification and real-time verification services that not only assist vehicle owners but also empower the public to report lost or misplaced vehicles using our unique QR code system."
+                        android:textColor="#555"
+                        android:textSize="14sp" />
+
+                    <!-- Vision & Mission Card -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/bg_card"
+                        android:elevation="2dp"
+                        android:orientation="horizontal"
+                        android:padding="12dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Our Vision"
+                                android:textColor="@android:color/black"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:text="To make every Indian vehicle digitally verifiable and connected — enabling a safer and more transparent transport ecosystem."
+                                android:textColor="#555"
+                                android:textSize="13sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="\nOur Mission"
+                                android:textColor="@android:color/black"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:text="We aim to simplify vehicle documentation, safety, and verification through an all-in-one digital platform that offers trusted, secure, and real-time vehicle services to every citizen."
+                                android:textColor="#555"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="10dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/temp_image" />
+                    </LinearLayout>
+
+                    <!-- Core Values -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        android:text="Core Values"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Transparency"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Public Safety"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Digital Empowerment"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Innovation"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="User Privacy"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <!-- Target Audience -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="Target Audience"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="• Private and Commercial Vehicle Owners\n• Citizens reporting found or misplaced vehicles\n• Transport professionals and RTO-linked partners"
+                        android:textColor="#555"
+                        android:textSize="14sp" />
+
+                    <!-- What Makes Us Unique -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="What Makes Us Unique (USP)"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="• First-of-its-kind QR-based public alert system for vehicles\n• Mobile-first, secure and lightweight application\n• Real-time updates on vehicle document validity and compliance"
+                        android:textColor="#555"
+                        android:textSize="14sp" />
+
+                    <!-- Core Team -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:gravity="center"
+                        android:text="Core Team"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/temp_image1" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/temp_image2" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/temp_image3"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <!-- Legal Info -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="Legal Entity &amp; Contact Info"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Company Name: Digivahan Digital India Pvt. Ltd.\nEstablished: 2023\nCIN: U62099DL2023PTC420571\nRegistered Address: Plot No, 2-A, Third Floor, Block-R, Uttam Nagar New Delhi - 110059 India\nEmail: info@digivahan.in"
+                        android:textColor="#555"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>

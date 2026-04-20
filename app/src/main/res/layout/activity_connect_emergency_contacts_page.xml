@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".ui.Activities.qr.ConnectEmergencyContactsPage">
+
+    <!-- Header -->
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <!-- Profile -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/profile_bg1" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="4dp"
+                        android:padding="5dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/temp_profile_icon" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"
+                    app:justifyContent="flex_start">
+
+                    <TextView
+                        android:id="@+id/userName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:drawableStart="@drawable/profile_icon1"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/hind_medium"
+                        android:text="@string/empty_string"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp"
+                        android:visibility="gone"
+                        app:layout_flexShrink="1" />
+
+                    <TextView
+                        android:id="@+id/userNameTemp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:drawableStart="@drawable/profile_icon1"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/hind_medium"
+                        android:text="@string/empty_string"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp"
+                        app:layout_flexShrink="1" />
+
+                    <TextView
+                        android:id="@+id/age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:drawableStart="@drawable/calendar_icon1"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/hind_medium"
+                        android:text="@string/empty_string"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp"
+                        android:visibility="visible"
+                        app:layout_flexShrink="1" />
+
+                    <TextView
+                        android:id="@+id/gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:drawableStart="@drawable/gender_icon"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/hind_medium"
+                        android:text="@string/empty_string"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp"
+                        app:layout_flexShrink="1" />
+
+                    <TextView
+                        android:id="@+id/address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:drawableStart="@drawable/live_location_icon1"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/hind_medium"
+                        android:text="@string/empty_string"
+                        android:textColor="@color/text_sub_heading_2"
+                        android:textSize="16sp"
+                        app:layout_flexShrink="1" />
+
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="5dp"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"
+                    app:justifyContent="flex_start">
+
+                    <LinearLayout
+                        android:id="@+id/ivrCallLayout"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_card"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:layout_marginVertical="5dp"
+                        app:layout_flexShrink="1"
+                        android:gravity="center"
+                        android:minWidth="120dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/call_icon2"
+                            app:tint="@color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:drawablePadding="5dp"
+                            android:lines="1"
+                            android:fontFamily="@font/hind_bold"
+                            android:text="Call"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            app:layout_flexShrink="1" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/sendSMSBtn"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/bg_card"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:layout_marginVertical="5dp"
+                        app:layout_flexShrink="1"
+                        android:gravity="center"
+                        android:minWidth="120dp"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/chat_icon"
+                            app:tint="@color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:drawablePadding="5dp"
+                            android:lines="1"
+                            android:fontFamily="@font/hind_bold"
+                            android:text="SMS"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            app:layout_flexShrink="1" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/sendWhatsAppBtn"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_card"
+                        android:backgroundTint="@color/colorPrimary"
+                        app:layout_flexShrink="1"
+                        android:gravity="center"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginStart="5dp"
+                        android:minWidth="120dp"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/chat_icon"
+                            app:tint="@color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/hind_bold"
+                            android:text="Chat"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            app:layout_flexShrink="1" />
+
+                    </LinearLayout>
+
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/shadow_bottom" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/shadow_bottom"
+                    android:rotation="180" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginVertical="10dp"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/hind_medium"
+                    android:gravity="center"
+                    android:text="Unable to reach the owner? Please contact the emergency contacts below (emergency use only)."
+                    android:textColor="@color/text_heading"
+                    android:textSize="16sp"
+                    app:layout_flexShrink="1" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/shadow_bottom" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/shadow_bottom"
+                    android:rotation="180" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/hind_bold"
+                    android:text="Emergency Contacts"
+                    android:textColor="@color/text_heading"
+                    android:textSize="16sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvEmergencyContact"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <LinearLayout
+                    android:id="@+id/emptyLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/emergency_empty_image" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="Emergency contact list is empty"
+                        android:textColor="@color/text_heading"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

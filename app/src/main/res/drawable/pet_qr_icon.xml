@@ -1,0 +1,23 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="30dp"
+    android:height="29dp"
+    android:viewportWidth="30"
+    android:viewportHeight="29">
+  <path
+      android:pathData="M25.116,19.6C24.273,14.557 19.43,10.457 14.316,10.457C8.758,10.457 3.872,14.957 3.401,20.5C3.215,22.643 3.901,24.672 5.315,26.2C6.715,27.729 8.687,28.572 10.83,28.572H17.516C19.93,28.572 22.044,27.629 23.487,25.929C24.93,24.229 25.501,21.972 25.116,19.6Z"
+      android:strokeAlpha="0.4"
+      android:fillColor="@color/primary_button"
+      android:fillAlpha="0.4"/>
+  <path
+      android:pathData="M12.541,8.372C14.853,8.372 16.727,6.498 16.727,4.186C16.727,1.874 14.853,0 12.541,0C10.229,0 8.355,1.874 8.355,4.186C8.355,6.498 10.229,8.372 12.541,8.372Z"
+      android:fillColor="@color/primary_button"/>
+  <path
+      android:pathData="M22.056,10.042C23.981,10.042 25.542,8.481 25.542,6.556C25.542,4.631 23.981,3.07 22.056,3.07C20.131,3.07 18.57,4.631 18.57,6.556C18.57,8.481 20.131,10.042 22.056,10.042Z"
+      android:fillColor="@color/primary_button"/>
+  <path
+      android:pathData="M27.215,15.615C28.754,15.615 30.001,14.367 30.001,12.829C30.001,11.29 28.754,10.043 27.215,10.043C25.677,10.043 24.43,11.29 24.43,12.829C24.43,14.367 25.677,15.615 27.215,15.615Z"
+      android:fillColor="@color/primary_button"/>
+  <path
+      android:pathData="M3.486,12.831C5.411,12.831 6.972,11.27 6.972,9.345C6.972,7.42 5.411,5.859 3.486,5.859C1.561,5.859 0,7.42 0,9.345C0,11.27 1.561,12.831 3.486,12.831Z"
+      android:fillColor="@color/primary_button"/>
+</vector>

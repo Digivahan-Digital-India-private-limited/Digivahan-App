@@ -1,0 +1,22 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+  <path
+      android:pathData="M24,24m-24,0a24,24 0,1 1,48 0a24,24 0,1 1,-48 0"
+      android:fillColor="@color/Primary_Icon_shade_4"/>
+  <path
+      android:pathData="M12,19.886H36M15.324,29.303H19.56M22.2,29.303H23M15.072,22.552H23.538H26.5M15.288,25.801H23M17.328,14H30.66C34.932,14 36,15.036 36,19.168V28.832C36,32.964 34.932,34 30.672,34H17.328C13.068,34.012 12,32.976 12,28.844V19.168C12,15.036 13.068,14 17.328,14Z"
+      android:strokeLineJoin="round"
+      android:strokeWidth="2"
+      android:fillColor="#00000000"
+      android:strokeColor="@color/primary_button"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="M33.169,29.805C32.349,30.368 31.355,30.698 30.285,30.698C29.215,30.698 28.222,30.368 27.402,29.805C27.039,29.556 26.885,29.082 27.095,28.696C27.532,27.897 28.431,27.399 30.285,27.399C32.139,27.399 33.039,27.897 33.475,28.696C33.686,29.082 33.531,29.556 33.169,29.805Z"
+      android:fillColor="@color/primary_button"/>
+  <path
+      android:pathData="M30.285,25.599C31.279,25.599 32.085,24.794 32.085,23.8C32.085,22.806 31.279,22 30.285,22C29.291,22 28.486,22.806 28.486,23.8C28.486,24.794 29.291,25.599 30.285,25.599Z"
+      android:fillColor="@color/primary_button"/>
+</vector>

@@ -1,0 +1,1249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/circle_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="-60dp"
+            android:layout_marginTop="-60dp"
+            app:tint="@color/Icon_Background_3" />
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="220dp"
+            android:src="@drawable/circle_bg"
+            android:layout_marginStart="-60dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/Icon_Background_4" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <FrameLayout
+                    android:id="@+id/ivProfileLayout"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/profile_bg1"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/ivProfile"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="3dp"
+                        android:src="@drawable/temp_profile_icon"
+                        app:civ_border_width="0dp" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivProfileLayout"
+                    app:layout_constraintStart_toEndOf="@+id/ivProfileLayout"
+                    app:layout_constraintTop_toTopOf="@+id/ivProfileLayout">
+
+                    <TextView
+                        android:id="@+id/greetingText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Good morning"
+                        android:fontFamily="@font/hind_medium"/>
+
+                    <TextView
+                        android:id="@+id/userName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="24sp"
+                        android:fontFamily="@font/hind_bold"/>
+
+                </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/notificationBellLayout"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/ivProfileLayout">
+
+                    <ImageView
+                        android:id="@+id/ivBell"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:padding="3dp"
+                        android:src="@drawable/notifications_icon1"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/notificationCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/circle_bg"
+                        android:backgroundTint="@color/widgetColor"
+                        android:fontFamily="@font/hind_bold"
+                        android:paddingHorizontal="4dp"
+                        android:text="1"
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        android:visibility="gone" />
+                </FrameLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <FrameLayout
+                android:id="@+id/addGarageItemLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <include layout="@layout/new_service_card_design"
+                    android:id="@+id/addVehicle"/>
+
+            </FrameLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/carRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/dotContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginVertical="8dp"/>
+
+
+
+            <!-- Current Fuel Prices -->
+            <!-- Card with rounded corners -->
+            <LinearLayout
+                android:id="@+id/fuelLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/bg_card1"
+                android:elevation="4dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Header with gradient background -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="16dp">
+
+                    <!-- Title -->
+                    <TextView
+                        android:id="@+id/tvTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:fontFamily="@font/hind_medium"
+                        android:text="Current Fuel Prices in"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!-- State Spinner -->
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:background="@drawable/rounded_button"
+                        android:backgroundTint="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tvTitle"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <Spinner
+                            android:id="@+id/spinnerState"
+                            android:layout_width="120dp"
+                            android:layout_height="40dp"
+                            android:paddingHorizontal="8dp"
+                            android:spinnerMode="dropdown" />
+                    </FrameLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Fuel prices -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_card"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:weightSum="3">
+
+                    <!-- Petrol -->
+                    <TextView
+                        android:id="@+id/tvPetrolPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:paddingHorizontal="2dp"
+                        android:text="Petrol: ₹94.76"
+                        android:textColor="#32A852"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <!-- Diesel -->
+                    <TextView
+                        android:id="@+id/tvDieselPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:paddingHorizontal="2dp"
+                        android:text="Diesel: ₹87.66"
+                        android:textColor="#32A852"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <!-- CNG -->
+                    <TextView
+                        android:id="@+id/tvCngPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:paddingHorizontal="2dp"
+                        android:text="CNG: ₹76.59"
+                        android:textColor="#32A852"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Card container -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/vehicleDocDatesLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/bg_card"
+                android:visibility="visible"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:background="@drawable/bg_card"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="4dp"
+                        app:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="5dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_weight="1.8"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/hind_semibold"
+                                    android:text="Insurance"
+                                    android:textColor="@color/text_heading"
+                                    android:textSize="12sp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <!-- Left block: semicircle + center days text -->
+                                <LinearLayout
+                                    android:id="@+id/leftBlock"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    app:layout_constraintTop_toBottomOf="@+id/title"
+                                    tools:layout_editor_absoluteX="18dp">
+
+                                    <!-- Custom semicircle progress view -->
+                                    <com.digivahan.other.SemiCircleProgressView
+                                        android:id="@+id/insuranceProgressGraph"
+                                        android:layout_width="160dp"
+                                        android:layout_height="80dp"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/daysLeft"
+                                        app:progress="0.1"
+                                        app:progressColor="#2FB132"
+                                        app:progressThickness="20dp"
+                                        app:trackColor="#D3D6DB" />
+
+                                    <!-- Center days left text (positioned over semicircle) -->
+                                    <TextView
+                                        android:id="@+id/insuranceDaysLeft"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="-25dp"
+                                        android:fontFamily="@font/hind_semibold"
+                                        android:text="@string/empty_string"
+                                        android:textColor="@color/text_heading"
+                                        android:textSize="14sp"
+                                        app:layout_constraintTop_toBottomOf="@+id/semiProgress" />
+
+                                    <!-- Renewed & Expiry labels below semicircle -->
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:orientation="horizontal"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/semiProgress">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:orientation="vertical"
+                                            android:visibility="gone">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Renewed Date"
+                                                android:textColor="#9DA4A9"
+                                                android:textSize="12sp" />
+
+                                            <TextView
+                                                android:id="@+id/insuranceRenewedDate"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/empty_string"
+                                                android:textColor="#6F6F6F"
+                                                android:textSize="12sp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Expiry Date"
+                                                android:textColor="#9DA4A9"
+                                                android:textSize="12sp" />
+
+                                            <TextView
+                                                android:id="@+id/insuranceExpiryDate"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/empty_string"
+                                                android:textColor="#6F6F6F"
+                                                android:textSize="12sp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/rightBlock"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:paddingLeft="12dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/leftBlock"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.142">
+
+                                <Space
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="8dp" />
+
+                                <TextView
+                                    android:id="@+id/insurerLabel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hind"
+                                    android:text="Insurer Name"
+                                    android:textColor="@color/text_heading"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/insurerName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hind"
+                                    android:text="@string/empty_string"
+                                    android:textColor="@color/text_sub_heading_2"
+                                    android:textSize="10sp" />
+
+                                <Space
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="8dp" />
+
+                                <TextView
+                                    android:id="@+id/policyLabel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hind_semibold"
+                                    android:text="Policy Type"
+                                    android:textColor="@color/text_heading"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:id="@+id/policyType"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hind"
+                                    android:text="@string/empty_string"
+                                    android:textColor="@color/text_sub_heading_2"
+                                    android:textSize="10sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:background="@drawable/bg_card"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="4dp"
+                        app:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_weight="1.8"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/pucTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/hind_semibold"
+                                    android:text="PUC"
+                                    android:textColor="@color/text_heading"
+                                    android:textSize="12sp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <!-- Left block: semicircle + center days text -->
+                                <LinearLayout
+                                    android:id="@+id/pucDaysLayout"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/pucTitle">
+
+                                    <!-- Custom semicircle progress view -->
+                                    <com.digivahan.other.SemiCircleProgressView
+                                        android:id="@+id/PUCProgressGraph"
+                                        android:layout_width="160dp"
+                                        android:layout_height="80dp"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/daysLeft"
+                                        app:progress="0.1"
+                                        app:progressColor="@color/indicator_active_color1"
+                                        app:progressThickness="20dp"
+                                        app:trackColor="@color/indicator_inactive_color2" />
+
+                                    <!-- Center days left text (positioned over semicircle) -->
+                                    <TextView
+                                        android:id="@+id/pucDaysLeft"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true"
+                                        android:layout_marginTop="-25dp"
+                                        android:fontFamily="@font/hind_semibold"
+                                        android:gravity="center"
+                                        android:text="@string/empty_string"
+                                        android:textColor="@color/text_heading"
+                                        android:textSize="14sp"
+                                        app:layout_constraintTop_toBottomOf="@+id/semiProgress" />
+
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <!-- Right block: insurer & policy info -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:paddingLeft="12dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/pucDaysLayout"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.142">
+
+                                <Space
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="8dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hind"
+                                    android:text="Renewed Date"
+                                    android:visibility="gone"
+                                    android:textColor="@color/text_heading"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/PUCRenewedDate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hind"
+                                    android:visibility="gone"
+                                    android:text="@string/empty_string"
+                                    android:textColor="@color/text_sub_heading_2"
+                                    android:textSize="10sp" />
+
+                                <Space
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="8dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hind_semibold"
+                                    android:text="Valid Up To"
+                                    android:textColor="@color/text_heading"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:id="@+id/PUCValidUpTo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hind"
+                                    android:text="@string/empty_string"
+                                    android:textColor="@color/text_sub_heading_2"
+                                    android:textSize="10sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:background="@drawable/bg_card"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="4dp"
+                        app:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/fitnessStatusTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentTop="true"
+                                    android:fontFamily="@font/hind_semibold"
+                                    android:text="Fitness Status"
+                                    android:textColor="@color/text_heading"
+                                    android:textSize="12sp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <!-- Left block: semicircle + center days text -->
+                                <LinearLayout
+                                    android:id="@+id/fitnessStatusLayout"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/fitnessStatusTitle"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentEnd="false"
+                                    android:layout_alignParentBottom="true"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/fitnessStatusTitle">
+
+                                    <!-- Custom semicircle progress view -->
+                                    <com.digivahan.other.MultiColorDonutChartView
+                                        android:id="@+id/donutChart"
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        android:layout_marginTop="10dp"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/daysLeft" />
+
+                                    <!-- Center days left text (positioned over semicircle) -->
+                                    <androidx.cardview.widget.CardView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="2dp"
+                                        app:cardCornerRadius="10dp">
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:paddingHorizontal="5dp"
+                                            android:paddingVertical="2dp"
+                                            android:background="@color/Icon_Background_1"
+                                            android:orientation="horizontal">
+
+                                            <ImageView
+                                                android:id="@+id/fitnessStatusIndicator"
+                                                android:layout_width="10dp"
+                                                android:layout_height="10dp"
+                                                android:src="@drawable/circle_bg"
+                                                android:layout_marginEnd="5dp"/>
+
+                                            <TextView
+                                                android:id="@+id/fitnessStatus"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@font/hind_semibold"
+                                                android:gravity="center"
+                                                android:textColor="@color/text_heading"
+                                                android:textSize="12sp"
+                                                app:layout_constraintTop_toBottomOf="@+id/semiProgress" />
+
+                                        </LinearLayout>
+                                    </androidx.cardview.widget.CardView>
+
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:paddingLeft="12dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/fitnessStatusLayout"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.142">
+
+                                <Space
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="8dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hind_semibold"
+                                    android:text="Vehicle Registered On "
+                                    android:textColor="@color/text_heading"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/vehicleRegistered"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hind"
+                                    android:text="@string/empty_string"
+                                    android:textColor="@color/text_sub_heading_2"
+                                    android:textSize="10sp" />
+
+                                <Space
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="8dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hind_semibold"
+                                    android:text="Fitness Registered Up To "
+                                    android:textColor="@color/text_heading"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:id="@+id/fitnessUpto"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hind"
+                                    android:text="@string/empty_string"
+                                    android:textColor="@color/text_sub_heading_2"
+                                    android:textSize="10sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/permitCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:background="@drawable/bg_card"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="4dp"
+                        app:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="5dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_weight="1.8"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/hind_semibold"
+                                    android:text="Permit"
+                                    android:textColor="@color/text_heading"
+                                    android:textSize="12sp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <!-- Left block: semicircle + center days text -->
+                                <LinearLayout
+                                    android:layout_height="match_parent"
+                                    android:layout_width="match_parent"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="20dp"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical"
+                                        android:paddingLeft="12dp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@+id/leftBlock"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintVertical_bias="0.142">
+
+                                        <Space
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="8dp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/hind"
+                                            android:text="Permit Number"
+                                            android:textColor="@color/text_heading"
+                                            android:textSize="12sp"
+                                            android:textStyle="bold" />
+
+                                        <TextView
+                                            android:id="@+id/permitNumber"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/hind"
+                                            android:text="@string/empty_string"
+                                            android:textColor="@color/text_sub_heading_2"
+                                            android:textSize="10sp" />
+
+                                        <Space
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="8dp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/hind_semibold"
+                                            android:text="Permit Type"
+                                            android:textColor="@color/text_heading"
+                                            android:textSize="12sp" />
+
+                                        <TextView
+                                            android:id="@+id/permitType"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/hind"
+                                            android:text="@string/empty_string"
+                                            android:textColor="@color/text_sub_heading_2"
+                                            android:textSize="10sp" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="20dp"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical"
+                                        android:paddingStart="12dp">
+
+                                        <Space
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="8dp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/hind"
+                                            android:text="Valid Upto"
+                                            android:textColor="@color/text_heading"
+                                            android:textSize="12sp"
+                                            android:textStyle="bold" />
+
+                                        <TextView
+                                            android:id="@+id/permitValidUpto"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/hind"
+                                            android:text="@string/empty_string"
+                                            android:textColor="@color/text_sub_heading_2"
+                                            android:textSize="10sp" />
+
+                                        <Space
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="8dp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/hind_semibold"
+                                            android:text="Left Days"
+                                            android:textColor="@color/text_heading"
+                                            android:textSize="12sp" />
+
+                                        <TextView
+                                            android:id="@+id/permitLeftDays"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/hind"
+                                            android:text="@string/empty_string"
+                                            android:textColor="@color/text_sub_heading_2"
+                                            android:textSize="10sp" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <com.digivahan.other.RoundCornerHorizentalProgressBar.RoundCornerProgressBar
+                                    android:id="@+id/permitProgressBar"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="13dp"
+                                    app:rcpb_stroke_width="2dp"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_marginVertical="5dp"
+                                    app:rcpb_stroke_color="@color/indicator_inactive_color2"
+                                    app:rcpb_progress_color="@color/indicator_active_color1"
+                                    app:rcpb_progress="0.5" />
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/nationalPermitCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:background="@drawable/bg_card"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="4dp"
+                        app:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="5dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_weight="1.8"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/hind_semibold"
+                                    android:text="National Permit"
+                                    android:textColor="@color/text_heading"
+                                    android:textSize="12sp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <!-- Left block: semicircle + center days text -->
+                                <LinearLayout
+                                    android:layout_height="match_parent"
+                                    android:layout_width="match_parent"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="20dp"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical"
+                                        android:paddingLeft="12dp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@+id/leftBlock"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintVertical_bias="0.142">
+
+                                        <Space
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="8dp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/hind"
+                                            android:text="Permit Number"
+                                            android:textColor="@color/text_heading"
+                                            android:textSize="12sp"
+                                            android:textStyle="bold" />
+
+                                        <TextView
+                                            android:id="@+id/nationalPermitNumber"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/hind"
+                                            android:text="@string/empty_string"
+                                            android:textColor="@color/text_sub_heading_2"
+                                            android:textSize="10sp" />
+
+                                        <Space
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="8dp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/hind_semibold"
+                                            android:text="Issued By"
+                                            android:textColor="@color/text_heading"
+                                            android:textSize="12sp" />
+
+                                        <TextView
+                                            android:id="@+id/nationalPermitIssuedBy"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/hind"
+                                            android:text="@string/empty_string"
+                                            android:textColor="@color/text_sub_heading_2"
+                                            android:textSize="10sp" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="20dp"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical"
+                                        android:paddingStart="12dp">
+
+                                        <Space
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="8dp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/hind"
+                                            android:text="Valid Upto"
+                                            android:textColor="@color/text_heading"
+                                            android:textSize="12sp"
+                                            android:textStyle="bold" />
+
+                                        <TextView
+                                            android:id="@+id/nationalPermitValidUpto"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/hind"
+                                            android:text="@string/empty_string"
+                                            android:textColor="@color/text_sub_heading_2"
+                                            android:textSize="10sp" />
+
+                                        <Space
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="8dp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/hind_semibold"
+                                            android:text="Left Days"
+                                            android:textColor="@color/text_heading"
+                                            android:textSize="12sp" />
+
+                                        <TextView
+                                            android:id="@+id/nationalPermitLeftDays"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/hind"
+                                            android:text="@string/empty_string"
+                                            android:textColor="@color/text_sub_heading_2"
+                                            android:textSize="10sp" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <com.digivahan.other.RoundCornerHorizentalProgressBar.RoundCornerProgressBar
+                                    android:id="@+id/nationalPermitProgressBar"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="13dp"
+                                    app:rcpb_stroke_width="2dp"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_marginVertical="5dp"
+                                    app:rcpb_stroke_color="@color/indicator_inactive_color2"
+                                    app:rcpb_progress_color="@color/indicator_active_color1"
+                                    app:rcpb_progress="0.5" />
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/trendingCarsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/hind_medium"
+                    android:text="Trending new cars"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTrendingCars"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/comparisonCarsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/hind_medium"
+                    android:text="Popular comparison"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvVSTrendingCars"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tipsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/hind_medium"
+                    android:text="Tips"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/newsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/hind_medium"
+                    android:text="news &amp; Stories"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvNewsStories"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/ivCar"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="30dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/dashboard_end_icon" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menuItemLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- Row with icon, text and switch -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingHorizontal="10dp"
+        android:gravity="center_vertical">
+
+        <!-- Notification Icon -->
+        <ImageView
+            android:id="@+id/nav_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/notifications_icon1"
+            app:tint="@color/primary_button" />
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="10dp"
+            android:text="Notification"
+            android:textColor="@color/black"
+            android:fontFamily="@font/hind_semibold"
+            android:textSize="14sp" />
+
+        <!-- Switch Button -->
+
+        <!--android:thumbTint="@color/primary_button"
+        android:trackTint="@color/Secondary"-->
+
+        <Switch
+            android:id="@+id/switchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    </LinearLayout>
+
+    <!-- Divider line -->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="#E0E0E0" />
+
+</LinearLayout>

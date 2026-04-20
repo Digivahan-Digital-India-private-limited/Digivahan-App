@@ -1,0 +1,52 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_notification"
+            android:title="Notification"
+            android:icon="@drawable/profile_icon1">
+            <menu>
+                <!-- Place Switch in ActionView -->
+                <item
+                    android:id="@+id/nav_switch"
+                    android:title=""
+                    android:actionLayout="@layout/nav_switch_layout"/>
+            </menu>
+        </item>
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/profile_icon1"
+            android:title="Home"/>
+
+        <item
+            android:id="@+id/nav_order"
+            android:icon="@drawable/profile_icon1"
+            android:title="My Order"/>
+
+        <item
+            android:id="@+id/nav_virtualQR"
+            android:icon="@drawable/profile_icon1"
+            android:title="My Virtual QRs"/>
+
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/profile_icon1"
+            android:title="Update Profile"/>
+
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/profile_icon1"
+            android:title="About Us"/>
+
+        <item
+            android:id="@+id/nav_terms"
+            android:icon="@drawable/profile_icon1"
+            android:title="Terms &amp; Conditions"/>
+
+        <item
+            android:id="@+id/nav_privacy"
+            android:icon="@drawable/profile_icon1"
+            android:title="Privacy &amp; Policy"/>
+    </group>
+</menu>
