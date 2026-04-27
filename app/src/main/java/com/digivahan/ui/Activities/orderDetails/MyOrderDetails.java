@@ -141,6 +141,7 @@ public class MyOrderDetails extends BaseActivity {
             String orderType = "";
             if (orderDetails.getVehicle_id() != null && !orderDetails.getOrder_type().isEmpty()){
                 orderType = "vehicle";
+                orderDetails.setOrder_type(orderType);
             }
             orderDetailsPage.putExtra("orderType", orderType);
             if (orderDetails.getOrder_type().equalsIgnoreCase("vehicle")){
