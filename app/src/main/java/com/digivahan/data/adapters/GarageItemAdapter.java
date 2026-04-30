@@ -79,7 +79,7 @@ public class GarageItemAdapter extends RecyclerView.Adapter<GarageItemAdapter.CL
 //        ImageHelperMethods.loadImage(TAG, context, "", holder.binding.ivCar, CommonMethods.getVehiclePlaceholder(model.getVehicle_class()));
 
         Glide.with(context)
-                .load(CommonMethods.getVehiclePlaceholder(model.getVehicle_class(), model.getVehicle_name(), model.getMakers_model()))
+                .load(CommonMethods.getVehiclePlaceholder(model.getVehicle_class(), model.getVehicle_name(), model.getMakers_model(), model.getCategory()))
                 .override(800, 800)   // 🔥 LIMIT SIZE
                 .centerInside()
                 .into(holder.binding.ivCar);

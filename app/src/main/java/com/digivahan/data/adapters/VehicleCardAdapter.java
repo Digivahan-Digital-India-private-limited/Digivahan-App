@@ -53,7 +53,7 @@ public class VehicleCardAdapter extends RecyclerView.Adapter<VehicleCardAdapter.
             holder.binding.registrationData.setText("Registered on " + TimeUtils.convertDateFormat(vehicle.getRegistration_date(), "dd-MM-yyyy"));
 
             Glide.with(context)
-                    .load(CommonMethods.getVehiclePlaceholder(vehicle.getVehicle_class(), vehicle.getVehicle_name(), vehicle.getMakers_model()))
+                    .load(CommonMethods.getVehiclePlaceholder(vehicle.getVehicle_class(), vehicle.getVehicle_name(), vehicle.getMakers_model(), vehicle.getCategory()))
                     .override(800, 800)   // 🔥 LIMIT SIZE
                     .centerInside()
                     .into(holder.binding.ivCar);
@@ -88,7 +88,8 @@ public class VehicleCardAdapter extends RecyclerView.Adapter<VehicleCardAdapter.
             holder.itemView.setOnClickListener(v -> {
                 ((BaseActivity) context).disableHideContentSecureForNextNavigation();
                 Intent vehicleInfoPage = new Intent(context, VehicleInformation.class);
-                vehicleInfoPage.putExtra("vehicleData", vehicle);
+//                vehicleInfoPage.putExtra("vehicleData", vehicle);
+                vehicleInfoPage.putExtra("vehicleId", vehicle.getVehicle_id());
                 context.startActivity(vehicleInfoPage);
             });
         }

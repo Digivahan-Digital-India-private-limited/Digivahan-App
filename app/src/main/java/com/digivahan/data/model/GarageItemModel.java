@@ -11,11 +11,19 @@ public class GarageItemModel implements Serializable {
             insurance_renewed_date, vehicle_age, fitness_upto, pollution_renew_date, pollution_expiry,
             color, unloaded_weight, rc_status, insurance_policy_number, _id,
             insurance_url, pollution_url, registration_url, fitness_url, permit_url, permitNumber, permitType, permitValidFrom, permitValidUpto,
-            nationalPermitNumber, nationalPermitValidUpto, nationalPermitIssuedBy;
+            nationalPermitNumber, nationalPermitValidUpto, nationalPermitIssuedBy, category;
 
     ArrayList<vehicleDocuments> vehicleDocumentsArrayList;
 
     public GarageItemModel() {}
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public String getFinancer_name() {
         return financer_name;

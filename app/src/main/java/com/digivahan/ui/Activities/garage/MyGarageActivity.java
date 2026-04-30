@@ -417,6 +417,9 @@ public class  MyGarageActivity extends BaseActivity {
                                         model.setUnloaded_weight(CommonMethods.getSafeString(info, "unloaded_weight"));
                                         CommonLogic.showTestLog(TAG, "⚖️ unloaded_weight = " + model.getUnloaded_weight());
 
+                                        model.setCategory(CommonMethods.getSafeString(info, "category"));
+                                        CommonLogic.showTestLog(TAG, "⚖️ category = " + model.getCategory());
+
                                         model.setInsurance_policy_number(
                                                 CommonMethods.getSafeString(info, "insurance_policy_number"));
                                         CommonLogic.showTestLog(TAG,

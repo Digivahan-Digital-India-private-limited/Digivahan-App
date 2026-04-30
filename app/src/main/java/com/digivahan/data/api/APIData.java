@@ -105,8 +105,8 @@ public interface APIData {
 
 
     // Doc access APIs end points...
-    String DOC_ACCESS_CHECK = "/api/notifications/check/security-code";
-    String DOC_ACCESS_VERIFICATION = "/api/notifications/verify/security-code";
+    String DOC_ACCESS_CHECK = "/api/check/security-code";
+    String DOC_ACCESS_VERIFICATION = "/api/verify/security-code";
 
     // chatting system APIS
 

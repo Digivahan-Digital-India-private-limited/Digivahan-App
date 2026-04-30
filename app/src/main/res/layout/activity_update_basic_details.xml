@@ -89,7 +89,7 @@
 
             <!-- Menu Container -->
 
-            <FrameLayout
+            <!--<FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -100,174 +100,177 @@
                     android:clipToOutline="true"
                     android:src="@drawable/menu_card_bg" />
 
+
+
+            </FrameLayout>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/top_shadow"
+                android:paddingVertical="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Basic Details"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_marginHorizontal="3dp"
+                    android:background="@drawable/shadow_bottom" />
+
                 <LinearLayout
+                    android:id="@+id/registerLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="vertical"
-                    android:paddingVertical="20dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="8dp"
-                        android:text="Basic Details"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="4dp"
-                        android:layout_marginHorizontal="3dp"
-                        android:background="@drawable/shadow_bottom" />
+                    android:paddingHorizontal="20dp"
+                    android:visibility="visible">
 
                     <LinearLayout
-                        android:id="@+id/registerLayout"
+                        android:id="@+id/firstNameLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:orientation="vertical"
-                        android:paddingHorizontal="20dp"
-                        android:visibility="visible">
+                        android:orientation="vertical">
 
-                        <LinearLayout
-                            android:id="@+id/firstNameLayout"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:fontFamily="@font/hind_medium"
+                            android:text="First Name"
+                            android:textColor="@color/text_heading"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/hind_medium"
-                                android:text="First Name"
-                                android:textColor="@color/text_heading"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <include
-                                android:id="@+id/firstNameField"
-                                layout="@layout/custom_input_field" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/lastNameLayout"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/hind_medium"
-                                android:text="Last Name"
-                                android:textColor="@color/text_heading"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <include
-                                android:id="@+id/lastNameField"
-                                layout="@layout/custom_input_field" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/emailLayout"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/hind_medium"
-                                android:text="Email Address"
-                                android:textColor="@color/text_heading"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <include
-                                android:id="@+id/emailField"
-                                layout="@layout/custom_input_field" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/phoneLayout"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/hind_medium"
-                                android:text="Phone Number"
-                                android:textColor="@color/text_heading"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <include
-                                android:id="@+id/phoneField"
-                                layout="@layout/custom_input_field" />
-                        </LinearLayout>
-
-
-                        <!-- Password Field -->
-                        <LinearLayout
-                            android:id="@+id/passwordLayout"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/hind_medium"
-                                android:text="Occupation"
-                                android:textColor="@color/text_heading"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <FrameLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginVertical="5dp"
-                                android:background="@drawable/edit_text_bg1"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@+id/tvTitle"
-                                app:layout_constraintTop_toTopOf="parent">
-
-                                <Spinner
-                                    android:id="@+id/spinnerOccupation"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="60dp"
-                                    android:paddingHorizontal="8dp"
-                                    android:spinnerMode="dropdown" />
-                            </FrameLayout>
-
-                        </LinearLayout>
-
-
-                        <Button
-                            android:id="@+id/btnUpdate"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="20dp"
-                            android:background="@drawable/button_bg1"
-                            android:fontFamily="@font/hind_bold"
-                            android:text="Update Details"
-                            android:textColor="@android:color/white"
-                            android:textSize="14sp" />
+                        <include
+                            android:id="@+id/firstNameField"
+                            layout="@layout/custom_input_field" />
 
                     </LinearLayout>
-                </LinearLayout>
 
-            </FrameLayout>
+                    <LinearLayout
+                        android:id="@+id/lastNameLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hind_medium"
+                            android:text="Last Name"
+                            android:textColor="@color/text_heading"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <include
+                            android:id="@+id/lastNameField"
+                            layout="@layout/custom_input_field" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/emailLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hind_medium"
+                            android:text="Email Address"
+                            android:textColor="@color/text_heading"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <include
+                            android:id="@+id/emailField"
+                            layout="@layout/custom_input_field" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/phoneLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hind_medium"
+                            android:text="Phone Number"
+                            android:textColor="@color/text_heading"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <include
+                            android:id="@+id/phoneField"
+                            layout="@layout/custom_input_field" />
+                    </LinearLayout>
+
+
+                    <!-- Password Field -->
+                    <LinearLayout
+                        android:id="@+id/passwordLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hind_medium"
+                            android:text="Occupation"
+                            android:textColor="@color/text_heading"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="5dp"
+                            android:background="@drawable/edit_text_bg1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/tvTitle"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <Spinner
+                                android:id="@+id/spinnerOccupation"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:paddingHorizontal="8dp"
+                                android:spinnerMode="dropdown" />
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+
+                    <Button
+                        android:id="@+id/btnUpdate"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/button_bg1"
+                        android:fontFamily="@font/hind_bold"
+                        android:text="Update Details"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
 

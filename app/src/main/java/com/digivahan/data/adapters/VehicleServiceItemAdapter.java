@@ -108,10 +108,11 @@ public class VehicleServiceItemAdapter extends RecyclerView.Adapter<VehicleServi
                         }
                 );
             } else if (vehicleServiceItemModel.getServiceType().equalsIgnoreCase("FASTag")){
-                ((BaseActivity) context).disableHideContentSecureForNextNavigation();
+                /*((BaseActivity) context).disableHideContentSecureForNextNavigation();
                 Intent userRequestPage = new Intent(context, SelectVehicleBBPS.class);
                 userRequestPage.putExtra("categoryKey", "C10");
-                context.startActivity(userRequestPage);
+                context.startActivity(userRequestPage);*/
+                Toast.makeText(context, "Coming Soon", Toast.LENGTH_SHORT).show();
             } else if (vehicleServiceItemModel.getServiceType().equalsIgnoreCase("challan_pay")){
                 ((BaseActivity) context).disableHideContentSecureForNextNavigation();
                 Intent userRequestPage = new Intent(context, SelectVehicleBBPS.class);

@@ -51,7 +51,7 @@ public class MyOrderItemAdapter extends RecyclerView.Adapter<MyOrderItemAdapter.
         holder.binding.carImage.setVisibility(View.VISIBLE);
 
         Glide.with(context)
-                .load(CommonMethods.getVehiclePlaceholder(model.getVehicle_class(), model.getVehicle_name(), model.getMakers_model())) // Your image URL or file
+                .load(CommonMethods.getVehiclePlaceholder(model.getVehicle_class(), model.getVehicle_name(), model.getMakers_model(), model.getCategory())) // Your image URL or file
                 .override(800, 800)   // 🔥 LIMIT SIZE
                 .centerInside()
                 .into(holder.binding.carImage);

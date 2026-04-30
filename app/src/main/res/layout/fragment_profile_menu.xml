@@ -92,7 +92,7 @@
 
         <!-- Menu Container -->
 
-        <FrameLayout
+        <!--<FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -103,63 +103,64 @@
                 android:clipToOutline="true"
                 android:src="@drawable/menu_card_bg" />
 
-            <LinearLayout
+        </FrameLayout>-->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:background="@drawable/top_shadow"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/updateProfileBtn"
+                layout="@layout/profile_menu_item_design"/>
+
+            <include
+                android:id="@+id/myGarageBtn"
+                layout="@layout/profile_menu_item_design"/>
+
+            <include
+                android:id="@+id/myOrderBtn"
+                layout="@layout/profile_menu_item_design"/>
+
+            <include
+                android:id="@+id/myVirtualQRBtn"
+                layout="@layout/profile_menu_item_design"/>
+
+            <include
+                android:id="@+id/liveTrackingBtn"
+                android:visibility="gone"
+                layout="@layout/profile_menu_item_design"/>
+
+            <include
+                android:id="@+id/notificationBtn"
+                layout="@layout/profile_menu_item_design"/>
+
+
+            <!--<include
+                android:id="@+id/aboutUsBtn"
+                layout="@layout/profile_menu_item_design"/>
+
+            <include
+                android:id="@+id/termConditionBtn"
+                layout="@layout/profile_menu_item_design"/>
+
+            <include
+                android:id="@+id/privacyPolicyBtn"
+                layout="@layout/profile_menu_item_design"/>-->
+
+
+            <!--<TextView
+                android:id="@+id/footer_version"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="20dp"
-                android:orientation="vertical">
-
-                <include
-                    android:id="@+id/updateProfileBtn"
-                    layout="@layout/profile_menu_item_design"/>
-
-                <include
-                    android:id="@+id/myGarageBtn"
-                    layout="@layout/profile_menu_item_design"/>
-
-                <include
-                    android:id="@+id/myOrderBtn"
-                    layout="@layout/profile_menu_item_design"/>
-
-                <include
-                    android:id="@+id/myVirtualQRBtn"
-                    layout="@layout/profile_menu_item_design"/>
-
-                <include
-                    android:id="@+id/liveTrackingBtn"
-                    android:visibility="gone"
-                    layout="@layout/profile_menu_item_design"/>
-
-                <include
-                    android:id="@+id/notificationBtn"
-                    layout="@layout/profile_menu_item_design"/>
-
-
-                <!--<include
-                    android:id="@+id/aboutUsBtn"
-                    layout="@layout/profile_menu_item_design"/>
-
-                <include
-                    android:id="@+id/termConditionBtn"
-                    layout="@layout/profile_menu_item_design"/>
-
-                <include
-                    android:id="@+id/privacyPolicyBtn"
-                    layout="@layout/profile_menu_item_design"/>-->
-
-
-                <!--<TextView
-                    android:id="@+id/footer_version"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="Version 1.5.0" />-->
-            </LinearLayout>
-
-        </FrameLayout>
-
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Version 1.5.0" />-->
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

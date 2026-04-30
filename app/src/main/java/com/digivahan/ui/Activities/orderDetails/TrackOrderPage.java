@@ -65,13 +65,25 @@ public class TrackOrderPage extends BaseActivity {
 
         binding.toolbarLayout.backBtn.setOnClickListener(v -> onBackPressed());
 
+        loadingDialog = new AshDialog(TrackOrderPage.this, "Please wait", "");
+
+        preferencesManager = new PreferencesManager(TrackOrderPage.this);
+
         try {
             orderDetails = (OrderItemModel) getIntent().getSerializableExtra("orderDetails");
             if (orderDetails != null && orderDetails.getAwb_code() != null && !orderDetails.getAwb_code().isEmpty() && !orderDetails.getAwb_code().equalsIgnoreCase("NA")
                     && !orderDetails.getAwb_code().equalsIgnoreCase("N/A")){
                 binding.webView.setVisibility(View.VISIBLE);
                 setupWebView();
-                binding.webView.loadUrl("https://shiprocket.co/tracking/" + orderDetails.getAwb_code());
+
+                String trackingUrl = "https://www.delhivery.com/track-v2/package/";
+
+                if (orderDetails.getActive_partner().equalsIgnoreCase("shiprocket")){
+                    trackingUrl = "https://shiprocket.co/tracking/";
+                }
+
+                binding.webView.loadUrl(trackingUrl + orderDetails.getAwb_code());
+                CommonLogic.showTestLog(TAG, "Awb_code:- " + orderDetails.getAwb_code());
             }else {
                 binding.orderDetailsPage.setVisibility(View.VISIBLE);
             }
@@ -108,15 +120,11 @@ public class TrackOrderPage extends BaseActivity {
                 updateDeliveryStages(1);
             }
 
-            if (orderDetails.isIs_prepared()){
+            /*if (orderDetails.isIs_prepared()){
                 binding.orderPrintingStatus.setText("Order printed successfully");
                 getSetOrderData();
-            }
+            }*/
         }
-
-        loadingDialog = new AshDialog(TrackOrderPage.this, "Please wait", "");
-
-        preferencesManager = new PreferencesManager(TrackOrderPage.this);
 
     }
 

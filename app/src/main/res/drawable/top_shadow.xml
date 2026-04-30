@@ -1,0 +1,36 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 🌫 BACK LAYER (REALISTIC SHADOW) -->
+    <item>
+        <shape>
+            <gradient
+                android:angle="270"
+                android:endColor="@android:color/transparent"
+                android:startColor="#40000000" />
+
+            <corners
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp"
+                android:topLeftRadius="20dp"
+                android:topRightRadius="20dp" />
+        </shape>
+    </item>
+
+    <!-- ⬜ FRONT LAYER -->
+    <item
+        android:left="4dp"
+        android:right="4dp"
+        android:top="4dp">
+
+        <shape>
+            <solid android:color="@android:color/white" />
+
+            <corners
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp"
+                android:topLeftRadius="20dp"
+                android:topRightRadius="20dp" />
+        </shape>
+    </item>
+
+</layer-list>

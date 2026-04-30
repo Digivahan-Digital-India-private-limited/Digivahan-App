@@ -130,7 +130,7 @@
                 </com.google.android.flexbox.FlexboxLayout>
 
 
-                <LinearLayout
+                <!--<LinearLayout
                     android:id="@+id/chatBtnLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -162,7 +162,7 @@
                         android:textSize="12dp"
                         android:fontFamily="@font/hind_bold"
                         android:text="Chat with Owner" />
-                </LinearLayout>
+                </LinearLayout>-->
 
                 <View
                     android:id="@+id/divider"

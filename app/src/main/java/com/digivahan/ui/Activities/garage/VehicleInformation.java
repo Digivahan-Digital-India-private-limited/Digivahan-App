@@ -204,7 +204,7 @@ public class VehicleInformation extends BaseActivity {
 
 
         Glide.with(VehicleInformation.this)
-                .load(CommonMethods.getVehiclePlaceholder(vehicleInfo.getVehicle_class(), vehicleInfo.getVehicle_name(), vehicleInfo.getMakers_model()))
+                .load(CommonMethods.getVehiclePlaceholder(vehicleInfo.getVehicle_class(), vehicleInfo.getVehicle_name(), vehicleInfo.getMakers_model(), vehicleInfo.getCategory()))
                 .override(800, 800)   // 🔥 LIMIT SIZE
                 .centerInside()
                 .into(binding.ivVehicle);

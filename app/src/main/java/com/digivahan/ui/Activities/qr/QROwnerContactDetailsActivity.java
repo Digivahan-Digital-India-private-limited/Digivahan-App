@@ -201,9 +201,9 @@ public class QROwnerContactDetailsActivity extends BaseActivity {
 
 
         // Select Reason
-        binding.chatBtn.setOnClickListener(v -> {
+        /*binding.chatBtn.setOnClickListener(v -> {
             openChatRequestPage();
-        });
+        });*/
 
         // Initialize data
         cardList = new ArrayList<>();
@@ -474,9 +474,9 @@ public class QROwnerContactDetailsActivity extends BaseActivity {
                 }
 
                 // Check if count has reached 3
-                if (currentCount >= notificationLimit - 1) {
+               /* if (currentCount >= notificationLimit - 1) {
                     binding.chatBtnLayout.setVisibility(View.VISIBLE);
-                }
+                }*/
 
                 // Reset cooldown end time
                 prefs.removeValue(PreferencesManager.KEY_COOLDOWN_END_TIME);

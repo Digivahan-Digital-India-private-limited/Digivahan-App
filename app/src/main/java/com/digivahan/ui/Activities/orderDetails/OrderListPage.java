@@ -88,8 +88,10 @@ public class OrderListPage extends BaseActivity {
 //        statusList.add("Shipped");
 //        statusList.add("Completed");
 
+        statusList.add("ALL");
         statusList.add("NEW");
         statusList.add("PENDING");
+        statusList.add("CONFIRMED");
         statusList.add("CANCELED");
 
 // Set LayoutManager
@@ -127,7 +129,7 @@ public class OrderListPage extends BaseActivity {
                 orderStatus = model.getShip_rocket_status();
             }
 
-            if (orderStatus.equalsIgnoreCase(statusList.get(selectedStatusPosition))){
+            if (statusList.get(selectedStatusPosition).equalsIgnoreCase("ALL") || orderStatus.equalsIgnoreCase(statusList.get(selectedStatusPosition))){
                 filteredOrderList.add(model);
             }
         }
@@ -192,6 +194,7 @@ public class OrderListPage extends BaseActivity {
                                     model.setPayment_order_id(orderData.optString("order_id", ""));
                                     model.setOrder_date(orderData.optString("order_date", ""));
                                     model.setOrder_status(orderData.optString("order_status", ""));
+                                    model.setActive_partner(orderData.optString("active_partner", ""));
                                     model.setIs_prepared(orderData.optBoolean("is_prepared", false));
                                     model.setSub_total(orderData.optInt("sub_total", 0));
                                     model.setOrder_value(orderData.optInt("order_value", 0));
@@ -245,7 +248,7 @@ public class OrderListPage extends BaseActivity {
 
                                     if (shipRocketObj != null) {
 
-                                        model.setShip_rocket_order_id(shipRocketObj.optInt("order_id", 0));
+                                            model.setShip_rocket_order_id(shipRocketObj.optInt("order_id", 0));
                                         model.setShip_rocket_shipment_id(shipRocketObj.optInt("shipment_id", 0));
                                         model.setShip_rocket_status(shipRocketObj.optString("status", ""));
                                         model.setStatus_code(shipRocketObj.optInt("status_code", 0));

@@ -1,5 +1,7 @@
 package com.digivahan.ui.Activities.orderDetails;
 
+import static com.digivahan.utils.VehicleType.TWO_WHEELER;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -286,8 +288,9 @@ public class OrderQRPage extends BaseActivity implements PaymentResultListener {
             }
         });
 
+        CommonLogic.showTestLog(TAG, "vehicle class:- " + vehicleDetails.getVehicle_class() + " " + vehicleDetails.getVehicle_name() + " " + vehicleDetails.getMakers_model());
 
-        if (vehicleDetails != null && vehicleDetails.getVehicle_class().toLowerCase().contains("2wn")){
+        if (vehicleDetails != null && CommonMethods.getVehicleType(vehicleDetails.getVehicle_class(), vehicleDetails.getCategory()).equals(TWO_WHEELER)){
             binding.tvQuantity.setText(String.valueOf(1));
         }else {
             binding.tvQuantity.setText(String.valueOf(2));

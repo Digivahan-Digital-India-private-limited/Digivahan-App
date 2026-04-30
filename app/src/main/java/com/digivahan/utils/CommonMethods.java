@@ -980,6 +980,9 @@ public interface CommonMethods {
             model.setUnloaded_weight(CommonMethods.getSafeString(info, "unloaded_weight"));
             CommonLogic.showTestLog(TAG, "⚖️ unloaded_weight = " + model.getUnloaded_weight());
 
+            model.setCategory(CommonMethods.getSafeString(info, "category"));
+            CommonLogic.showTestLog(TAG, "⚖️ category = " + model.getCategory());
+
             model.setInsurance_policy_number(
                     CommonMethods.getSafeString(info, "insurance_policy_number"));
             CommonLogic.showTestLog(TAG,
@@ -1151,76 +1154,102 @@ public interface CommonMethods {
                 .show();
     }
 
+    public static VehicleType getVehicleType(String vehicleClass, String category) {
+
+        if (vehicleClass == null) return VehicleType.UNKNOWN;
+
+        String cls = vehicleClass.toLowerCase();
+
+        if (category != null && (category.contains("2wn") || category.equalsIgnoreCase("2WN"))) {
+            return VehicleType.TWO_WHEELER;
+        }
+
+        if (cls.contains("2wn") || cls.contains("m-cycle")) {
+            return VehicleType.TWO_WHEELER;
+        }
+
+        if (cls.contains("3w") || cls.contains("auto")) {
+            return VehicleType.THREE_WHEELER;
+        }
+
+        if (cls.contains("lmv") || cls.contains("4w") || cls.contains("lpv")) {
+            return VehicleType.FOUR_WHEELER;
+        }
+
+        if (cls.contains("truck") || cls.contains("bus") ||
+                cls.contains("hgv") || cls.contains("lgv") || cls.contains("mgv")) {
+            return VehicleType.HEAVY;
+        }
+
+        return VehicleType.UNKNOWN;
+    }
+
     public static int getVehiclePlaceholder(
             String vehicleClass,
             String vehicleName,
-            String makersModel
+            String makersModel,
+            String category
     ) {
 
         String nameModel =
                 (vehicleName == null ? "" : vehicleName) + " " +
                         (makersModel == null ? "" : makersModel);
 
-        String cls = vehicleClass == null ? "" : vehicleClass;
-
         nameModel = nameModel.toLowerCase();
-        cls = cls.toLowerCase();
 
-        CommonLogic.showTestLog(TAG,
-                "Vehicle Data: class=" + cls + " | nameModel=" + nameModel
-        );
+        VehicleType type = getVehicleType(vehicleClass, category);
 
-        // ================= GENERIC 2 WHEELER =================
-        if (cls.contains("2wn") || cls.contains("m-cycle")) {
-            return R.drawable.ic_vehicle_2w;
+        switch (type) {
+
+            case TWO_WHEELER:
+
+                // Bike
+                if (nameModel.contains("splendor")
+                        || nameModel.contains("pulsar")
+                        || nameModel.contains("apache")
+                        || nameModel.contains("r15")
+                        || nameModel.contains("bullet")
+                        || nameModel.contains("bike")
+                        || nameModel.contains("motorcycle")) {
+
+                    return R.drawable.ic_vehicle_2w_bike;
+                }
+
+                // Scooty
+                if (nameModel.contains("activa")
+                        || nameModel.contains("jupiter")
+                        || nameModel.contains("dio")
+                        || nameModel.contains("access")
+                        || nameModel.contains("pleasure")
+                        || nameModel.contains("vespa")
+                        || nameModel.contains("scooter")) {
+
+                    return R.drawable.ic_vehicle_2w_scooty;
+                }
+
+                return R.drawable.ic_vehicle_2w;
+
+
+            case FOUR_WHEELER:
+
+                // Truck
+                if (nameModel.contains("truck")) {
+                    return R.drawable.ic_vehicle_heavy;
+                }
+
+                // Car (default 4W)
+                return R.drawable.ic_vehicle_4w;
+
+
+            case THREE_WHEELER:
+                return R.drawable.ic_vehicle_3w;
+
+            case HEAVY:
+                return R.drawable.ic_vehicle_heavy;
+
+            default:
+                return R.drawable.ic_vehicle_default;
         }
-
-        // ================= BIKE (CHECK FIRST) =================
-        if (nameModel.contains("splendor")
-                || nameModel.contains("pulsar")
-                || nameModel.contains("apache")
-                || nameModel.contains("shine")
-                || nameModel.contains("fz")
-                || nameModel.contains("r15")
-                || nameModel.contains("royal")
-                || nameModel.contains("bullet")
-                || nameModel.contains("bike")
-                || nameModel.contains("motorcycle")) {
-
-            return R.drawable.ic_vehicle_2w_bike;
-        }
-
-        // ================= SCOOTY =================
-        else if (nameModel.contains("jupiter")
-                || nameModel.contains("activa")
-                || nameModel.contains("access")
-                || nameModel.contains("dio")
-                || nameModel.contains("pleasure")
-                || nameModel.contains("vespa")
-                || nameModel.contains("scooter")) {
-
-            return R.drawable.ic_vehicle_2w_scooty;
-        }
-
-
-        // ================= 4 WHEELER =================
-        if (cls.contains("lmv")
-//                || cls.contains("car")
-                || cls.contains("4w") || cls.contains("lpv")) {
-            return R.drawable.ic_vehicle_4w;
-        }
-
-        // ================= 3 WHEELER =================
-        if (cls.contains("3w") || cls.contains("auto")) {
-            return R.drawable.ic_vehicle_3w;
-        }
-
-        // ================= HEAVY =================
-        if (cls.contains("truck") || cls.contains("bus") || cls.contains("hgv") || cls.contains("lgv") || cls.contains("mgv")) {
-            return R.drawable.ic_vehicle_heavy;
-        }
-
-        return R.drawable.ic_vehicle_default;
     }
 
 
@@ -1393,8 +1422,8 @@ public interface CommonMethods {
 
 
 // 🔒 HARD BLOCK dismiss
-                dialog.setCancelable(false);
-                dialog.setCanceledOnTouchOutside(false);
+//                dialog.setCancelable(false);
+//                dialog.setCanceledOnTouchOutside(false);
 
 // 🔒 Block BACK button
                 dialog.setOnKeyListener((dialogInterface, keyCode, event) -> {
@@ -1440,7 +1469,7 @@ public interface CommonMethods {
                     context.finish();
                 });
 
-                dialog.setCancelable(isCancelable);
+//                dialog.setCancelable(isCancelable);
                 dialog.show();
 
                 CommonLogic.showTestLog(TAG, "🟢 Profile Update Dialog SHOWN");
@@ -1912,6 +1941,9 @@ public interface CommonMethods {
 
                                             model.setUnloaded_weight(CommonMethods.getSafeString(info, "unloaded_weight"));
                                             CommonLogic.showTestLog(TAG, "⚖️ unloaded_weight = " + model.getUnloaded_weight());
+
+                                            model.setCategory(CommonMethods.getSafeString(info, "category"));
+                                            CommonLogic.showTestLog(TAG, "⚖️ category = " + model.getCategory());
 
                                             model.setInsurance_policy_number(
                                                     CommonMethods.getSafeString(info, "insurance_policy_number"));

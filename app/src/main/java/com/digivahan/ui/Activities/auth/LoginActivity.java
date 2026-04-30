@@ -31,8 +31,6 @@ import com.digivahan.data.repository.RegisterUserRepository;
 import com.digivahan.databinding.ActivityLoginBinding;
 import com.digivahan.other.CustomDialog.AshDialog;
 import com.digivahan.ui.Activities.MainActivity;
-import com.digivahan.ui.Activities.infoPages.PrivacyPolicyPage;
-import com.digivahan.ui.Activities.infoPages.TermsConditionPage;
 import com.digivahan.ui.Activities.infoPages.WebViewerActivity;
 import com.digivahan.ui.Activities.verification.VerifyPhoneEmailActivity;
 import com.digivahan.utils.CommonLogic;
@@ -40,7 +38,6 @@ import com.digivahan.utils.CommonMethods;
 import com.digivahan.utils.Constants;
 import com.ashu.ashuutils.APIHelper;
 import com.google.gson.JsonObject;
-import com.onesignal.OneSignal;
 
 import org.json.JSONException;
 import org.json.JSONObject;

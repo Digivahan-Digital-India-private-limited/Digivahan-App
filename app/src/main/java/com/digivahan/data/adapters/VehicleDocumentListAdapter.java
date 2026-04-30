@@ -35,7 +35,13 @@ public class VehicleDocumentListAdapter extends RecyclerView.Adapter<VehicleDocu
     AshDialog loadingDialog;
     PreferencesManager manager;
 
+    OnDeleteClickListener deleteClickListener;
+
     boolean isEditable = false;
+
+    public interface OnDeleteClickListener {
+        void onDeleteClick(int listSize);
+    }
 
 
     public VehicleDocumentListAdapter(Activity context, String vehicleId, boolean isEditable, ArrayList<GarageItemModel.vehicleDocuments> list) {
@@ -43,6 +49,19 @@ public class VehicleDocumentListAdapter extends RecyclerView.Adapter<VehicleDocu
         this.vehicleId = vehicleId;
         this.isEditable = isEditable;
         this.list = list;
+        loadingDialog = new AshDialog(context, "Please wait", "");
+        manager = new PreferencesManager(context);
+    }
+
+    public VehicleDocumentListAdapter(Activity context, String vehicleId, boolean isEditable,
+                                      ArrayList<GarageItemModel.vehicleDocuments> list,
+                                      OnDeleteClickListener deleteClickListener) {
+        this.context = context;
+        this.vehicleId = vehicleId;
+        this.isEditable = isEditable;
+        this.list = list;
+        this.deleteClickListener = deleteClickListener;
+
         loadingDialog = new AshDialog(context, "Please wait", "");
         manager = new PreferencesManager(context);
     }
@@ -117,6 +136,9 @@ public class VehicleDocumentListAdapter extends RecyclerView.Adapter<VehicleDocu
                                         list.remove(position);
                                         notifyDataSetChanged();
                                         loadingDialog.dismiss();
+                                        if (deleteClickListener != null) {
+                                            deleteClickListener.onDeleteClick(list.size());
+                                        }
                                     }
 
                                     @Override

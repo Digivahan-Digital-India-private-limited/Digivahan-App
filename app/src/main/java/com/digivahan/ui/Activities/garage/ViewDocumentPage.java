@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -43,6 +44,12 @@ public class ViewDocumentPage extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityViewDocumentPageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // 🔒 BLOCK screenshot + screen recording
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_SECURE,
+                WindowManager.LayoutParams.FLAG_SECURE
+        );
 
         CommonMethods.setStatusBarColor(
                 getWindow(),

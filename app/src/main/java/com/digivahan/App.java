@@ -7,18 +7,23 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.ashu.ashuutils.APIHelper;
 import com.digivahan.data.api.APIData;
 import com.digivahan.data.api.ApiClient;
 import com.digivahan.data.local.PreferencesManager;
+import com.digivahan.ui.Activities.MainActivity;
 import com.digivahan.utils.AppExecutors;
 import com.digivahan.utils.CommonLogic;
 import com.digivahan.utils.CommonMethods;
@@ -28,6 +33,8 @@ import com.onesignal.OneSignal;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,6 +63,11 @@ public class App extends Application {
 
         setUpOneSignal(getString(R.string.one_signal_id));
         CommonMethods.getAppInfo(getAppContext());
+
+        // 👇 Add this
+        new Handler().postDelayed(() -> {
+            logAllNotificationChannels();
+        }, 5000);
 
         registerActivityLifecycleCallbacks(
                 new ActivityLifecycleCallbacks() {
@@ -354,6 +366,30 @@ public class App extends Application {
         CommonLogic.showTestLog(TAG, "📌 OneSignal listeners registered");
     }
 
+    @SuppressLint("ObsoleteSdkInt")
+    public void logAllNotificationChannels() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            NotificationManager manager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+            if (manager == null) return;
+
+            List<NotificationChannel> channels = manager.getNotificationChannels();
+
+            for (NotificationChannel channel : channels) {
+
+                Log.d(TAG, "CHANNEL_DEBUG -------------------------");
+                Log.d(TAG, "CHANNEL_DEBUG ID: " + channel.getId());
+                Log.d(TAG, "CHANNEL_DEBUG Name: " + channel.getName());
+                Log.d(TAG, "CHANNEL_DEBUG Importance: " + channel.getImportance());
+                Log.d(TAG, "CHANNEL_DEBUG Sound: " + channel.getSound());
+                Log.d(TAG, "CHANNEL_DEBUG Vibration: " + channel.shouldVibrate());
+            }
+        }
+    }
+
 
 
 
@@ -365,6 +401,11 @@ public class App extends Application {
 
             JSONObject data = event.getNotification().getAdditionalData();
 
+            String channelId = event.getNotification().getAndroidNotificationId() + "";
+            CommonLogic.showTestLog(TAG, "📣 Android Notification ID: " + channelId);
+
+            CommonLogic.showTestLog(TAG, "📦 FULL NOTIFICATION: " + event.getNotification().toString());
+
             CommonLogic.showTestLog(TAG, "AdditionalData: " +data);
 
             String notificationType = data != null
@@ -373,6 +414,16 @@ public class App extends Application {
 
             CommonLogic.showTestLog(TAG, "🔔 NOTIFICATION ARRIVED (FOREGROUND)");
             CommonLogic.showTestLog(TAG, "➡ Type: " + notificationType);
+
+            boolean isEnabled = NotificationManagerCompat
+                    .from(this)
+                    .areNotificationsEnabled();
+
+            CommonLogic.showTestLog(TAG, "🔐 Notification Permission: " + isEnabled);
+
+            // ✅ THIS IS THE MAIN FIX
+            event.getNotification().display();
+
 
             // 🔊 Play sound immediately (foreground only)
 //            playNotificationSoundByType(notificationType);
@@ -418,6 +469,14 @@ public class App extends Application {
             );
 
             handleNotificationNavigation(notification_type, chatRoomId, senderId, orderId, vehicleId);
+
+            /*Intent mainPage = new Intent(getAppContext(), MainActivity.class);
+
+            mainPage.setFlags(
+                    Intent.FLAG_ACTIVITY_NEW_TASK |
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK
+            );
+            startActivity(mainPage);*/
         });
 
     }

@@ -11,7 +11,7 @@ public class OrderItemModel implements Serializable {
     private String _id, orderId, createdAt, updatedAt;
 
     // order data set details
-    private String payment_order_id, order_status, order_date, payment_method, shipping_customer_name,
+    private String payment_order_id, order_status, active_partner, order_date, payment_method, shipping_customer_name,
             shipping_last_name, shipping_phone, shipping_address, shipping_address_2,
             shipping_city, shipping_state, shipping_country, shipping_pincode, shipping_email,
             billing_customer_name, billing_last_name, billing_phone, billing_address,
@@ -35,6 +35,14 @@ public class OrderItemModel implements Serializable {
 
     public void setOrder_status(String order_status) {
         this.order_status = order_status;
+    }
+
+    public String getActive_partner() {
+        return active_partner;
+    }
+
+    public void setActive_partner(String active_partner) {
+        this.active_partner = active_partner;
     }
 
     public boolean isIs_prepared() {

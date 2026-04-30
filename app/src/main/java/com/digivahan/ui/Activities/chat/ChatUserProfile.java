@@ -92,7 +92,7 @@ public class ChatUserProfile extends BaseActivity {
 
         binding.toolbarLayout.ivProfileLayout.setVisibility(View.GONE);
         binding.toolbarLayout.backBtn.setVisibility(View.VISIBLE);
-        binding.toolbarLayout.ivBell.setVisibility(View.VISIBLE);
+        binding.toolbarLayout.ivBell.setVisibility(View.GONE);
         binding.toolbarLayout.ivBell.setImageResource(R.drawable.menu_dot_icon);
         binding.toolbarLayout.tvTitle.setText("User Details");
 

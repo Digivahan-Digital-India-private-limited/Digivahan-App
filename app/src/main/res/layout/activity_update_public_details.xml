@@ -90,7 +90,7 @@
 
             <!-- Menu Container -->
 
-            <FrameLayout
+           <!-- <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -101,183 +101,186 @@
                     android:clipToOutline="true"
                     android:src="@drawable/menu_card_bg" />
 
+
+
+            </FrameLayout>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/top_shadow"
+                android:paddingVertical="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Public Details"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_marginHorizontal="3dp"
+                    android:background="@drawable/shadow_bottom" />
+
                 <LinearLayout
+                    android:id="@+id/registerLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="vertical"
-                    android:paddingVertical="20dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="8dp"
-                        android:text="Public Details"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="4dp"
-                        android:layout_marginHorizontal="3dp"
-                        android:background="@drawable/shadow_bottom" />
+                    android:paddingHorizontal="20dp"
+                    android:visibility="visible">
 
                     <LinearLayout
-                        android:id="@+id/registerLayout"
+                        android:id="@+id/nickNameLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:orientation="vertical"
-                        android:paddingHorizontal="20dp"
-                        android:visibility="visible">
+                        android:orientation="vertical">
 
-                        <LinearLayout
-                            android:id="@+id/nickNameLayout"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:fontFamily="@font/hind_medium"
+                            android:text="Nick Name"
+                            android:textColor="@color/text_heading"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/hind_medium"
-                                android:text="Nick Name"
-                                android:textColor="@color/text_heading"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <include
-                                android:id="@+id/nickNameField"
-                                layout="@layout/custom_input_field" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/addressLayout"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/hind_medium"
-                                android:text="Address"
-                                android:textColor="@color/text_heading"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <include
-                                android:id="@+id/addressField"
-                                layout="@layout/custom_input_field" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/ageLayout"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/hind_medium"
-                                android:text="Age"
-                                android:textColor="@color/text_heading"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <LinearLayout
-                                android:id="@+id/ageTextLayout"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal"
-                                android:gravity="center_vertical"
-                                android:paddingStart="12dp"
-                                android:minHeight="60dp"
-                                android:paddingEnd="12dp"
-                                android:background="@drawable/edit_text_bg1">
-
-                                <!-- Left Icon -->
-                                <ImageView
-                                    android:id="@+id/ivIcon"
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:src="@drawable/calendar_icon"
-                                    app:tint="@color/colorPrimary" />
-
-                                <TextView
-                                    android:id="@+id/tvAge"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_vertical"
-                                    android:text="Enter your Age"
-                                    android:textSize="14sp"
-                                    android:fontFamily="@font/hind_medium"
-                                    android:paddingHorizontal="8dp"
-                                    android:spinnerMode="dropdown" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/genderLayout"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/hind_medium"
-                                android:text="Gender"
-                                android:textColor="@color/text_heading"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <com.google.android.flexbox.FlexboxLayout
-                                android:id="@+id/flexGender"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                app:flexWrap="wrap"
-                                app:justifyContent="flex_start">
-
-                                <TextView
-                                    style="@style/GenderItemStyle"
-                                    android:text="Male" />
-
-                                <TextView
-                                    style="@style/GenderItemStyle"
-                                    android:text="Female" />
-
-                                <TextView
-                                    style="@style/GenderItemStyle"
-                                    android:text="Other" />
-
-                            </com.google.android.flexbox.FlexboxLayout>
-
-                        </LinearLayout>
-
-
-                        <Button
-                            android:id="@+id/btnUpdate"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="20dp"
-                            android:background="@drawable/button_bg1"
-                            android:fontFamily="@font/hind_bold"
-                            android:text="Update Details"
-                            android:textColor="@android:color/white"
-                            android:textSize="14sp" />
+                        <include
+                            android:id="@+id/nickNameField"
+                            layout="@layout/custom_input_field" />
 
                     </LinearLayout>
-                </LinearLayout>
 
-            </FrameLayout>
+                    <LinearLayout
+                        android:id="@+id/addressLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hind_medium"
+                            android:text="Address"
+                            android:textColor="@color/text_heading"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <include
+                            android:id="@+id/addressField"
+                            layout="@layout/custom_input_field" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ageLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hind_medium"
+                            android:text="Age"
+                            android:textColor="@color/text_heading"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:id="@+id/ageTextLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:paddingStart="12dp"
+                            android:minHeight="60dp"
+                            android:paddingEnd="12dp"
+                            android:background="@drawable/edit_text_bg1">
+
+                            <!-- Left Icon -->
+                            <ImageView
+                                android:id="@+id/ivIcon"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/calendar_icon"
+                                app:tint="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/tvAge"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:text="Enter your Age"
+                                android:textSize="14sp"
+                                android:fontFamily="@font/hind_medium"
+                                android:paddingHorizontal="8dp"
+                                android:spinnerMode="dropdown" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/genderLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hind_medium"
+                            android:text="Gender"
+                            android:textColor="@color/text_heading"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <com.google.android.flexbox.FlexboxLayout
+                            android:id="@+id/flexGender"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:flexWrap="wrap"
+                            app:justifyContent="flex_start">
+
+                            <TextView
+                                style="@style/GenderItemStyle"
+                                android:text="Male" />
+
+                            <TextView
+                                style="@style/GenderItemStyle"
+                                android:text="Female" />
+
+                            <TextView
+                                style="@style/GenderItemStyle"
+                                android:text="Other" />
+
+                        </com.google.android.flexbox.FlexboxLayout>
+
+                    </LinearLayout>
+
+
+                    <Button
+                        android:id="@+id/btnUpdate"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/button_bg1"
+                        android:fontFamily="@font/hind_bold"
+                        android:text="Update Details"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
 

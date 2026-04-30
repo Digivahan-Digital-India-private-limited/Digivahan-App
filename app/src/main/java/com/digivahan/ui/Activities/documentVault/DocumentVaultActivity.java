@@ -85,7 +85,16 @@ public class DocumentVaultActivity extends BaseActivity {
         }
 
         if (!docAccessType.equalsIgnoreCase("verify")) {
-            documentListAdapter = new VehicleDocumentListAdapter(DocumentVaultActivity.this, vehicleId, true, vehicleDocumentsArrayList);
+            documentListAdapter = new VehicleDocumentListAdapter(DocumentVaultActivity.this, vehicleId, true, vehicleDocumentsArrayList, new VehicleDocumentListAdapter.OnDeleteClickListener() {
+                @Override
+                public void onDeleteClick(int listSize) {
+                    if (listSize < 1){
+                        binding.otpMessage.setVisibility(View.VISIBLE);
+                        binding.noteText.setVisibility(View.VISIBLE);
+                        binding.otpView.setOtp("");
+                    }
+                }
+            });
             binding.otpMessage.setVisibility(View.VISIBLE);
         } else {
             documentListAdapter = new VehicleDocumentListAdapter(DocumentVaultActivity.this, vehicleId, false, vehicleDocumentsArrayList);
@@ -149,6 +158,7 @@ public class DocumentVaultActivity extends BaseActivity {
                         binding.otpLayout.setVisibility(View.GONE);
 
                     } else {
+                        CommonLogic.showTestLog(TAG, "http_code:- " + docData.getString("http_code"));
                         Toast.makeText(DocumentVaultActivity.this, "Failed: " + message, Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {

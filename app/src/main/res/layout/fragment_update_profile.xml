@@ -80,91 +80,108 @@
 
         <!-- Menu Container -->
 
-        <FrameLayout
+        <!--<com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:layout_marginHorizontal="5dp"
+            app:shapeAppearanceOverlay="@style/TopRoundedCard"
+            app:cardElevation="8dp"
+            app:strokeColor="@android:color/transparent"
+            app:cardBackgroundColor="@android:color/white">
 
-            <ImageView
+            &lt;!&ndash; Your content &ndash;&gt;
+
+           &lt;!&ndash; <ImageView
+                android:id="@+id/imageView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:clipToOutline="true"
-                android:src="@drawable/menu_card_bg" />
+                android:src="@drawable/menu_card_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />&ndash;&gt;
 
-            <LinearLayout
+
+
+        </com.google.android.material.card.MaterialCardView>-->
+
+        <LinearLayout
+            android:id="@+id/linearLayout8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="20dp"
+            android:background="@drawable/top_shadow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Row Item -->
+            <include
+                android:id="@+id/basicDetailBtn"
+                layout="@layout/item_profile_row" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/border_4" />
+
+            <include
+                android:id="@+id/publicDetailsBtn"
+                layout="@layout/item_profile_row" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/border_4" />
+
+            <include
+                android:id="@+id/tvAddress"
+                layout="@layout/item_profile_row" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/border_4" />
+
+            <include
+                android:id="@+id/setDefaultOption"
+                layout="@layout/item_profile_row" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/border_4" />
+
+            <include
+                android:id="@+id/emergencyContact"
+                layout="@layout/item_profile_row" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/border_4" />
+
+            <include
+                android:id="@+id/changePasswordBtn"
+                layout="@layout/item_profile_row" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/border_4" />
+
+
+            <TextView
+                android:id="@+id/footerVersion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="20dp">
-
-                <!-- Row Item -->
-                <include
-                    android:id="@+id/basicDetailBtn"
-                    layout="@layout/item_profile_row" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/border_4" />
-
-                <include
-                    android:id="@+id/publicDetailsBtn"
-                    layout="@layout/item_profile_row" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/border_4" />
-
-                <include
-                    android:id="@+id/tvAddress"
-                    layout="@layout/item_profile_row" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/border_4" />
-
-                <include
-                    android:id="@+id/setDefaultOption"
-                    layout="@layout/item_profile_row" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/border_4" />
-
-                <include
-                    android:id="@+id/emergencyContact"
-                    layout="@layout/item_profile_row" />
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/border_4" />
-
-                <include
-                    android:id="@+id/changePasswordBtn"
-                    layout="@layout/item_profile_row" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/border_4" />
-
-
-                <TextView
-                    android:id="@+id/footerVersion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="" />
-            </LinearLayout>
-
-        </FrameLayout>
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="" />
+        </LinearLayout>
 
 
     </LinearLayout>
