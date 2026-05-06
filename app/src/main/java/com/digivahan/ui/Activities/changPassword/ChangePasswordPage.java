@@ -203,7 +203,7 @@ public class ChangePasswordPage extends BaseActivity {
                     loadingDialog.dismiss();
 
                     try {
-                        JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                        JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
 
                         boolean status = responseBody.has("status") && responseBody.getBoolean("status");

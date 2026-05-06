@@ -178,7 +178,7 @@ public class EmergencyContacts extends BaseActivity {
                 loadingDialog.dismiss();
 
                 try {
-                    JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                    JSONObject responseBody = APIHelper.getResponseData(TAG, response);
                     CommonLogic.showTestLog(TAG, responseBody.toString());
 
                     boolean status = responseBody.has("success") && responseBody.getBoolean("success");

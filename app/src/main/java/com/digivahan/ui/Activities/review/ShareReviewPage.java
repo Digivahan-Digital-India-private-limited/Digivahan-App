@@ -2,12 +2,22 @@ package com.digivahan.ui.Activities.review;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+
 import android.os.Bundle;
+
+
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
+
+import com.ashu.ashuutils.ImagePickerAppConstants;
+import com.ashu.ashuutils.fileUtils.FileUtils;
+import com.ashu.ashuutils.fileUtils.image.ImagePicker;
+import com.ashu.ashuutils.fileUtils.image.ImagePickerWithoutPermission;
+import com.ashu.ashuutils.fileUtils.image.ImageProcessingUtils;
+import com.ashu.ashuutils.models.CompressFileData;
 import com.digivahan.ui.Activities.BaseActivity;
 import androidx.core.content.ContextCompat;
 
@@ -16,11 +26,11 @@ import com.digivahan.data.adapters.SelectedImageListAdapter;
 import com.digivahan.data.api.APIData;
 import com.digivahan.data.api.ApiCall;
 import com.digivahan.data.local.PreferencesManager;
-import com.digivahan.data.model.CompressFileData;
 import com.digivahan.data.model.OrderItemModel;
 import com.digivahan.data.model.SavedImageData;
 import com.digivahan.databinding.ActivityShareReviewPageBinding;
 import com.digivahan.other.CustomDialog.AshDialog;
+
 import com.digivahan.utils.CommonLogic;
 import com.digivahan.utils.CommonMethods;
 import com.digivahan.utils.Constants;
@@ -30,7 +40,9 @@ import com.google.gson.JsonObject;
 import org.json.JSONObject;
 
 import java.io.File;
+
 import java.util.ArrayList;
+
 
 public class ShareReviewPage extends BaseActivity {
 
@@ -52,6 +64,7 @@ public class ShareReviewPage extends BaseActivity {
     ArrayList<SavedImageData> selectedImageList = new ArrayList<>();
     SelectedImageListAdapter selectedImageListAdapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +75,8 @@ public class ShareReviewPage extends BaseActivity {
                 getWindow(),
                 ContextCompat.getColor(this, R.color.white)
         );
+
+        ImagePickerWithoutPermission.init(this);
 
         binding.toolbarLayout.ivProfileLayout.setVisibility(View.GONE);
         binding.toolbarLayout.backBtn.setVisibility(View.VISIBLE);
@@ -93,13 +108,31 @@ public class ShareReviewPage extends BaseActivity {
         preferencesManager = new PreferencesManager(ShareReviewPage.this);
 
         binding.pickImage.setOnClickListener(v -> {
-            CommonLogic.showPickImageDialog(ShareReviewPage.this,
-                    CommonLogic.PROFILE_IMAGE_REQUEST, false, new CommonLogic.CameraSelectionCallback() {
-                        @Override
-                        public void onCameraSelected(boolean isCamera) {
-                            isCameraSelected = isCamera;
-                        }
+            CommonLogic.showTestLog(TAG, "ImageClicked");
+            ImagePicker.showPickImageDialog(TAG, ShareReviewPage.this, ImagePickerAppConstants.IMAGE_REQUEST, 0, new FileUtils.ResultCallback() {
+                @Override
+                public void onCameraSelected(boolean isCamera) {
+                    isCameraSelected = isCamera;
+                }
+
+                @Override
+                public void onGallerySelected() {
+                    ImagePickerWithoutPermission.pickImage(TAG, uri -> {
+                        ImageProcessingUtils.handleGalleryFromUri(
+                                TAG,
+                                ShareReviewPage.this,
+                                uri,
+                                null,
+                                false,
+                                null,
+                                selectedImageData -> {
+                                    uploadImage(selectedImageData);
+                                    CommonLogic.showTestLog(TAG, "selectedImageData: File- " + selectedImageData.getFileFormat() + " path: " + selectedImageData.getFilePath());
+                                }
+                        );
                     });
+                }
+            });
         });
 
         binding.ratingBar.setOnRatingBarChangeListener((ratingBar1, rating, fromUser) -> {
@@ -207,55 +240,47 @@ public class ShareReviewPage extends BaseActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        loadingDialog.show();
-        if (requestCode == CommonLogic.PROFILE_IMAGE_REQUEST && resultCode == RESULT_OK) {
-            CommonLogic.handleImagePick(data, isCameraSelected, false, preferencesManager.getString(PreferencesManager.IMAGE_PATH, ""),
-                    ShareReviewPage.this, null, null, new CommonLogic.FileCallback() {
+//        loadingDialog.show();
+        if (requestCode == ImagePickerAppConstants.IMAGE_REQUEST && resultCode == RESULT_OK) {
+            ImageProcessingUtils.handleCameraImage(TAG, ShareReviewPage.this, FileUtils.getImagePath(ShareReviewPage.this),
+                    null, false,null, new FileUtils.FileCallback() {
                         @Override
                         public void onFileReady(CompressFileData selectedImageData) {
-                            CommonLogic.showTestLog(TAG, "selectedImageData: File- "+selectedImageData.getFileFormat() + " path: " + selectedImageData.getFilePath());
 
-                            CommonMethods.uploadSingleImage(
-                                    ShareReviewPage.this,
-                                    selectedImageData.getFileFormat(), selectedImageData.getFilePath(), Constants.profile,
-                                    new CommonMethods.ImageUploadCallback() {
-                                        @Override
-                                        public void onUploadSuccess(SavedImageData uploadedImage) {
-//                                            Toast.makeText(UpdateBasicDetails.this, "Upload successful!", Toast.LENGTH_SHORT).show();
+                            uploadImage(selectedImageData);
 
-                                            selectedImageList.add(uploadedImage);
-                                            selectedImageListAdapter.notifyDataSetChanged();
-                                            loadingDialog.dismiss();
-                                            // you can call deleteProfileImage(selectedImage.getFile_id()) here if needed
-                                        }
-
-                                        @Override
-                                        public void onUploadError(String errorMessage) {
-                                            loadingDialog.dismiss();
-                                            Toast.makeText(ShareReviewPage.this, errorMessage, Toast.LENGTH_SHORT).show();
-                                        }
-
-                                        @Override
-                                        public void onUploadJSON(JSONObject errorMessage) {
-                                        }
-                                    }
-                            );
                         }
                     });
 
-            CommonLogic.showTestLog(TAG, "reviewImagePath:- "+ reviewImagePath);
         }
+    }
 
-        else if (requestCode == CommonLogic.CAMARA_PERMISSION_REQUEST_CODE && resultCode == RESULT_OK) {
-            isCameraSelected = true;
-            CommonLogic.takePictureFromCamera(ShareReviewPage.this, CommonLogic.PROFILE_IMAGE_REQUEST, false);
-        } else if (requestCode == CommonLogic.STORAGE_PERMISSION_REQUEST_CODE && resultCode == RESULT_OK) {
-            isCameraSelected = false;
-            CommonLogic.choosePictureFromGallery(ShareReviewPage.this, CommonLogic.PROFILE_IMAGE_REQUEST);
-        }
+    private void uploadImage(CompressFileData selectedImageData) {
+        CommonMethods.uploadSingleImage(
+                ShareReviewPage.this,
+                selectedImageData.getFileFormat(), selectedImageData.getFilePath(), Constants.profile,
+                new CommonMethods.ImageUploadCallback() {
+                    @SuppressLint("NotifyDataSetChanged")
+                    @Override
+                    public void onUploadSuccess(SavedImageData uploadedImage) {
+//                                            Toast.makeText(UpdateBasicDetails.this, "Upload successful!", Toast.LENGTH_SHORT).show();
 
-        else {
-            loadingDialog.dismiss();
-        }
+                        selectedImageList.add(uploadedImage);
+                        selectedImageListAdapter.notifyDataSetChanged();
+                        loadingDialog.dismiss();
+                        // you can call deleteProfileImage(selectedImage.getFile_id()) here if needed
+                    }
+
+                    @Override
+                    public void onUploadError(String errorMessage) {
+                        loadingDialog.dismiss();
+                        Toast.makeText(ShareReviewPage.this, errorMessage, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onUploadJSON(JSONObject errorMessage) {
+                    }
+                }
+        );
     }
 }

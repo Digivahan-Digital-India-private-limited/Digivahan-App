@@ -591,7 +591,7 @@ public class OrderQRPage extends BaseActivity implements PaymentResultListener {
                     @Override
                     public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
                         try {
-                            JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                            JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
                             boolean status = Objects.requireNonNull(responseBody).optBoolean("success", false);
                             String message = responseBody.optString("message", "Server error, Please try after some time.");
@@ -760,7 +760,7 @@ public class OrderQRPage extends BaseActivity implements PaymentResultListener {
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
                 try {
                     if (response.isSuccessful() && response.body() != null) {
-                        JSONObject orderPriceData = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                        JSONObject orderPriceData = APIHelper.getResponseData(TAG, response);
 
                         boolean status = orderPriceData.has("status") && orderPriceData.getBoolean("status");
                         JSONObject priceData = orderPriceData.getJSONObject("data");
@@ -1016,7 +1016,7 @@ public class OrderQRPage extends BaseActivity implements PaymentResultListener {
                     public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
                         CommonLogic.showTestLog(TAG, "📬 API onResponse() triggered");
 
-                        JSONObject APIResponse = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                        JSONObject APIResponse = APIHelper.getResponseData(TAG, response);
                         CommonLogic.showTestLog(TAG, "✅ API Raw Response: " + APIResponse.toString());
 
                         try {

@@ -67,12 +67,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.ashu.ashuutils.models.CompressFileData;
 import com.digivahan.R;
 import com.digivahan.data.api.APIData;
 import com.digivahan.data.api.ApiCall;
 import com.digivahan.data.api.ApiClient;
 import com.digivahan.data.local.PreferencesManager;
-import com.digivahan.data.model.CompressFileData;
 import com.digivahan.data.model.PasswordValidationResult;
 import com.digivahan.data.model.User;
 import com.digivahan.databinding.CustomInputFieldBinding;
@@ -692,138 +692,6 @@ public interface CommonLogic {
     }
 
 
-    public interface CameraSelectionCallback {
-        void onCameraSelected(boolean isCamera);
-    }
-
-    public static void showPickImageDialog(Activity activity, int req_code, boolean isFrontCamera, CameraSelectionCallback callback) {
-        final Dialog dialog = new Dialog(activity);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.pick_image_dialog);
-        Window window = dialog.getWindow();
-
-        Objects.requireNonNull(window).setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setCancelable(false);
-
-        LinearLayout cameraOptionBtn = dialog.findViewById(R.id.cameraOption);
-        cameraOptionBtn.setOnClickListener(v -> {
-
-            takePictureFromCamera(activity, req_code, isFrontCamera);
-            if (callback != null) {
-                callback.onCameraSelected(true);
-            }
-
-            dialog.dismiss();
-        });
-
-        LinearLayout galleryOptionBtn = dialog.findViewById(R.id.galleryOption);
-        galleryOptionBtn.setOnClickListener(v -> {
-
-            choosePictureFromGallery(activity, req_code);
-            if (callback != null) {
-                callback.onCameraSelected(false);
-            }
-            dialog.dismiss();
-        });
-
-        LinearLayout closeBtn = dialog.findViewById(R.id.closeBtn);
-        closeBtn.setOnClickListener(v -> {
-            dialog.dismiss();
-        });
-
-        dialog.show();
-    }
-
-    public static void choosePictureFromGallery(Activity context, int req_code) {
-        if (CommonLogic.isStoragePermissionGranted(context)) {
-            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-            intent.setType("image/*");
-            context.startActivityForResult(intent, req_code);
-        } else {
-            CommonLogic.requestStoragePermission(context);
-        }
-    }
-
-    public static void takePictureFromCamera(Activity context, int req_code, boolean isFrontCamera) {
-
-        if (CommonLogic.isCameraPermissionGranted(context)) {
-
-            String TAG = "CameraCapture";
-            try {
-                // Create file
-                File photoFile = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),
-                        "image_" + System.currentTimeMillis() + ".jpg");
-
-                Uri imageUri = FileProvider.getUriForFile(
-                        context,
-                        context.getPackageName() + ".provider",
-                        photoFile
-                );
-
-                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-                cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-                // Log camera direction
-                Log.i(TAG, "📸 Camera direction: " + (isFrontCamera ? "Front" : "Back"));
-
-                if (isFrontCamera) {
-                    // 🟢 Force front camera — works on most OEMs
-                    cameraIntent.putExtra("android.intent.extras.LENS_FACING_FRONT", 1);
-                    cameraIntent.putExtra("android.intent.extras.CAMERA_FACING", 1);
-                    cameraIntent.putExtra("android.intent.extra.USE_FRONT_CAMERA", true);
-                } else {
-                    // 🔵 Ensure back camera
-                    cameraIntent.putExtra("android.intent.extras.LENS_FACING_BACK", 0);
-                    cameraIntent.putExtra("android.intent.extras.CAMERA_FACING", 0);
-                    cameraIntent.putExtra("android.intent.extra.USE_FRONT_CAMERA", false);
-                }
-
-                // Save image path
-                PreferencesManager manager = new PreferencesManager(context);
-                manager.setString(PreferencesManager.IMAGE_PATH, photoFile.getAbsolutePath());
-                Log.i(TAG, "📂 Image path saved: " + photoFile.getAbsolutePath());
-
-                // Start activity
-                context.startActivityForResult(cameraIntent, req_code);
-                Log.i(TAG, "🚀 Camera intent started successfully.");
-
-            } catch (Exception e) {
-                Log.e("CameraError", "🔥 Error while opening camera: " + e.getMessage(), e);
-            }
-
-        } else CommonLogic.requestCameraPermission(context);
-    }
-
-    public static void chooseDocumentFromStorage(Activity context, int req_code) {
-        try {
-            // ✅ Intent to open any type of document (images, pdfs, etc.)
-            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-            intent.addCategory(Intent.CATEGORY_OPENABLE);
-
-            // Allow multiple selection
-            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-
-            // Set MIME types for documents (images, PDFs, etc.)
-            intent.setType("*/*");
-            String[] mimeTypes = {
-                    "image/*",
-                    "application/pdf"
-            };
-            intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
-
-            // ✅ Launch document picker
-            context.startActivityForResult(intent, req_code);
-
-            Log.i("FilePicker", "📂 Document picker opened successfully (PDF, Image)");
-        } catch (Exception e) {
-            Log.e("FilePicker", "❌ Failed to open document picker: " + e.getMessage(), e);
-            Toast.makeText(context, "Unable to open file picker", Toast.LENGTH_SHORT).show();
-        }
-    }
-
 
     public static Uri setImageUri(Context context) {
         File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "");
@@ -840,107 +708,6 @@ public interface CommonLogic {
         return photoURI;
     }
 
-
-    public static boolean isStoragePermissionGranted(Activity context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (context.checkSelfPermission(Manifest.permission.READ_MEDIA_IMAGES)
-                    == PackageManager.PERMISSION_GRANTED) {
-                Log.v("TAG", "Permission is granted");
-                return true;
-            } else {
-                Log.v("TAG", "Permission is revoked");
-                ActivityCompat.requestPermissions(context, new String[]{Manifest.permission.READ_MEDIA_IMAGES}, 1000);
-                return false;
-            }
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (context.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED) {
-                Log.v("TAG", "Permission is granted");
-                return true;
-            } else {
-                Log.v("TAG", "Permission is revoked");
-                ActivityCompat.requestPermissions(context, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1000);
-                return false;
-            }
-        } else {
-            Log.v("TAG", "Permission is granted");
-            return true;
-        }
-    }
-
-
-    public static boolean isCameraPermissionGranted(Activity context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (context.checkSelfPermission(Manifest.permission.CAMERA)
-                    == PackageManager.PERMISSION_GRANTED) {
-                Log.v("TAG", "Permission is granted");
-                return true;
-            } else {
-                Log.v("TAG", "Permission is revoked");
-                ActivityCompat.requestPermissions(context, new String[]{Manifest.permission.CAMERA}, 1001);
-                return false;
-            }
-        } else {
-            Log.v("TAG", "Permission is granted");
-            return true;
-        }
-    }
-
-    // Method to explicitly request camera permission
-    public static void requestCameraPermission(Activity context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            ActivityCompat.requestPermissions(
-                    context,
-                    new String[]{Manifest.permission.CAMERA},
-                    CAMARA_PERMISSION_REQUEST_CODE
-            );
-        }
-    }
-
-    // Method to request storage permission
-    public static void requestStoragePermission(Activity context) {
-        Log.d(TAG, "requestStoragePermission Run");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            // Check if permissions are already granted
-            if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_MEDIA_IMAGES)
-                    != PackageManager.PERMISSION_GRANTED /*||
-                    ContextCompat.checkSelfPermission(context, Manifest.permission.READ_MEDIA_VIDEO)
-                            != PackageManager.PERMISSION_GRANTED ||
-                    ContextCompat.checkSelfPermission(context, Manifest.permission.READ_MEDIA_AUDIO)
-                            != PackageManager.PERMISSION_GRANTED*/
-            ) {
-
-                // Request permissions
-                ActivityCompat.requestPermissions(
-                        context,
-                        new String[]{
-                                Manifest.permission.READ_MEDIA_IMAGES,
-//                                Manifest.permission.READ_MEDIA_VIDEO,
-//                                Manifest.permission.READ_MEDIA_AUDIO
-                        },
-                        STORAGE_PERMISSION_REQUEST_CODE
-                );
-            } else {
-                Log.d(TAG, "Permissions already granted for Android 14+");
-            }
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            // Check if READ_EXTERNAL_STORAGE is granted for older versions
-            if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED) {
-
-                // Request permission
-                ActivityCompat.requestPermissions(
-                        context,
-                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                        STORAGE_PERMISSION_REQUEST_CODE
-                );
-            } else {
-                Log.d(TAG, "Permissions already granted for Android M+");
-            }
-        } else {
-            Log.d(TAG, "No permissions required for Android versions below M");
-        }
-    }
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -1018,7 +785,7 @@ public interface CommonLogic {
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
 
                 try {
-                    JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                    JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
                     boolean status = responseBody.getBoolean("status");
 
@@ -1205,7 +972,7 @@ public interface CommonLogic {
         void onFileReady(CompressFileData selectedImageData);
     }
 
-    public static void handleImagePick(Intent data, boolean isCamera, boolean isCropped,
+    /*public static void handleImagePick(Intent data, boolean isCamera, boolean isCropped,
                                        String cameraPath,
                                        Activity activity,
                                        ImageView imageView,
@@ -1362,7 +1129,7 @@ public interface CommonLogic {
                 });
             }
         });
-    }
+    }*/
 
     public static Uri getUriFromBitmap(Bitmap bitmap, Context context) {
         try {

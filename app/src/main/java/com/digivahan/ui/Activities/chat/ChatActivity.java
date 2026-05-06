@@ -7,12 +7,15 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -23,6 +26,13 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.ashu.ashuutils.ImagePickerAppConstants;
+import com.ashu.ashuutils.fileUtils.FileUtils;
+import com.ashu.ashuutils.fileUtils.image.ImagePicker;
+import com.ashu.ashuutils.fileUtils.image.ImagePickerWithoutPermission;
+import com.ashu.ashuutils.fileUtils.image.ImageProcessingUtils;
+import com.ashu.ashuutils.models.CompressFileData;
 import com.digivahan.ui.Activities.BaseActivity;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.core.content.ContextCompat;
@@ -36,13 +46,14 @@ import com.digivahan.data.api.ApiCall;
 import com.digivahan.data.api.ApiClient;
 import com.digivahan.data.local.PreferencesManager;
 import com.digivahan.data.model.ChatItemModel;
-import com.digivahan.data.model.CompressFileData;
+
 import com.digivahan.data.model.MembersModel;
 import com.digivahan.data.model.SavedImageData;
 import com.digivahan.data.model.User;
 import com.digivahan.databinding.ActivityChatBinding;
 import com.digivahan.other.CustomDialog.AshDialog;
 import com.digivahan.ui.Activities.changPassword.ChangePasswordPage;
+import com.digivahan.ui.Activities.profile.UpdatePublicDetails;
 import com.digivahan.ui.Activities.qr.ChatNotificationInfoRequestPage;
 import com.digivahan.ui.Activities.qr.ConnectEmergencyContactsPage;
 import com.digivahan.utils.CommonLogic;
@@ -62,10 +73,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -167,6 +180,8 @@ public class ChatActivity extends BaseActivity implements ChattingSystem.OnMessa
                 getWindow(),
                 ContextCompat.getColor(this, R.color.white)
         );
+
+        ImagePickerWithoutPermission.init(this);
 
         binding.toolbarLayout.notificationBellLayout.setVisibility(View.GONE);
         binding.toolbarLayout.ivBell.setImageResource(R.drawable.menu_dot_icon);
@@ -367,13 +382,31 @@ public class ChatActivity extends BaseActivity implements ChattingSystem.OnMessa
 
         binding.filesBtn.setOnClickListener(v -> {
             CommonLogic.showTestLog(TAG, "ImageClicked");
-            CommonLogic.showPickImageDialog(ChatActivity.this,
-                    CommonLogic.PROFILE_IMAGE_REQUEST, false, new CommonLogic.CameraSelectionCallback() {
-                        @Override
-                        public void onCameraSelected(boolean isCamera) {
-                            isCameraSelected = isCamera;
-                        }
+            ImagePicker.showPickImageDialog(TAG, ChatActivity.this, ImagePickerAppConstants.IMAGE_REQUEST, 0, new FileUtils.ResultCallback() {
+                @Override
+                public void onCameraSelected(boolean isCamera) {
+                    isCameraSelected = isCamera;
+                }
+
+                @Override
+                public void onGallerySelected() {
+
+                    ImagePickerWithoutPermission.pickImage(TAG, uri -> {
+                        ImageProcessingUtils.handleGalleryFromUri(
+                                TAG,
+                                ChatActivity.this,
+                                uri,
+                                null,
+                                false,
+                                null,
+                                selectedImageData -> {
+                                    uploadImage(selectedImageData);
+                                    CommonLogic.showTestLog(TAG, "selectedImageData: File- " + selectedImageData.getFileFormat() + " path: " + selectedImageData.getFilePath());
+                                }
+                        );
                     });
+                }
+            });
         });
 
         binding.copyBtn.setOnClickListener(v -> {
@@ -395,7 +428,7 @@ public class ChatActivity extends BaseActivity implements ChattingSystem.OnMessa
             @Override
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
 
-                JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
                 try {
                     boolean status = responseBody.has("success") && responseBody.getBoolean("success");
@@ -1020,67 +1053,65 @@ public class ChatActivity extends BaseActivity implements ChattingSystem.OnMessa
 
         loadingDialog.show();
 
-        if (requestCode == CommonLogic.PROFILE_IMAGE_REQUEST && resultCode == RESULT_OK) {
-            CommonLogic.handleImagePick(data, isCameraSelected, false, manager.getString(PreferencesManager.IMAGE_PATH, ""),
-                    ChatActivity.this, null, null, new CommonLogic.FileCallback() {
-                        @Override
-                        public void onFileReady(CompressFileData selectedImageData) {
+        if (requestCode == ImagePickerAppConstants.IMAGE_REQUEST && resultCode == RESULT_OK) {
+            ImageProcessingUtils.handleCameraImage(TAG, ChatActivity.this, FileUtils.getImagePath(ChatActivity.this),
+                    null, true,null, new FileUtils.FileCallback() {
+                @Override
+                public void onFileReady(CompressFileData selectedImageData) {
 
-                            CommonMethods.uploadSingleImage(
-                                    ChatActivity.this,
-                                    selectedImageData.getFileFormat(), selectedImageData.getFilePath(), Constants.chatImages,
-                                    new CommonMethods.ImageUploadCallback() {
-                                        @Override
-                                        public void onUploadSuccess(SavedImageData uploadedImage) {
+                    uploadImage(selectedImageData);
 
-                                            JsonObject jsonObjectMessage = new JsonObject();
-                                            jsonObjectMessage.addProperty("chatId", chatRoomId);
-                                            jsonObjectMessage.addProperty("senderId", manager.getUserId());
-                                            jsonObjectMessage.addProperty("receiverId", vehicleOwnerDetails.getUserId());
-                                            jsonObjectMessage.addProperty("message", "empty");
+                }
+            });
 
-                                            // ✅ Create a proper JSON array for attachments
-                                            JsonArray attachmentsArray = new JsonArray();
-                                            attachmentsArray.add(uploadedImage.getImage_url());
-
-                                            // ✅ Add array to main JSON
-                                            jsonObjectMessage.add("attachments", attachmentsArray);
-
-                                            CommonLogic.showTestLog(TAG, jsonObjectMessage.toString());
-
-                                            ArrayList<SavedImageData> selectedImageList = new ArrayList<>();
-                                            selectedImageList.add(uploadedImage);
-
-                                            CommonChattingMethods.sendMessageAPI(TAG, ChatActivity.this, chatRoomId,
-                                                    "empty", selectedImageList, ""
-                                                    , "", manager, loadingDialog);
-
-                                        }
-
-                                        @Override
-                                        public void onUploadError(String errorMessage) {
-                                            loadingDialog.dismiss();
-                                            CommonLogic.showTestLog(TAG, errorMessage);
-                                        }
-
-                                        @Override
-                                        public void onUploadJSON(JSONObject errorMessage) {
-                                        }
-                                    }
-                            );
-                        }
-                    });
-
-        } else if (requestCode == CommonLogic.CAMARA_PERMISSION_REQUEST_CODE && resultCode == RESULT_OK) {
-            isCameraSelected = true;
-            CommonLogic.takePictureFromCamera(ChatActivity.this, CommonLogic.PROFILE_IMAGE_REQUEST, false);
-        } else if (requestCode == CommonLogic.STORAGE_PERMISSION_REQUEST_CODE && resultCode == RESULT_OK) {
-            isCameraSelected = false;
-            CommonLogic.choosePictureFromGallery(ChatActivity.this, CommonLogic.PROFILE_IMAGE_REQUEST);
         }
-        else {
-            loadingDialog.dismiss();
-        }
+    }
+
+    private void uploadImage(CompressFileData selectedImageData) {
+        CommonMethods.uploadSingleImage(
+                ChatActivity.this,
+                selectedImageData.getFileFormat(), selectedImageData.getFilePath(), Constants.chatImages,
+                new CommonMethods.ImageUploadCallback() {
+                    @Override
+                    public void onUploadSuccess(SavedImageData uploadedImage) {
+
+                        JsonObject jsonObjectMessage = new JsonObject();
+                        jsonObjectMessage.addProperty("chatId", chatRoomId);
+                        jsonObjectMessage.addProperty("senderId", manager.getUserId());
+                        jsonObjectMessage.addProperty("receiverId", vehicleOwnerDetails.getUserId());
+                        jsonObjectMessage.addProperty("message", "empty");
+
+                        // ✅ Create a proper JSON array for attachments
+                        JsonArray attachmentsArray = new JsonArray();
+                        attachmentsArray.add(uploadedImage.getImage_url());
+
+                        // ✅ Add array to main JSON
+                        jsonObjectMessage.add("attachments", attachmentsArray);
+
+                        CommonLogic.showTestLog(TAG, jsonObjectMessage.toString());
+
+                        ArrayList<SavedImageData> selectedImageList = new ArrayList<>();
+                        selectedImageList.add(uploadedImage);
+
+                        CommonChattingMethods.sendMessageAPI(TAG, ChatActivity.this, chatRoomId,
+                                "empty", selectedImageList, ""
+                                , "", manager, loadingDialog);
+
+                        loadingDialog.dismiss();
+
+                    }
+
+                    @Override
+                    public void onUploadError(String errorMessage) {
+                        loadingDialog.dismiss();
+                        CommonLogic.showTestLog(TAG, errorMessage);
+                    }
+
+                    @Override
+                    public void onUploadJSON(JSONObject errorMessage) {
+                    }
+                }
+        );
     }
 
     private void getUserDetails(String userId){

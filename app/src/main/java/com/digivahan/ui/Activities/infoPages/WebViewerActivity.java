@@ -112,7 +112,7 @@ public class WebViewerActivity extends BaseActivity {
                                            @NonNull Response<JsonObject> response) {
 
                         JSONObject body = APIHelper.getResponseData(
-                                "WebViewer", response, Constants.ENABLE_TESTING);
+                                "WebViewer", response);
 
                         try {
                             if (!body.optBoolean("success")) {

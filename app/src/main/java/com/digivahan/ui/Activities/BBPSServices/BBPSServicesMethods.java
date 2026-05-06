@@ -63,7 +63,7 @@ public class BBPSServicesMethods {
                                            @NonNull Response<JsonObject> response) {
 
                         try {
-                            JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                            JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
                             boolean status = responseBody.has("statuscode") &&
                                     responseBody.getString("statuscode").equalsIgnoreCase("TXN");

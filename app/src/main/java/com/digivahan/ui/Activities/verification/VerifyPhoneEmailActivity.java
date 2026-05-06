@@ -242,7 +242,7 @@ public class VerifyPhoneEmailActivity extends BaseActivity {
                         CommonLogic.showTestLog(TAG, "Raw Response Body: " + response.body());
                         CommonLogic.showTestLog(TAG, "Raw Error Body: " + (response.errorBody() != null ? response.errorBody().toString() : "null"));
 
-                        JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                        JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
                         try {
 
@@ -322,7 +322,7 @@ public class VerifyPhoneEmailActivity extends BaseActivity {
                         CommonLogic.showTestLog(TAG, "btnSendCode Raw Error Body: " + (response.errorBody() != null ? response.errorBody().toString() : "null"));
 
                         try {
-                            JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                            JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
                             // Log full response
                             CommonLogic.showTestLog(TAG, "registerUser FULL response:- " + responseBody.toString());
@@ -486,7 +486,7 @@ public class VerifyPhoneEmailActivity extends BaseActivity {
 
                             try {
 
-                                JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                                JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
                                 boolean status = responseBody.has("status") && responseBody.getBoolean("status");
                                 String message = responseBody.has("message") ? responseBody.getString("message") : "Server error, Please try after some time.";
@@ -538,7 +538,7 @@ public class VerifyPhoneEmailActivity extends BaseActivity {
                         @Override
                         public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
                             loadingDialog.dismiss();
-                            JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                            JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
                             try {
 
@@ -668,7 +668,7 @@ public class VerifyPhoneEmailActivity extends BaseActivity {
                     @Override
                     public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
                         try {
-                            JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                            JSONObject responseBody = APIHelper.getResponseData(TAG, response);
                             CommonLogic.showTestLog(TAG, "registerUser response:- " + responseBody);
                             boolean status = responseBody.has("status") && responseBody.getBoolean("status");
                             String message = responseBody.has("message") ? responseBody.getString("message") : "Server error, Please try after some time.";

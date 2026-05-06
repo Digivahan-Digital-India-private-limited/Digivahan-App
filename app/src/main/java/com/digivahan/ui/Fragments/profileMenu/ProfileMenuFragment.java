@@ -173,7 +173,7 @@ public class ProfileMenuFragment extends Fragment {
                         CommonLogic.showTestLog(TAG, "API Raw Response: " + response.toString());
 
                         try {
-                            JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                            JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
                             CommonLogic.showTestLog(TAG, "Parsed Response: " + responseBody);
 

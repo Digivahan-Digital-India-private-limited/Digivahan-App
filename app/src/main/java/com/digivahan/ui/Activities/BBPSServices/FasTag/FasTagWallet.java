@@ -239,7 +239,7 @@ public class FasTagWallet extends BaseActivity implements PaymentResultListener 
                                            @NonNull Response<JsonObject> response) {
 
                         try {
-                            JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                            JSONObject responseBody = APIHelper.getResponseData(TAG, response);
                             JSONObject bbApiResponse = responseBody.getJSONObject("data");
 
                             JSONObject dataObj = bbApiResponse.getJSONObject("data");
@@ -309,7 +309,7 @@ public class FasTagWallet extends BaseActivity implements PaymentResultListener 
                                            @NonNull Response<JsonObject> response) {
 
                         try {
-                            JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                            JSONObject responseBody = APIHelper.getResponseData(TAG, response);
                             JSONObject bbApiResponse = responseBody.getJSONObject("data");
 
                             JSONObject dataObj = bbApiResponse.getJSONObject("data");
@@ -484,7 +484,7 @@ public class FasTagWallet extends BaseActivity implements PaymentResultListener 
                     public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
                         CommonLogic.showTestLog(TAG, "📬 API onResponse() triggered");
 
-                        JSONObject APIResponse = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                        JSONObject APIResponse = APIHelper.getResponseData(TAG, response);
                         CommonLogic.showTestLog(TAG, "✅ API Raw Response: " + APIResponse.toString());
 
                         try {
@@ -656,7 +656,7 @@ public class FasTagWallet extends BaseActivity implements PaymentResultListener 
                         CommonLogic.showTestLog(TAG, "📬 API onResponse() triggered");
 
                         try {
-                            JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                            JSONObject responseBody = APIHelper.getResponseData(TAG, response);
                             CommonLogic.showTestLog(TAG, "✅ API Raw Response: " + responseBody.toString());
                             JSONObject bbApiResponse = responseBody.getJSONObject("data");
 

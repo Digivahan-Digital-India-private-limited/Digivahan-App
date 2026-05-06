@@ -56,7 +56,7 @@ public interface ApiCall {
             @Override
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
                 try {
-                    JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                    JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
                     if (responseBody == null) {
                         if (callback != null)

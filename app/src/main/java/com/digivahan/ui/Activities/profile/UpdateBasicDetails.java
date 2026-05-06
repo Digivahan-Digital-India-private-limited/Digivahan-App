@@ -16,16 +16,23 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.ashu.ashuutils.ImagePickerAppConstants;
+import com.ashu.ashuutils.fileUtils.FileUtils;
+import com.ashu.ashuutils.fileUtils.image.ImagePicker;
+import com.ashu.ashuutils.fileUtils.image.ImagePickerWithoutPermission;
+import com.ashu.ashuutils.fileUtils.image.ImageProcessingUtils;
+import com.ashu.ashuutils.models.CompressFileData;
 import com.digivahan.ui.Activities.BaseActivity;
 import androidx.core.content.ContextCompat;
 
 import com.digivahan.R;
 import com.digivahan.data.api.ApiClient;
 import com.digivahan.data.local.PreferencesManager;
-import com.digivahan.data.model.CompressFileData;
 import com.digivahan.data.model.User;
 import com.digivahan.databinding.ActivityUpdateBasicDetailsBinding;
 import com.digivahan.other.CustomDialog.AshDialog;
+import com.digivahan.ui.Activities.chat.ChatActivity;
 import com.digivahan.utils.CommonLogic;
 import com.digivahan.utils.CommonMethods;
 import com.digivahan.utils.Constants;
@@ -106,6 +113,8 @@ public class UpdateBasicDetails extends BaseActivity {
                 ContextCompat.getColor(this, R.color.white)
         );
 
+        ImagePickerWithoutPermission.init(this);
+
         binding.toolbarLayout.ivProfileLayout.setVisibility(View.GONE);
         binding.toolbarLayout.backBtn.setVisibility(View.VISIBLE);
         binding.toolbarLayout.ivBell.setVisibility(View.INVISIBLE);
@@ -180,13 +189,30 @@ public class UpdateBasicDetails extends BaseActivity {
 
         binding.pickImage.setOnClickListener(v -> {
             CommonLogic.showTestLog(TAG, "ImageClicked");
-            CommonLogic.showPickImageDialog(UpdateBasicDetails.this,
-                    CommonLogic.IMAGE_CROP_REQUEST, true, new CommonLogic.CameraSelectionCallback() {
-                        @Override
-                        public void onCameraSelected(boolean isCamera) {
-                            isCameraSelected = isCamera;
-                        }
+            ImagePicker.showPickImageDialog(TAG, UpdateBasicDetails.this, CommonLogic.IMAGE_CROP_REQUEST, 0, new FileUtils.ResultCallback() {
+                @Override
+                public void onCameraSelected(boolean isCamera) {
+                    isCameraSelected = isCamera;
+                }
+
+                @Override
+                public void onGallerySelected() {
+                    ImagePickerWithoutPermission.pickImage(TAG, uri -> {
+                        ImageProcessingUtils.handleGalleryFromUri(
+                                TAG,
+                                UpdateBasicDetails.this,
+                                uri,
+                                binding.profileImage,
+                                true,
+                                null,
+                                selectedImageData -> {
+                                    selectedImage = selectedImageData;
+                                    CommonLogic.showTestLog(TAG, "selectedImageData: File- " + selectedImageData.getFileFormat() + " path: " + selectedImageData.getFilePath());
+                                }
+                        );
                     });
+                }
+            });
         });
 
         binding.btnUpdate.setOnClickListener(v -> {
@@ -288,7 +314,7 @@ public class UpdateBasicDetails extends BaseActivity {
                 @Override
                 public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
                     try {
-                        JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                        JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
                         boolean status = responseBody.has("status") && responseBody.getBoolean("status");
                         String message = responseBody.has("message") ? responseBody.getString("message") : "Server error, Please try after some time.";
@@ -367,96 +393,32 @@ public class UpdateBasicDetails extends BaseActivity {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        try {
+        if (requestCode == ImagePickerAppConstants.IMAGE_REQUEST && resultCode == RESULT_OK) {
 
-            if (requestCode == CommonLogic.IMAGE_CROP_REQUEST && resultCode == RESULT_OK) {
-                Bitmap croppedImage = null;
+            ImageProcessingUtils.handleCameraImage("MainActivityData", UpdateBasicDetails.this, FileUtils.getImagePath(UpdateBasicDetails.this),
+                    binding.profileImage, true,null, new FileUtils.FileCallback() {
+                        @Override
+                        public void onFileReady(CompressFileData selectedImageData) {
 
-                if (isCameraSelected) {
-                    // ✅ CAMERA: load bitmap from saved file path
-                    String path = manager.getString(PreferencesManager.IMAGE_PATH, "");
+                            selectedImage = selectedImageData;
+                            CommonLogic.showTestLog(TAG, "selectedImageData: File- " + selectedImageData.getFileFormat() + " path: " + selectedImageData.getFilePath());
 
-                    CommonLogic.showTestLog(TAG, "📸 Camera image path: " + path);
-
-                    if (path == null || path.isEmpty()) {
-                        CommonLogic.showTestLog(TAG, "❌ Camera image path is empty");
-                        return;
-                    }
-
-                    File imageFile = new File(path);
-                    if (!imageFile.exists()) {
-                        CommonLogic.showTestLog(TAG, "❌ Camera image file does not exist");
-                        return;
-                    }
-
-                    croppedImage = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
-
-                } else {
-
-                    Uri selectedUri = null;
-
-// 🟢 Case 1: Single image (some devices)
-                    if (data.getData() != null) {
-                        selectedUri = data.getData();
-                        Log.i(TAG, "🖼️ Picked image URI (getData): " + selectedUri);
-                    }
-
-// 🟢 Case 2: Single / Multiple images (Xiaomi / Android 13)
-                    else if (data.getClipData() != null && data.getClipData().getItemCount() > 0) {
-                        selectedUri = data.getClipData().getItemAt(0).getUri();
-                        Log.i(TAG, "🖼️ Picked image URI (ClipData): " + selectedUri);
-                    }
-
-                    CommonLogic.showTestLog(TAG, "🖼️ Gallery URI: " + selectedUri);
-
-                    croppedImage = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedUri);
-                }
-
-                if (croppedImage == null) {
-                    CommonLogic.showTestLog(TAG, "❌ Bitmap is null");
-                    return;
-                }
-
-
-                CommonLogic.showCropOptionDialog(UpdateBasicDetails.this, CommonLogic.getUriFromBitmap(Objects.requireNonNull(croppedImage), UpdateBasicDetails.this),
-                        CommonLogic.PROFILE_IMAGE_REQUEST
-                        , "profile", new CommonLogic.CropImageCallback() {
-                            @Override
-                            public void onCropOptionCanceled() {
-                                CommonLogic.handleImagePick(data, isCameraSelected,  false, manager.getString(PreferencesManager.IMAGE_PATH, ""),
-                                        UpdateBasicDetails.this, binding.profileImage, null, new CommonLogic.FileCallback() {
-                                            @Override
-                                            public void onFileReady(CompressFileData selectedImageData) {
-                                                selectedImage = selectedImageData;
-                                                CommonLogic.showTestLog(TAG, "selectedImageData: File- " + selectedImageData.getFileFormat() + " path: " + selectedImageData.getFilePath());
-                                            }
-                                        });
-                            }
-                        });
-
-            } else if (requestCode == CommonLogic.PROFILE_IMAGE_REQUEST && resultCode == RESULT_OK) {
-
-
-                CommonLogic.handleImagePick(data, isCameraSelected, true, manager.getString(PreferencesManager.IMAGE_PATH, ""),
-                        UpdateBasicDetails.this, binding.profileImage, null, new CommonLogic.FileCallback() {
-                            @Override
-                            public void onFileReady(CompressFileData selectedImageData) {
-                                selectedImage = selectedImageData;
-                                CommonLogic.showTestLog(TAG, "selectedImageData: File- " + selectedImageData.getFileFormat() + " path: " + selectedImageData.getFilePath());
-                            }
-                        });
-            } else if (requestCode == CommonLogic.CAMARA_PERMISSION_REQUEST_CODE && resultCode == RESULT_OK) {
-                isCameraSelected = true;
-                CommonLogic.takePictureFromCamera(UpdateBasicDetails.this, CommonLogic.PROFILE_IMAGE_REQUEST, false);
-            } else if (requestCode == CommonLogic.STORAGE_PERMISSION_REQUEST_CODE && resultCode == RESULT_OK) {
-                isCameraSelected = false;
-                CommonLogic.choosePictureFromGallery(UpdateBasicDetails.this, CommonLogic.PROFILE_IMAGE_REQUEST);
-            }
-
-        }catch (IOException e) {
-//            throw new RuntimeException(e);
-            CommonLogic.showTestLog(TAG, "Image issue: " + e.getMessage());
+                        }
+                    });
         }
+        else if (requestCode == ImagePickerAppConstants.IMAGE_CROP_REQUEST && resultCode == RESULT_OK) {
+
+            ImageProcessingUtils.handleCroppedImage("MainActivityData", UpdateBasicDetails.this, data, binding.profileImage, null, new FileUtils.FileCallback() {
+                @Override
+                public void onFileReady(CompressFileData selectedImageData) {
+
+                    selectedImage = selectedImageData;
+                    CommonLogic.showTestLog(TAG, "selectedImageData: File- " + selectedImageData.getFileFormat() + " path: " + selectedImageData.getFilePath());
+
+                }
+            });
+        }
+
     }
 
 }

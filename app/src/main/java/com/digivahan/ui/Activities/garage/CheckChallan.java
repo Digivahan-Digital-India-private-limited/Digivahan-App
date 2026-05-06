@@ -210,7 +210,7 @@ public class CheckChallan extends BaseActivity {
                                            @NonNull Response<JsonObject> response) {
 
                         JSONObject body = APIHelper.getResponseData(
-                                TAG, response, Constants.ENABLE_TESTING);
+                                TAG, response);
 
                         try {
                             if (!body.optBoolean("success")) {
@@ -392,7 +392,7 @@ public class CheckChallan extends BaseActivity {
                                            @NonNull Response<JsonObject> response) {
 
                         JSONObject APIResponse =
-                                APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                                APIHelper.getResponseData(TAG, response);
 
                         if (response.code() == 500 || response.code() == 503){
                             CommonMethods.showMessageDialog(CheckChallan.this, "Under Maintenance", "RTO under maintenance, No challan Found, Please try after some time");
@@ -479,7 +479,7 @@ public class CheckChallan extends BaseActivity {
                                            @NonNull Response<JsonObject> response) {
 
                         JSONObject body = APIHelper.getResponseData(
-                                TAG, response, Constants.ENABLE_TESTING);
+                                TAG, response);
 
                         try {
                             if (!body.optBoolean("success")) {

@@ -349,7 +349,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
 
                         try {
-                            JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                            JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
                             CommonLogic.showTestLog(TAG, "registerUser response:- " + responseBody);
 

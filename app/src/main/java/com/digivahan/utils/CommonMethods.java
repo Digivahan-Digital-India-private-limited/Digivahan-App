@@ -147,7 +147,7 @@ public interface CommonMethods {
             @Override
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
                 try {
-                    JSONObject responseBody = APIHelper.getResponseData("UploadImageAPI", response, Constants.ENABLE_TESTING);
+                    JSONObject responseBody = APIHelper.getResponseData("UploadImageAPI", response);
 
                     boolean status = responseBody.has("status") && responseBody.getBoolean("status");
                     String message = responseBody.optString("message", "Unknown error");
@@ -262,7 +262,7 @@ public interface CommonMethods {
                         }
 
                         try {
-                            JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                            JSONObject responseBody = APIHelper.getResponseData(TAG, response);
                             Log.i(TAG, "📦 Raw Response: " + responseBody);
 
                             boolean status = responseBody.optBoolean("status", false);
@@ -376,7 +376,7 @@ public interface CommonMethods {
                     Log.i(TAG, "📬 API Response received: " + response);
 
                     if (!response.isSuccessful()) {
-                        JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                        JSONObject responseBody = APIHelper.getResponseData(TAG, response);
                         Log.e(TAG, "❌ Server returned error code: " + response.code());
                         try {
                             String errorBody = response.errorBody() != null
@@ -405,7 +405,7 @@ public interface CommonMethods {
                     }
 
                     try {
-                        JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                        JSONObject responseBody = APIHelper.getResponseData(TAG, response);
                         Log.i(TAG, "📦 Raw Response: " + responseBody);
 
                         boolean status = responseBody.optBoolean("success", false);
@@ -464,7 +464,7 @@ public interface CommonMethods {
                                 // 🟢 Step 3: Log raw response
                                 CommonLogic.showTestLog(TAG, "📬 Response received: " + response);
 
-                                JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                                JSONObject responseBody = APIHelper.getResponseData(TAG, response);
                                 CommonLogic.showTestLog(TAG, "📦 Parsed Response: " + responseBody);
 
                                 boolean status = responseBody.has("status") && responseBody.getBoolean("status");
@@ -2101,7 +2101,7 @@ public interface CommonMethods {
             @Override
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
 
-                JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
                 try {
                     boolean status = responseBody.has("success") && responseBody.getBoolean("success");

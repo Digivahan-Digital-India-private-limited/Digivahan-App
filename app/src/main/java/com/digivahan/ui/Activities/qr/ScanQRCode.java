@@ -33,6 +33,11 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+
+import com.ashu.ashuutils.ImagePickerAppConstants;
+import com.ashu.ashuutils.fileUtils.PermissionUtils;
+import com.ashu.ashuutils.fileUtils.image.ImagePickerWithoutPermission;
+import com.ashu.ashuutils.fileUtils.image.ImageProcessingUtils;
 import com.digivahan.ui.Activities.BaseActivity;
 import androidx.core.content.ContextCompat;
 
@@ -49,6 +54,7 @@ import com.digivahan.other.CustomDialog.AshDialog;
 import com.digivahan.ui.Activities.MainActivity;
 
 import com.digivahan.ui.Activities.garage.MyGarageActivity;
+import com.digivahan.ui.Activities.profile.UpdateBasicDetails;
 import com.digivahan.utils.CommonLogic;
 import com.digivahan.utils.CommonMethods;
 import com.ashu.ashuutils.APIHelper;
@@ -76,8 +82,6 @@ public class ScanQRCode extends BaseActivity implements BarcodeRetriever {
 
     boolean showFlash = false;
 
-    private ActivityResultLauncher<Intent> pickImageLauncher;
-
     PreferencesManager manager;
 
     AshDialog loadingDialog;
@@ -95,6 +99,8 @@ public class ScanQRCode extends BaseActivity implements BarcodeRetriever {
                 getWindow(),
                 ContextCompat.getColor(this, R.color.white)
         );
+
+        ImagePickerWithoutPermission.init(this);
 
         binding.toolbarLayout.ivProfileLayout.setVisibility(View.GONE);
         binding.toolbarLayout.backBtn.setVisibility(View.VISIBLE);
@@ -140,11 +146,11 @@ public class ScanQRCode extends BaseActivity implements BarcodeRetriever {
         barcodeCapture = (BarcodeCapture) getSupportFragmentManager()
                 .findFragmentById(R.id.barcode);
 
-        if (FileUtils.isCameraPermissionGranted(ScanQRCode.this)) {
+        if (PermissionUtils.isCameraPermissionGranted(TAG,ScanQRCode.this)) {
             barcodeCapture.setRetrieval(this);
             startScanner();
         } else {
-            FileUtils.requestCameraPermission(ScanQRCode.this);
+            PermissionUtils.requestCameraPermission(ScanQRCode.this);
         }
 
 
@@ -178,24 +184,10 @@ public class ScanQRCode extends BaseActivity implements BarcodeRetriever {
             }
         });
 
-        // Initialize launcher
-        pickImageLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
-                        Uri imageUri = result.getData().getData();
-                        if (imageUri != null) {
-                            decodeQRFromImage(imageUri);
-                        }
-                    }
-                }
-        );
     }
 
     private void openGallery() {
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        pickImageLauncher.launch(intent);
+        ImagePickerWithoutPermission.pickImage(TAG, this::decodeQRFromImage);
     }
 
 
@@ -883,7 +875,7 @@ public class ScanQRCode extends BaseActivity implements BarcodeRetriever {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (requestCode == FileUtils.CAMARA_PERMISSION_REQUEST_CODE) {
+        if (requestCode == ImagePickerAppConstants.CAMERA_PERMISSION_REQUEST_CODE) {
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
@@ -932,44 +924,5 @@ public class ScanQRCode extends BaseActivity implements BarcodeRetriever {
                 .show();
     }
 
-
-
-    /*public void sendGroupJoinRequest(JSONObject jsonObject, GroupInfoModel groupInfoModel){
-        Call<JsonObject> call = ApiController.getInstance(ScanQRCode.this).getapi().
-                sendGroupJoinRequest(jsonObject.optString("created_by"), "2", jsonObject.optString("id"),
-                        jsonObject.optString("key_qrcode"), helper.getCurrentUserData().getId());
-
-        call.enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
-                dialog.dismiss();
-                JSONObject jsonResponse = ApiSet.getResponseData(response);
-                if (jsonResponse.optString("status").equals("true") ){
-                    showDialog("Request has been send to admin");
-                }
-                else if (jsonResponse.optString("status").equals("false") &&
-                        jsonResponse.optString("message").toLowerCase(Locale.ROOT).
-                                equalsIgnoreCase("Already requested".toLowerCase(Locale.ROOT))) {
-                    showDialog("Request already has been send to admin");
-                } else {
-                    if (jsonResponse.optString("message").toLowerCase(Locale.ROOT).
-                            equalsIgnoreCase("Already member of that group".toLowerCase(Locale.ROOT))){
-                        helper.setCurrentGroup(groupInfoModel, true);
-                        Intent groupInfo = new Intent(getApplicationContext(), GroupItemInfoPage.class);
-                        finish();
-                        startActivity(groupInfo);
-                    }
-                    else {
-                        showDialog("Unable to read QR");
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable t) {
-                dialog.dismiss();
-            }
-        });
-    }*/
 
 }

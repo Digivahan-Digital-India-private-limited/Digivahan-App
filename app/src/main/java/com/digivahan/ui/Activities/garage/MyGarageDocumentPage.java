@@ -10,16 +10,22 @@ import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
+
+import com.ashu.ashuutils.ImagePickerAppConstants;
+import com.ashu.ashuutils.fileUtils.FileUtils;
+import com.ashu.ashuutils.fileUtils.image.ImagePicker;
+import com.ashu.ashuutils.fileUtils.image.ImageProcessingUtils;
+import com.ashu.ashuutils.models.CompressFileData;
 import com.digivahan.ui.Activities.BaseActivity;
 import androidx.core.content.ContextCompat;
 
 import com.digivahan.R;
 import com.digivahan.data.local.PreferencesManager;
-import com.digivahan.data.model.CompressFileData;
 import com.digivahan.data.model.GarageItemModel;
 import com.digivahan.data.model.SavedImageData;
 import com.digivahan.databinding.ActivityMyGarageDocumentPageBinding;
 import com.digivahan.other.CustomDialog.AshDialog;
+import com.digivahan.ui.Activities.chat.ChatActivity;
 import com.digivahan.utils.CommonLogic;
 import com.digivahan.utils.CommonMethods;
 
@@ -132,7 +138,7 @@ public class MyGarageDocumentPage extends BaseActivity {
 
 
         binding.pickDocument.setOnClickListener(v -> {
-            CommonLogic.takePictureFromCamera(MyGarageDocumentPage.this, CommonLogic.DOCUMENT_REQUEST_CODE, false);
+            ImagePicker.takePictureFromCamera(TAG, MyGarageDocumentPage.this, ImagePickerAppConstants.IMAGE_REQUEST, false);
         });
 
         binding.btnUpload.setOnClickListener(view -> {
@@ -278,13 +284,12 @@ public class MyGarageDocumentPage extends BaseActivity {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == CommonLogic.DOCUMENT_REQUEST_CODE && resultCode == RESULT_OK) {
-            CommonLogic.handleImagePick(data, true, false, manager.getString(PreferencesManager.IMAGE_PATH,
-                    ""), MyGarageDocumentPage.this, null, null, new CommonLogic.FileCallback() {
+        if (requestCode == ImagePickerAppConstants.IMAGE_REQUEST && resultCode == RESULT_OK) {
+            ImageProcessingUtils.handleCameraImage(TAG, MyGarageDocumentPage.this, FileUtils.getImagePath(MyGarageDocumentPage.this), null, false,null, new FileUtils.FileCallback() {
                 @Override
-                public void onFileReady(CompressFileData selectedDocData) {
-                    documentFile = selectedDocData.getFileFormat();
-                    documentPath = selectedDocData.getFilePath();
+                public void onFileReady(CompressFileData selectedImageData) {
+                    documentFile = selectedImageData.getFileFormat();
+                    documentPath = selectedImageData.getFilePath();
 
                     binding.selectedDocument.setText("Selected Document:\n" + CommonLogic.getFileNameFromPath(MyGarageDocumentPage.this, documentPath));
 

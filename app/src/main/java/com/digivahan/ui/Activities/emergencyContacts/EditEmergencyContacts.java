@@ -2,7 +2,10 @@ package com.digivahan.ui.Activities.emergencyContacts;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -11,18 +14,25 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.ashu.ashuutils.ImagePickerAppConstants;
+import com.ashu.ashuutils.fileUtils.FileUtils;
+import com.ashu.ashuutils.fileUtils.image.ImagePicker;
+import com.ashu.ashuutils.fileUtils.image.ImagePickerWithoutPermission;
+import com.ashu.ashuutils.fileUtils.image.ImageProcessingUtils;
+import com.ashu.ashuutils.models.CompressFileData;
 import com.digivahan.ui.Activities.BaseActivity;
 import androidx.core.content.ContextCompat;
 
 import com.digivahan.R;
 import com.digivahan.data.api.ApiClient;
 import com.digivahan.data.local.PreferencesManager;
-import com.digivahan.data.model.CompressFileData;
 import com.digivahan.data.model.EmergencyContactModel;
 import com.digivahan.databinding.ActivityEditEmergencyContactsBinding;
 import com.digivahan.other.CustomDialog.AshDialog;
 import com.digivahan.ui.Activities.chat.ChatActivity;
 import com.digivahan.ui.Activities.documentVault.DocumentVaultActivity;
+import com.digivahan.ui.Activities.profile.UpdatePublicDetails;
 import com.digivahan.utils.CommonLogic;
 import com.digivahan.utils.CommonMethods;
 import com.digivahan.utils.Constants;
@@ -33,6 +43,7 @@ import com.google.gson.JsonObject;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -122,6 +133,8 @@ public class EditEmergencyContacts extends BaseActivity {
 
         manager = new PreferencesManager(EditEmergencyContacts.this);
 
+        ImagePickerWithoutPermission.init(this);
+
         loadingDialog = new AshDialog(EditEmergencyContacts.this, "Please wait", "");
 
         binding.toolbarLayout.ivProfileLayout.setVisibility(View.GONE);
@@ -174,13 +187,30 @@ public class EditEmergencyContacts extends BaseActivity {
 
         binding.btnChangeImage.setOnClickListener(v -> {
             CommonLogic.showTestLog(TAG, "ImageClicked");
-            CommonLogic.showPickImageDialog(EditEmergencyContacts.this,
-                    CommonLogic.PROFILE_IMAGE_REQUEST, false, new CommonLogic.CameraSelectionCallback() {
-                        @Override
-                        public void onCameraSelected(boolean isCamera) {
-                            isCameraSelected = isCamera;
-                        }
+            ImagePicker.showPickImageDialog(TAG, EditEmergencyContacts.this, ImagePickerAppConstants.IMAGE_REQUEST, 0, new FileUtils.ResultCallback() {
+                @Override
+                public void onCameraSelected(boolean isCamera) {
+                    isCameraSelected = isCamera;
+                }
+
+                @Override
+                public void onGallerySelected() {
+                    ImagePickerWithoutPermission.pickImage(TAG, uri -> {
+                        ImageProcessingUtils.handleGalleryFromUri(
+                                TAG,
+                                EditEmergencyContacts.this,
+                                uri,
+                                binding.imgProfile,
+                                true,
+                                null,
+                                selectedImageData -> {
+                                    selectedImage = selectedImageData;
+                                    CommonLogic.showTestLog(TAG, "selectedImageData: File- " + selectedImageData.getFileFormat() + " path: " + selectedImageData.getFilePath());
+                                }
+                        );
                     });
+                }
+            });
         });
 
 
@@ -305,7 +335,7 @@ public class EditEmergencyContacts extends BaseActivity {
                     loadingDialog.dismiss();
 
                     try {
-                        JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                        JSONObject responseBody = APIHelper.getResponseData(TAG, response);
                         CommonLogic.showTestLog(TAG, responseBody.toString());
 
                         boolean status = responseBody.has("status") && responseBody.getBoolean("status");
@@ -362,22 +392,29 @@ public class EditEmergencyContacts extends BaseActivity {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == CommonLogic.PROFILE_IMAGE_REQUEST && resultCode == RESULT_OK) {
-            CommonLogic.handleImagePick(data, isCameraSelected, false, manager.getString(PreferencesManager.IMAGE_PATH, ""),
-                    EditEmergencyContacts.this, binding.imgProfile, null, new CommonLogic.FileCallback() {
-                        @Override
-                        public void onFileReady(CompressFileData selectedImageData) {
-                            selectedImage = selectedImageData;
-                        }
-                    });
+        if (requestCode == ImagePickerAppConstants.IMAGE_REQUEST && resultCode == RESULT_OK) {
 
-            CommonLogic.showTestLog(TAG, "profileImagePath:- " + publicImagePath);
-        }else if (requestCode == CommonLogic.CAMARA_PERMISSION_REQUEST_CODE && resultCode == RESULT_OK) {
-            isCameraSelected = true;
-            CommonLogic.takePictureFromCamera(EditEmergencyContacts.this, CommonLogic.PROFILE_IMAGE_REQUEST, false);
-        } else if (requestCode == CommonLogic.STORAGE_PERMISSION_REQUEST_CODE && resultCode == RESULT_OK) {
-            isCameraSelected = false;
-            CommonLogic.choosePictureFromGallery(EditEmergencyContacts.this, CommonLogic.PROFILE_IMAGE_REQUEST);
+            ImageProcessingUtils.handleCameraImage("MainActivityData", EditEmergencyContacts.this, FileUtils.getImagePath(EditEmergencyContacts.this), binding.imgProfile, true,null, new FileUtils.FileCallback() {
+                @Override
+                public void onFileReady(CompressFileData selectedImageData) {
+
+                    selectedImage = selectedImageData;
+                    CommonLogic.showTestLog(TAG, "selectedImageData: File- " + selectedImageData.getFileFormat() + " path: " + selectedImageData.getFilePath());
+
+                }
+            });
+        }
+        else if (requestCode == ImagePickerAppConstants.IMAGE_CROP_REQUEST && resultCode == RESULT_OK) {
+
+            ImageProcessingUtils.handleCroppedImage("MainActivityData", EditEmergencyContacts.this, data, binding.imgProfile, null, new FileUtils.FileCallback() {
+                @Override
+                public void onFileReady(CompressFileData selectedImageData) {
+
+                    selectedImage = selectedImageData;
+                    CommonLogic.showTestLog(TAG, "selectedImageData: File- " + selectedImageData.getFileFormat() + " path: " + selectedImageData.getFilePath());
+
+                }
+            });
         }
     }
 }

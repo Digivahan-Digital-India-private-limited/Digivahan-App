@@ -240,7 +240,7 @@ public class QRHomeFragment extends Fragment {
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
 
                 try {
-                    JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                    JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
 
                     boolean status = responseBody.has("status") && responseBody.getBoolean("status");
@@ -485,7 +485,7 @@ public class QRHomeFragment extends Fragment {
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
 
                 try {
-                    JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                    JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
 
                     boolean status = responseBody.has("success") && responseBody.getBoolean("success");

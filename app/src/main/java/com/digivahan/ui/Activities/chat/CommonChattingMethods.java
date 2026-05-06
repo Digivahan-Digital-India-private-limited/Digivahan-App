@@ -109,7 +109,7 @@ public interface CommonChattingMethods {
                 loadingDialog.dismiss();
 
                 try {
-                    JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                    JSONObject responseBody = APIHelper.getResponseData(TAG, response);
                     CommonLogic.showTestLog(TAG, responseBody.toString());
 
                     boolean status = responseBody.has("status") && responseBody.getBoolean("status");

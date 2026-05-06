@@ -124,7 +124,7 @@ public class UpdateProfileFragment extends Fragment {
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
 
                 try {
-                    JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                    JSONObject responseBody = APIHelper.getResponseData(TAG, response);
                     CommonLogic.showTestLog(TAG, responseBody.toString());
 
                     boolean status = responseBody.has("success") && responseBody.getBoolean("success");
@@ -193,7 +193,7 @@ public class UpdateProfileFragment extends Fragment {
                     @Override
                     public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
                         try {
-                            JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                            JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
                             boolean status = Objects.requireNonNull(responseBody).optBoolean("success", false);
                             String message = responseBody.optString("message", "Server error, Please try after some time.");

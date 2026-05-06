@@ -22,7 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.OnBackPressedCallback;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -143,21 +143,6 @@ public class MainActivity extends BaseActivity implements DrawerController {
         showPermissionDialog();
 
 
-        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                READ_STORAGE_PERMISSION = Manifest.permission.READ_MEDIA_IMAGES;
-            } else {
-                READ_STORAGE_PERMISSION = Manifest.permission.READ_EXTERNAL_STORAGE;
-
-            }
-            showPermissionDialog();
-        }*/
-
-        /*if (!isBatteryOptimizationDisabled()) {
-            showBatteryOptimizationDialog();
-        } else {
-            CommonLogic.showTestLog(TAG, "✅ Battery optimization already disabled");
-        }*/
 
 
 

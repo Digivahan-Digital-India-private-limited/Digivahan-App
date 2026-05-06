@@ -6,9 +6,12 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Toast;
@@ -16,6 +19,13 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.ashu.ashuutils.ImagePickerAppConstants;
+import com.ashu.ashuutils.fileUtils.FileUtils;
+import com.ashu.ashuutils.fileUtils.image.ImagePicker;
+import com.ashu.ashuutils.fileUtils.image.ImagePickerWithoutPermission;
+import com.ashu.ashuutils.fileUtils.image.ImageProcessingUtils;
+import com.ashu.ashuutils.models.CompressFileData;
 import com.digivahan.ui.Activities.BaseActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -26,7 +36,6 @@ import com.digivahan.data.adapters.SelectedImageListAdapter;
 import com.digivahan.data.api.APIData;
 import com.digivahan.data.api.ApiCall;
 import com.digivahan.data.local.PreferencesManager;
-import com.digivahan.data.model.CompressFileData;
 import com.digivahan.data.model.SavedImageData;
 import com.digivahan.data.model.User;
 import com.digivahan.databinding.ActivityNotificationInfoRequestPageBinding;
@@ -50,7 +59,9 @@ import com.google.gson.JsonObject;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ChatNotificationInfoRequestPage extends BaseActivity implements OnMapReadyCallback {
     String TAG = "ChatNotificationInfoRequestPageData";
@@ -93,6 +104,8 @@ public class ChatNotificationInfoRequestPage extends BaseActivity implements OnM
                 getWindow(),
                 ContextCompat.getColor(this, R.color.white)
         );
+
+        ImagePickerWithoutPermission.init(this);
 
         binding.toolbarLayout.ivProfileLayout.setVisibility(View.GONE);
         binding.toolbarLayout.backBtn.setVisibility(View.VISIBLE);
@@ -298,12 +311,31 @@ public class ChatNotificationInfoRequestPage extends BaseActivity implements OnM
         });
 
         binding.pickImage.setOnClickListener(v -> {
-            if (selectedImageList.size() < 6) {
-                isCameraSelected = true;
-                CommonLogic.takePictureFromCamera(ChatNotificationInfoRequestPage.this, CommonLogic.PROFILE_IMAGE_REQUEST, false);
-            } else {
-                Toast.makeText(this, "You can send 5 images only.", Toast.LENGTH_SHORT).show();
-            }
+            CommonLogic.showTestLog(TAG, "ImageClicked");
+            ImagePicker.showPickImageDialog(TAG, ChatNotificationInfoRequestPage.this, ImagePickerAppConstants.IMAGE_REQUEST, 0, new FileUtils.ResultCallback() {
+                @Override
+                public void onCameraSelected(boolean isCamera) {
+                    isCameraSelected = isCamera;
+                }
+
+                @Override
+                public void onGallerySelected() {
+                    ImagePickerWithoutPermission.pickImage(TAG, uri -> {
+                        ImageProcessingUtils.handleGalleryFromUri(
+                                TAG,
+                                ChatNotificationInfoRequestPage.this,
+                                uri,
+                                null,
+                                false,
+                                null,
+                                selectedImageData -> {
+                                    uploadImage(selectedImageData);
+                                    CommonLogic.showTestLog(TAG, "selectedImageData: File- " + selectedImageData.getFileFormat() + " path: " + selectedImageData.getFilePath());
+                                }
+                        );
+                    });
+                }
+            });
         });
 
     }
@@ -396,54 +428,47 @@ public class ChatNotificationInfoRequestPage extends BaseActivity implements OnM
 
         loadingDialog.show();
 
-        if (requestCode == 1001) {
-            if (resultCode == Activity.RESULT_OK) {
-                CommonLogic.showTestLog(TAG, "User enabled GPS, retrying location");
+        loadingDialog.show();
 
-                getCurrentLocation();
-
-            } else {
-                CommonLogic.showTestLog(TAG, "User denied GPS enable");
-            }
-        }
-
-        if (requestCode == CommonLogic.PROFILE_IMAGE_REQUEST && resultCode == RESULT_OK) {
-            CommonLogic.handleImagePick(data, isCameraSelected, false,  manager.getString(PreferencesManager.IMAGE_PATH, ""),
-                    ChatNotificationInfoRequestPage.this, null, null, new CommonLogic.FileCallback() {
+        if (requestCode == ImagePickerAppConstants.IMAGE_REQUEST && resultCode == RESULT_OK) {
+            ImageProcessingUtils.handleCameraImage(TAG, ChatNotificationInfoRequestPage.this,
+                    FileUtils.getImagePath(ChatNotificationInfoRequestPage.this),
+                    null, false,null, new FileUtils.FileCallback() {
                         @Override
                         public void onFileReady(CompressFileData selectedImageData) {
-//                            profileImageFile = selectedImageData.getFileFormat();
-//                            profileImagePath = selectedImageData.getFilePath();
 
-                            CommonMethods.uploadSingleImage(ChatNotificationInfoRequestPage.this,
-                                    selectedImageData.getFileFormat(), selectedImageData.getFilePath(), Constants.vehicleAccidents,
-                                    new CommonMethods.ImageUploadCallback() {
-                                        @Override
-                                        public void onUploadSuccess(SavedImageData uploadedImage) {
-//                                            Toast.makeText(EditEmergencyContacts.this, "Upload successful!", Toast.LENGTH_SHORT).show();
-                                            uploadedImage.setImageFile(selectedImageData.getFileFormat());
-                                            selectedImageList.add(uploadedImage);
-                                            selectedImageListAdapter.notifyDataSetChanged();
-                                            loadingDialog.dismiss();
-                                        }
+                            uploadImage(selectedImageData);
 
-                                        @Override
-                                        public void onUploadError(String errorMessage) {
-                                            Toast.makeText(ChatNotificationInfoRequestPage.this, errorMessage, Toast.LENGTH_SHORT).show();
-                                            loadingDialog.dismiss();
-                                        }
-
-                                        @Override
-                                        public void onUploadJSON(JSONObject errorMessage) {
-                                        }
-                                    }
-                            );
                         }
                     });
 
-        } else {
-            loadingDialog.dismiss();
         }
+    }
+
+    private void uploadImage(CompressFileData selectedImageData) {
+        CommonMethods.uploadSingleImage(ChatNotificationInfoRequestPage.this,
+                selectedImageData.getFileFormat(), selectedImageData.getFilePath(), Constants.vehicleAccidents,
+                new CommonMethods.ImageUploadCallback() {
+                    @Override
+                    public void onUploadSuccess(SavedImageData uploadedImage) {
+//                                            Toast.makeText(EditEmergencyContacts.this, "Upload successful!", Toast.LENGTH_SHORT).show();
+                        uploadedImage.setImageFile(selectedImageData.getFileFormat());
+                        selectedImageList.add(uploadedImage);
+                        selectedImageListAdapter.notifyDataSetChanged();
+                        loadingDialog.dismiss();
+                    }
+
+                    @Override
+                    public void onUploadError(String errorMessage) {
+                        Toast.makeText(ChatNotificationInfoRequestPage.this, errorMessage, Toast.LENGTH_SHORT).show();
+                        loadingDialog.dismiss();
+                    }
+
+                    @Override
+                    public void onUploadJSON(JSONObject errorMessage) {
+                    }
+                }
+        );
     }
 
 

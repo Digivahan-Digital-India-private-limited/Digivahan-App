@@ -175,7 +175,7 @@ public class BillerIdList extends BaseActivity {
                                            @NonNull Response<JsonObject> response) {
 
                         try {
-                            JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                            JSONObject responseBody = APIHelper.getResponseData(TAG, response);
                             JSONObject bbApiResponse = responseBody.getJSONObject("data");
 
                             JSONObject dataObj = bbApiResponse.getJSONObject("data");
@@ -245,7 +245,7 @@ public class BillerIdList extends BaseActivity {
                                            @NonNull Response<JsonObject> response) {
 
                         try {
-                            JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                            JSONObject responseBody = APIHelper.getResponseData(TAG, response);
                             JSONObject bbApiResponse = responseBody.getJSONObject("data");
 
                             JSONObject dataObj = bbApiResponse.getJSONObject("data");
@@ -358,7 +358,7 @@ public class BillerIdList extends BaseActivity {
                         CommonLogic.showTestLog(TAG, "API RESPONSE RECEIVED");
 
                         try {
-                            JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                            JSONObject responseBody = APIHelper.getResponseData(TAG, response);
                             JSONObject bbApiResponse = responseBody.getJSONObject("data");
 
                             CommonLogic.showTestLog(TAG, "Full Response: " + bbApiResponse.toString());

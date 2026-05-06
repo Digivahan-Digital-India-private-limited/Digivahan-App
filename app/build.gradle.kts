@@ -11,12 +11,11 @@ android {
     compileSdk = 36
 
     defaultConfig {
-//        applicationId = "com.digivahan"
         applicationId = "com.digivahan"
         minSdk = 26
         targetSdk = 36
-        versionCode = 14
-        versionName = "1.1.4"
+        versionCode = 16
+        versionName = "1.1.6"
 //        multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -195,8 +194,10 @@ dependencies {
 
 
     implementation("com.github.Ashu-Hasan:AshOtp:1.0.8")
-    implementation("com.github.Ashu-Hasan:AshuXKit:1.1.8")
-    implementation("com.github.Ashu-Hasan:QRCodeScanner:1.0.2")
+    implementation("com.github.Ashu-Hasan:Ashu_Image_Picker:v1.0.5")
+    implementation("com.github.Ashu-Hasan:HelperUtils:1.0.2")
+//    implementation("com.github.Ashu-Hasan:AshuXKit:1.2.3")
+    implementation("com.github.Ashu-Hasan:QRCodeScanner:1.0.3")
 
     // to show current location on map.
     implementation("com.google.android.gms:play-services-maps:18.2.0")

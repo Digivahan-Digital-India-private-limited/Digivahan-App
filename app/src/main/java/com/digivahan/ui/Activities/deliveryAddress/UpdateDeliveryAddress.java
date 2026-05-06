@@ -154,7 +154,7 @@ public class UpdateDeliveryAddress extends BaseActivity {
                     @Override
                     public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
                         try {
-                            JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                            JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
                             boolean status = Objects.requireNonNull(responseBody).optBoolean("success", false);
                             String message = responseBody.optString("message", "Server error, Please try after some time.");
@@ -352,7 +352,7 @@ public class UpdateDeliveryAddress extends BaseActivity {
                         @SuppressLint("SetTextI18n")
                         @Override
                         public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
-                            JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                            JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
                             boolean status = Objects.requireNonNull(responseBody).optBoolean("status", false);
                             String message = responseBody.optString("message", "Server error, Please try after some time.");

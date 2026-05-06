@@ -103,7 +103,7 @@ public class SetPrimaryContactPage extends BaseActivity {
                 @Override
                 public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
                     try {
-                        JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                        JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
                         boolean status = responseBody.has("status") && responseBody.getBoolean("status");
                         String message = responseBody.has("message") ? responseBody.getString("message") : "Server error, Please try after some time.";
@@ -150,7 +150,7 @@ public class SetPrimaryContactPage extends BaseActivity {
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
 
                 try {
-                    JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                    JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
                     boolean status = responseBody.has("status") && responseBody.getBoolean("status");
                     String message = responseBody.has("message") ? responseBody.getString("message") : "Server error, Please try after some time.";

@@ -134,7 +134,7 @@ public class DocumentVaultActivity extends BaseActivity {
                 loadingDialog.dismiss();
 
                 try {
-                    JSONObject docData = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                    JSONObject docData = APIHelper.getResponseData(TAG, response);
                     CommonLogic.showTestLog(TAG, "response: " + docData.toString());
 
 

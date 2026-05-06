@@ -1113,7 +1113,7 @@ public class DashBoardFragment extends Fragment {
                 if (!isSafeToUpdateUI()) return;
 
                 try {
-                    JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                    JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
 
                     boolean status = responseBody.has("success") && responseBody.getBoolean("success");
@@ -1506,7 +1506,7 @@ public class DashBoardFragment extends Fragment {
                     public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
 
                         try {
-                            JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                            JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
                             CommonLogic.showTestLog(TAG, "getCompareVehicleDataSet response: " + responseBody);
 

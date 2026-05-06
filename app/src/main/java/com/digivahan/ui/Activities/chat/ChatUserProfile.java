@@ -174,7 +174,7 @@ public class ChatUserProfile extends BaseActivity {
             @Override
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
 
-                JSONObject responseBody = APIHelper.getResponseData(TAG, response, Constants.ENABLE_TESTING);
+                JSONObject responseBody = APIHelper.getResponseData(TAG, response);
 
                 try {
                     boolean status = responseBody.has("success") && responseBody.getBoolean("success");
